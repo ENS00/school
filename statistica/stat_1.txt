@@ -1,0 +1,32 @@
+cristian.mungherli@gmail.com
+vrakastalion
+
+Lezione 1 22-10-2019
+
+3 tipi di probabilità:
+ - permutazioni
+ - disposizioni
+ - combinazioni
+
+coefficiente binomiale  n=contenitore k=numero
+ / n \        n!
+|     | = ----------
+ \ k /     (n-k)!k!
+
+spazio degli eventi (omega): le possibilità considerate
+
+modello statistico e matematico
+modello statistico: decisioni statistiche, ogni probabilità è >0%
+
+modello matematico: una sola risposta
+
+0  a 1
+1  b 1
+2  a+b 2
+3  a+b+b 3
+4  a+b+b+a+b 5 2+3
+5  a+b+b+a+b+a+b+b 8 2+3+3
+6  a+b+b+a+b+a+b+b+a+b+b+a+b+a+b+b 13 3(a+b+b)+2(a+b) 2+3+3 +3+3
+7  5(a+b+b)+3(a+b) 15+6 21 2+3+3+3+3 +2+3+3
+8  8(a+b+b)+5(a+b) 24+10 34
+Xn=[Xn-3](a+2b)+[Xn-4](a+b)
