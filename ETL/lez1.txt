@@ -1,0 +1,42 @@
+self-service BI (power BI, SAC, qlik)
+corporate BI    (SQL Server)
+
+Recupero e normalizzazione dati (SSIS per corporate BI, Power Query per self-service BI)
+
+Modellizzazione e Analysis services (SSAS per corporate BI, Power Pivot per self-service BI)
+SSAS è Tabular (o vertipaq, linguaggio DAX) o Multidimensional (linguaggio MDX più vecchio)
+Power Pivot può essere vertipaq (lavora in memoria) se viene importato nel server
+
+Visualizzazione (SSRS per Sql Server, Power View per Power BI)
+SQL Server Reporting Services usa Repert
+Power View usa Repert o Dashboard
+
+Master Data: Tabella con dati master ovvero tuple uniche con tutte le informazioni necessarie (per esempio elenco dipendenti dove può
+esistere un solo "Mario Rossi")
+
+installazione sql server
+
+modalità mista:
+Pa$$word
+aggiungere utente corrente
+
+schema:
+viene fatta la denormalizzazione
+I fatti compongono la tabella centrale, le altre tabelle si dicono dimensioni e sono relazionate 1 a N verso la tabella dei fatti
+I fatti hanno tutte le chiavi primarie e parametri aggiuntivi
+Una dimensione è composta da attributi, che sono i campi che verranno a sostenere l'analisi
+Il valore di un attributo si chiama membro
+
+SQL Server utilizza linguaggio T-SQL
+Logical Query Processing (LQP)
+5 select
+1 from
+2 where
+3 group by
+4 having
+6 order by
+
+CASE {expr1} THEN {value1}
+CASE {expr2} THEN {value2}
+ELSE {defaultvalue}
+END AS {alias}
