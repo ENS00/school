@@ -1,0 +1,58 @@
+date format for mssql is 'yyyymmdd'
+performance
+		where A >= x and A < y   >>   where A between x and y
+
+merge into dbo.NewProduct as d
+using production.product as s
+on s.ProductID = d.ProductID
+when matched then
+	update set d.name =  s.name
+when not matched by target then
+	insert(ProductID,[Name]) values(s.ProductID,s.[Name])
+when not matched by source then
+	delete;
+
+select country_name
+from soccer_country
+where country_id IN (
+select team_id
+from match_details JOIN match_mast ON
+match_details.match_no=match_mast.match_no
+where win_lose='W' and play_step='F')
+
+select COUNT(*) as goals
+from soccer_country s JOIN goal g
+ON s.country_id=g.team_id
+where country_name='Germany'
+group by g.team_id
+
+select jersey_no,country_name,player_name,count(*) as kicks
+from soccer_country s JOIN player_mast p
+p.team_id = s.country_id JOIN penalty_shootout ps ON
+ps.player_id=p.player_id
+GROUP BY jersey_no,player_name,country_name
+HAVING count(*) = (SELECT MAX(shoot)
+from (SELECT count(*) as shoot
+FROM penalty_shootout
+GROUP BY player_id))
+
+
+-------  INTEGRATION SERVICES  -------
+		SSIS
+control flow	         data flow
+
+task descrivono		task descrivono il
+il flusso di		tipo di operazione
+operazioni da		per lavorare sui dati
+eseguire,		
+sequenzialmente		
+o in parallelo		
+controlli logici
+tra flow
+
+data flow task
+descrive data flow
+	--------->>
+
+
+╗♥
