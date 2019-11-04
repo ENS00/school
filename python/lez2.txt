@@ -1,0 +1,6 @@
+date due matrici 2x2 si esegua la moltiplicazione
+trovare l'inversa di una matrice (D!=0)
+sapendo a e b a*x=b
+scriverlo su un foglio di carta
+
+Sequenze in python
