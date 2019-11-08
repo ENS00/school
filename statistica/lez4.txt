@@ -1,0 +1,64 @@
+una funzione è un dominio, un codominio e legge che associa un solo elemento del dominio a un solo
+elemento del codominio
+la funzione ha 3 caratteristiche:
+- è detta iniettiva quando prendo elementi distinti nel dominio ottengo elementi distinti nel codominio
+        x, y appartenenti al dominio  x!=y implica f(x)!=f(y)
+- è detta suriettiva quando per ogni y appartenente a codominio esiste x appartenente a dominio tale che f(x)=y
+- è detta biettiva quando è suriettiva e iniettiva perciò è invertibile
+f       tale che dominio -> codominio
+f^(-1)  tale che codominio -> dominio
+
+composizione  f: A->B  g:B->C
+                g o f: A->C
+
+f o f^-1 = idCodominio
+f^-1 o f = idDominio
+
+sin: R -> [-1,1]        
+cos: R -> [-1,1]        
+tg: ]-pi/2,pi/2[ -> R   arctg
+
+sin: [-pi/2,pi/2] -> [-1,1]                 arcsin
+                                Biettive
+cos: [0,pi]->[-1,1] -> [-1,1]               arccos
+
+exp: R -> R^+           ln: R^+->R
+    x -> e^x             x -> ln(x)
+
+funzione continua in un punto quando per ogni punto arrivandoci da sinistra o da destra arrivo allo stesso risultato
+
+derivata è la tangente di una funzione in un determinato punto
+notazione di leibnitz   differenziale f(x) = f'(x)*dx
+
+teorema di rolle
+in un interfallo [a,b] chiuso e limitato con f(x) funzione continua, esiste fi appartenente ad [a,b] tale che derivata f(0)=0
+
+teorema di Lagrange
+presa una funzione f(x) continua in un intervallo [a,b] esiste almeno una tangente
+(f(b)-f(a))/(b-a)=derivata f(csi)
+interpolazione lineare
+f(x) = derivata f(csi)(x-x0) + f(x0)
+
+trovare la tangente in un punto x0
+mettere a sistema
+y=mx+q
+y=f(x)
+delta=b^2-4ac e trovare m
+f(x)=(qualcosa)*x+q e trovare q
+con le derivate diventa tutto più semplice, basta seguire alcune regole
+h=x1-x0
+limite di h che tende a 0 di ((f(x+h)-f(x))/h)
+
+Derivata : spazio o insieme di funzioni -> insieme di funzioni
+Df(x) = g(x)
+Integrale = funzione inversa della derivata
+ottimo per calcolare un'area compresa tra due funzioni in un intervallo
+
+
+
+mediana: divide a metà il numero di valori, la quantità a destra è la stessa di quella a sinistra
+1° quartile 25% sinistra 75% destra 
+3° quartile 75% sinistra 25% destra
+
+A.I. H... Goedel,Escher,Bach (un'eterna ghirlanda brillante)
+Peurose R. La mente nuova dell'imperatore
