@@ -14,10 +14,6 @@ def matrMult(matA,matB):
                 for k in range(xB):
                     val+=matA[i][k]*matB[k][j]
                 row.append(val)
-
-
-
-
         # matRet.append([matA[0][0]*matB[0][0] + matA[0][1]*matB[1][0],
         #                 matA[0][0]*matB[0][1] + matA[0][1]*matB[1][1]])
         # matRet.append([matA[1][0]*matB[0][0] + matA[1][1]*matB[1][0],
@@ -38,23 +34,20 @@ def matrMult(matA,matB):
 
 def matrTrasp(mat):
     matRet=[]
-    x=len(mat)
-    y=len(mat[0])
-    for i in range(x):
+    for i in mat:
         row=[]
         matRet.append(row)
-        for j in range(y):
-            row.append(mat[j][i])
+        for j in i:
+            row.append(mat[j][i])#sistemare
     return matRet
 
 def matrDet(mat):
     x=len(mat)
-    y=len(mat[0])
-    if x==y:
+    if x==len(mat[0]):
         # if x>1:
         if x>2:
             result=0
-            for i in range(x):
+            for i in mat:
                 myMat = matrWithout(mat,i,0)
                 result+=matrDet(myMat)*mat[i][0]*(1-i%2*2)
             return result
@@ -66,15 +59,13 @@ def matrDet(mat):
 
 def matrWithout(mat,posx,posy):
     matRet=[]
-    x=len(mat)
-    y=len(mat[0])
-    for i in range(x):
+    for i in mat:
         if i!=posx :
             row=[]
             matRet.append(row)
-            for j in range(y):
-                if j!=posy :
-                    row.append(mat[i][j])
+            for j in i:
+                if j!=posy :#sistemare
+                    row.append(j)
     return matRet
 
 
@@ -89,19 +80,15 @@ def matrCA(mat):
                 for j in range(y):
                     matRet[i].append(matrDet(matrWithout(mat,i,j)))
             return matRet
-
-    # return [[mat[1][1],mat[1][0]],[mat[0][1],mat[0][0]]]
     return None
 
 def matrDivN(mat,n):
     matRet=[]
-    x=len(mat)
-    y=len(mat[0])
-    for i in range(x):
+    for i in mat:
         row=[]
         matRet.append(row)
-        for j in range(y):
-            row.append(mat[i][j]/n)
+        for j in i:
+            row.append(j/n)
     return matRet
 
 def matrInv(mat):
@@ -123,12 +110,12 @@ def printMatr(mat):
     x=len(mat)
     y=len(mat[0])
     maxlen=len(str(mat[0][0]))
-    for i in range(x):
-        for j in range(y):
-            if maxlen<len(str(mat[i][j])):
-                maxlen=len(str(mat[i][j]))
-    for i in range(x):
-        for j in range(y):
+    for i in mat:
+        for j in i:
+            if maxlen<len(str(j)):
+                maxlen=len(str(j))
+    for i in mat:
+        for j in i:
             if (x==1):
                 char='('
             elif (i==0):
@@ -138,17 +125,17 @@ def printMatr(mat):
             else:
                 char='|'
             if j==0:
-                print(char+' ', end='')
+                print(char,' ', end='')
 
-            nspaces=maxlen-len(str(mat[i][j]))
+            nspaces=maxlen-len(str(j))
             spaces=''
             for k in range(nspaces):
                 spaces+=' '
 
-            print(spaces+str(mat[i][j]), end='')
+            print(spaces,j, end='')
 
             if j==y-1:
-                print(' '+opposite(char))
+                print(' ',opposite(char))
             else:
                 print(',', end='')
 

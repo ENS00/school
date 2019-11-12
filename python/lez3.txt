@@ -1,0 +1,24 @@
+artificial intelligence with python
+(https://digitalescobar.wpcomstaging.com/wp-content/uploads/2018/10/Artificial-Intelligence-with-Python.pdf)
+
+    list comprehension
+List -----------------> List
+
+[<expr> for <item> in <iterable> if <condition>]
+for Dict use {} instead of [] and "key:value" instead of "expr"
+for Sets use {} instead of []
+
+      v------più argomenti (trasforma i valori e li inserisce in una tupla)
+def f(*args)
+
+      v------più argomenti (trasforma i valori e li inserisce in un dizionario)
+def f(**args)
+
+gerarchia LEGB (Local Enclosed Global Built-in)
+Local Scope (variabili presenti dentro una funzione)
+Enclosed Scope (variabili presenti come parametro dentro una funzione)
+Global Scope (variabili presenti nel file sorgente)
+Built-in (variabili predefinite di default)
+
+global <var>            rende la variabile globale
+nonlocal <var>          si usa alla stessa manierama con funzioni interne
