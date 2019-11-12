@@ -1,0 +1,2 @@
+Nei data flow passano dati nel collegamento
+Il control flow definisce soltato la priorità e l'ordine in cui vengono eseguiti i vari task
