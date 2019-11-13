@@ -1,3 +1,4 @@
+# multiplication of 2 matrices
 def matrMult(matA,matB):
     matRet=[]
     xA=len(matA)
@@ -14,40 +15,29 @@ def matrMult(matA,matB):
                 for k in range(xB):
                     val+=matA[i][k]*matB[k][j]
                 row.append(val)
-        # matRet.append([matA[0][0]*matB[0][0] + matA[0][1]*matB[1][0],
-        #                 matA[0][0]*matB[0][1] + matA[0][1]*matB[1][1]])
-        # matRet.append([matA[1][0]*matB[0][0] + matA[1][1]*matB[1][0],
-        #                 matA[1][0]*matB[0][1] + matA[1][1]*matB[1][1]])
         return matRet
     return None
 
-# def matrRotate(mat):
-#     matRet=[]
-#     x=len(mat)
-#     y=len(mat[0])
-#     for i in range(y):
-#         row=[]
-#         newMatB.append(row)
-#         for j in range(x):
-#             row.append(mat[i][j])
-#     return matRet
-
+# transpose of a matrix
 def matrTrasp(mat):
     matRet=[]
-    for i in mat:
+    x=range(len(mat))
+    y=range(len(mat[0]))
+    for i in x:
         row=[]
         matRet.append(row)
-        for j in i:
-            row.append(mat[j][i])#sistemare
+        for j in y:
+            row.append(mat[j][i])
     return matRet
 
+# determinant of a matrix
 def matrDet(mat):
     x=len(mat)
     if x==len(mat[0]):
         # if x>1:
         if x>2:
             result=0
-            for i in mat:
+            for i in range(x):
                 myMat = matrWithout(mat,i,0)
                 result+=matrDet(myMat)*mat[i][0]*(1-i%2*2)
             return result
@@ -57,17 +47,19 @@ def matrDet(mat):
             return mat[0][0]
     return None
 
+# function to exclude an entire row and col from a point given of a matrix
 def matrWithout(mat,posx,posy):
     matRet=[]
-    for i in mat:
-        if i!=posx :
+    x=range(len(mat))
+    y=range(len(mat[0]))
+    for i in x:
+        if i!=posx:
             row=[]
             matRet.append(row)
-            for j in i:
-                if j!=posy :#sistemare
-                    row.append(j)
+            for j in y:
+                if j!=posy:
+                    row.append(mat[i][j])
     return matRet
-
 
 def matrCA(mat):
     matRet=[]
@@ -78,10 +70,14 @@ def matrCA(mat):
             for i in range(x):
                 matRet.append([])
                 for j in range(y):
-                    matRet[i].append(matrDet(matrWithout(mat,i,j)))
+                    sign=-1
+                    if (i+j)%2==0:
+                        sign=1
+                    matRet[i].append(sign*matrDet(matrWithout(mat,i,j)))
             return matRet
     return None
 
+# every number inside a matrix is divided by n
 def matrDivN(mat,n):
     matRet=[]
     for i in mat:
@@ -91,11 +87,13 @@ def matrDivN(mat,n):
             row.append(j/n)
     return matRet
 
+# returns the inverse of a matrix (at the moment it works only for 2x2)
 def matrInv(mat):
     d=matrDet(mat)
     if d!=0:
         return matrDivN(matrCA(matrTrasp(mat)),d)
 
+# helper for matrix print
 def opposite(bar):
     if bar=='/':
         return '\\'
@@ -106,6 +104,7 @@ def opposite(bar):
     else:
         return '|'
 
+# it prints a matrix
 def printMatr(mat):
     x=len(mat)
     y=len(mat[0])
@@ -114,8 +113,8 @@ def printMatr(mat):
         for j in i:
             if maxlen<len(str(j)):
                 maxlen=len(str(j))
-    for i in mat:
-        for j in i:
+    for i in range(x):
+        for j in range(y):
             if (x==1):
                 char='('
             elif (i==0):
@@ -125,45 +124,47 @@ def printMatr(mat):
             else:
                 char='|'
             if j==0:
-                print(char,' ', end='')
+                print(char, end='')
 
-            nspaces=maxlen-len(str(j))
+            nspaces=maxlen-len(str(mat[i][j]))
             spaces=''
             for k in range(nspaces):
                 spaces+=' '
 
-            print(spaces,j, end='')
+            print(spaces,mat[i][j], end='')
 
             if j==y-1:
                 print(' ',opposite(char))
             else:
                 print(',', end='')
 
+# test examples are commented
 
 # matA=[[1,2],[3,4]]
 # matB=[[1,1],[2,0]]
 # matA=[[2,1],[0,1]]
 # matB=[[3,1],[0,4]]
 
-matA=[[1,2,3,5],
-      [2,-7,8,0],
-      [6,9,1,-3]]
-matB=[[1,0],
-      [3,-6],
-      [5,2],
-      [7,-8]]
+# matA=[[1,2,3,5],
+#       [2,-7,8,0],
+#       [6,9,1,-3]]
+# matB=[[1,0],
+#       [3,-6],
+#       [5,2],
+#       [7,-8]]
+matA=[[1,2,3],[0,4,5],[1,0,6]]
 
 
-matC=matrMult(matA,matB)
+# matC=matrMult(matA,matB)
 # print('Da = '+str(matrDet(matA)))
 # print('Db = '+str(matrDet(matB)))
 # print('Dc = '+str(matrDet(matC)))
 printMatr(matA)
-printMatr(matB)
-printMatr(matC)
-# inv=matrInv(matC)
-# printMatr(matrInv(matC))
-# printMatr(matrInv(inv))
+# printMatr(matB)
+# printMatr(matC)
+inv=matrInv(matA)
+printMatr(matrInv(matA))
+printMatr(matrInv(inv))
 
 # mat=[[1,2,1,1,6,2,5,8],
 #      [2,1,3,1,2,6,0,-6],
