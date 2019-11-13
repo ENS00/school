@@ -1,3 +1,4 @@
+# Lorenzo Tomasello v. 1.0.1
 # multiplication of 2 matrices
 def matrMult(matA,matB):
     matRet=[]
