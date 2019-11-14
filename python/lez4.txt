@@ -1,0 +1,20 @@
+Algoritmi di ordinamento e ricerca
+selection sort
+insertion sort
+bubble sort
+merge sort
+quick sort
+
+Selection sort: trova il più piccolo/grande e lo scambia posizionandolo all'inizio
+Insertion sort: spostandomi metto il numero scelto appena è maggiore di dove sono
+Bubble sort: scambia l'elemento quando il precedente è maggiore del successivo
+tzeta(n^2)
+
+Merge sort: divide a metà la lista ricorsivamente per ottenere singoli elementi e poi riunirli partendo dalle foglie
+tzeta(n*ln(n))
+
+Quick sort: divide a metà quando non è ordinato e poi riassembla i pezzi come il merge sort
+tzeta(n) - tzeta(n^2)
+
+polimini sapere quanti sono n polimini e visualizzarli (si possono ruotare non ribaltare)
+farlo con i quadrati e poi con i triangoli equilateri
