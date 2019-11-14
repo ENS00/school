@@ -1,7 +1,5 @@
 # Lorenzo Tomasello
 # Exercise of the 8 queens
-#python -m pip install --user numpy scipy
-import numpy as np
 import random
 
 # creates new chessboard
@@ -37,16 +35,15 @@ def placeQueen():
             chboard=chessboardWithout(chboard,p)
         return placeQueen()
 
-def drawChessboard(positions):
-    board = np.zeros([8,8],dtype=str)
-    x=range(len(board))
-    y=range(len(board[0]))
-    for i in x:
-        for j in y:
-            if True in [True for p in positions if p['x']==i and p['y']==j]:
-                board[i][j]='Q'
+def drawChessboard(positions,dimX=8,dimY=8):
+    board = []
+    for i in range(dimX):
+        board.append([])
+        for j in range(dimY):
+            if {"x":i,"y":j} in positions:
+                board[i].append('Q')
             else:
-                board[i][j]='_'
+                board[i].append('_')
     printMatr(board)
 
 # function to exclude a entire row, col and diagonals from a point given of a matrix
@@ -110,9 +107,10 @@ def printMatr(mat):
 ## START HERE
                 
 chboard = chessboard()
+nQueens = 8
 wrongPos = {0:[]}
 positions = []
-while len(positions)<8:
+while len(positions)<nQueens:
     positions.append(placeQueen())
 print("Posizioni scelte: "+str(positions))
 print("\n--------\n")
