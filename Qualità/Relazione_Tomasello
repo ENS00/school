@@ -1,0 +1,43 @@
+Lorenzo Tomasello
+Corso DAM
+15/11/2019
+Progetto per Acque San Benedetto
+Analisi e gestione della qualità (Corso del Dr. Piva Antonio)
+
+Indice: Capitoli con pagine
+
+Capitolo 1: Descrizione azienda
+Acqua Minerale San Benedetto S.p.A, 1300 dipendenti, 10 sedi, vendita bibite analcoliche,
+capitale sociale: € 2.715.960,00 i.v.
+
+Capitolo 2: Descrizione progetto
+Progetto di visualizzazione e analisi dei dati letti da sensori montati su macchine
+produzione plastica. L'obiettivo è di realizzare un programma che permetta la visualizzazione
+in tempo reale degli stati di ogni macchina.
+
+Capitolo 3: Requisiti del progetto
+Il programma deve essere un'alternativa a un sistema già presente sul PLC per osservare
+lo stato della macchina da remoto, possibilmente anche da cellulare. Per ogni organo che
+costituisce assimilato la macchina per produrre bottigliette di plastica, si dovrà
+monitorare se acceso la presenza di allarmi, la registrazione su DB delle temperature
+e dello stato della produzione.
+
+Capitolo 4: Clienti e parti interessate
+Gli utilizzatori finali di questo programma sono gli operatori che si occupano delle
+manutenzioni, dei controlli e delle sostituzioni dei componenti.
+
+Capitolo 5: Modalità di comunicazione del modulo
+Periodicamente sono state eseguite delle riunioni con i capi dei reparti e capi degli
+operatori per confrontarsi sul lavoro eseguito fino a tale data e per valutare potenziali
+ottimizzazioni a livello grafico e di funzionalità. Per ottimizzazioni performance potevo
+consultare il mio collega informatico che mi ha dato qualche dritta sul miglior metodo
+per risolvere un calcolo.
+
+Capitolo 6: Modulo di soddisfazione del cliente
+Le domande spesso erano specifiche sulle ultime modifiche effettuate, ma generalmente
+le riunioni sono servite anche per chiarirsi su come la macchina lavora e su com'è il
+modo migliore per visualizzare un dato. Per esempio se un componente specifico è in
+riscaldamento e non è ancora in temperatura non posso iniziare la produzione, quindi
+dovrò mostrare generalmente lo stato macchina come "In riscaldamento" e non "Disponibile"
+Raramente ho chiuso la domanda a portare solo due soluzioni per un problema, di solito ho
+accettato consigli su cosa implementare.
