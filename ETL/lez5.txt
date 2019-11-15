@@ -1,0 +1,29 @@
+ETL ->  Extract
+        Transform
+        Load
+
+I dati vengono copiati in uno "strato di mirror"
+Ogni volta viene svuotato il DB ma prima viene effettuata una copia, quante ne vengono tenute è definito in un parametro
+nel DB di configurazione
+Le elaborazioni vengono fatte su uno "strato di stage"
+DWH (Data WareHouse, verità aziendale) contiene gli effettivi dati
+Un'ulteriore strato superiore che contiene gli altri database per ogni area aziendale viene chiamato "Data Mart"
+I "cubi analitici" si appoggiano sul Data Mart che è punto di riferimento per i programmi finali usati dall'utente
+Esiste inoltre un DB trasversale presente in ogni layer e viene chiamato Configuration DB
+ODS "Operation Data Source" fornisce i dati alle applicazioni con i dati elaborati (interrogando DWH)
+
+Le viste di confine servono per i vari DB a esporre i dati per altri DB che risiedono su altri layer
+Il parametro "with schemabinding" su una tabella fa il legame con una vista (la tabella non può essere modificata se non modifico la vista),
+in particolare la lista dei parametri
+In genere una vista è un semplice "SELECT * FROM"
+S400 è una codifica a 8bit per compattare i dati quindi nella vista bisogna rinominare ogni campo per renderlo comprensibile
+
+Estrazione  | Trasformazione        | Caricamento
+            | Mirror - Stage - DWH  |
+
+Nella moderna DWH viene eseguita invece una ELT e ha questa successione:
+Estrazione  | Caricamento   | Trasformazione
+            | Data Lake     | Data Bix, Data Lake Analitic, Polybase (strumenti che permettono di leggere dati con strutture differenti)
+
+La trasformazione viene eseguita alla fine, il caricamento viene eseguito su un enorme "Data Lake" in maniera abbastanza raw
+Quando un dato mi serve faccio una richiesta sulla vista del Data Lake
