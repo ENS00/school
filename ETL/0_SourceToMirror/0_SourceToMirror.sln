@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "0_SourceToMirror", "0_SourceToMirror.dtproj", "{B86114E0-6334-47AC-A290-492D85A88A41}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B86114E0-6334-47AC-A290-492D85A88A41}.Development|Default.ActiveCfg = Development
+		{B86114E0-6334-47AC-A290-492D85A88A41}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1E755DA-140D-4472-8380-BE49D478AAC1}
+	EndGlobalSection
+EndGlobal

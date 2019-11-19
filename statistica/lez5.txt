@@ -1,0 +1,67 @@
+Distribuzione di Bernoulli
+p= 1-q
+P(x) = /n\
+       \x/ p^x*q^(n-x)
+E(x)=n*p
+var(x)=n*p*q
+
+P(x-1)/P(x) = (x*q)/((n-x+1)*p)
+
+
+Skewness
+
+descrive quando la distribuzione è a destra o a sinistra di mu (momento)
+
+skewness = m3
+        --------        m3=sommatoria di (xi - mu)^3*pi  m2=var(x)
+        m2^(3/2)
+
+Kurtosis
+
+Descrive quanto è alta la distribuzione (minimo=1)
+
+kurtosis= m4/(m2^2)     m4=sommatoria di (xi - mu)^4*pi  m2=var(x)
+
+Qualsiasi f(x) è scrivibile come sommatoria per i=0 a inf di d^i/dx^i*f(x)
+
+Serie di Taylor
+f(x) = f(x0) + f'(x0)(x-x0)+epsilon*(x-x0)^2
+
+
+
+skewness = (q-p)/sqrt(n*p*q)
+kurtosis = 3+(1-6*p*q)/(n*p*q)
+
+x = v.a.
+essendo variabile aleatoria ha sempre un valore atteso (reale) e la varianza
+un valore atteso non reale è detto valore stimato
+una stima può essere corretta o coerente
+Stimatore corretto di X v.a. quando E[Mn]=mu
+Stimatore coerente di X v.a. quando var[Mn]=0
+consuntivi (STIMATORI)
+media campionaria(Mn): la media che deriva da un campione in esame
+Mn = (sommatoria per i=0 a n di Xi)/n
+Mn^2 = sqrt(produttoria per i=0 a n di Xi ,n)
+varianza campionaria: la varianza che deriva da un campione in esame
+Sn^2=o^2=(sommatoria per i=0 a n di (xi-Mn)^2)/(n-1)
+covarianza campionaria
+Cn=(sommatoria per i=0 a n di (xi-Mx)(yi-My))(n-1)
+
+x=v.a.
+si può costruire una nuova v.a.
+y è standardizzata y=x-mu
+E[y]=0
+y è normalizzata y=(x-mu)/sigma
+E[y]=0
+var[y]=1
+
+Distribuzione normale
+è continua
+Funzione di densità:
+fi(x) = 1/sqrt(2*pi)*e^(-(x^2)/2)      x v.a. normalizzata
+
+P(x<=x0) = Integrale da -inf a x0 di if(x)*dx
+
+teorema limite centrale
+P{a <= (Mn-mu)/sigma*sqrt(n)<=b}} circa Fi(a) - Fi(b) dove Fi(x) = integrale da -inf a x di 1/sqrt(2*pi)*e^(-(x^2)/2)*dx
+
