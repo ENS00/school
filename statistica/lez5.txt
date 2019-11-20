@@ -10,19 +10,19 @@ P(x-1)/P(x) = (x*q)/((n-x+1)*p)
 
 Skewness
 
-descrive quando la distribuzione è a destra o a sinistra di mu (momento)
+descrive quando la distribuzione è a destra o a sinistra di μ (momento)
 
 skewness = m3
-        --------        m3=sommatoria di (xi - mu)^3*pi  m2=var(x)
+        --------        m3=Σ di (xi - μ)^3*π  m2=var(x)
         m2^(3/2)
 
 Kurtosis
 
 Descrive quanto è alta la distribuzione (minimo=1)
 
-kurtosis= m4/(m2^2)     m4=sommatoria di (xi - mu)^4*pi  m2=var(x)
+kurtosis= m4/(m2^2)     m4=Σ di (xi - μ)^4*π  m2=var(x)
 
-Qualsiasi f(x) è scrivibile come sommatoria per i=0 a inf di d^i/dx^i*f(x)
+Qualsiasi f(x) è scrivibile come Σ da 0 a inf di d^i/dx^i*f(x)
 
 Serie di Taylor
 f(x) = f(x0) + f'(x0)(x-x0)+epsilon*(x-x0)^2
@@ -36,32 +36,32 @@ x = v.a.
 essendo variabile aleatoria ha sempre un valore atteso (reale) e la varianza
 un valore atteso non reale è detto valore stimato
 una stima può essere corretta o coerente
-Stimatore corretto di X v.a. quando E[Mn]=mu
+Stimatore corretto di X v.a. quando E[Mn]=μ
 Stimatore coerente di X v.a. quando var[Mn]=0
 consuntivi (STIMATORI)
 media campionaria(Mn): la media che deriva da un campione in esame
-Mn = (sommatoria per i=0 a n di Xi)/n
-Mn^2 = sqrt(produttoria per i=0 a n di Xi ,n)
+Mn = (Σ da 0 a n di Xi)/n
+Mn^2 = sqrt(produttoria da 0 a n di Xi ,n)
 varianza campionaria: la varianza che deriva da un campione in esame
-Sn^2=o^2=(sommatoria per i=0 a n di (xi-Mn)^2)/(n-1)
+Sn^2=o^2=(Σ da 0 a n di (xi-Mn)^2)/(n-1)
 covarianza campionaria
-Cn=(sommatoria per i=0 a n di (xi-Mx)(yi-My))(n-1)
+Cn=(Σ da 0 a n di (xi-Mx)(yi-My))/(n-1)
 
 x=v.a.
 si può costruire una nuova v.a.
-y è standardizzata y=x-mu
+y è standardizzata y=x-μ
 E[y]=0
-y è normalizzata y=(x-mu)/sigma
+y è normalizzata y=(x-μ)/σ
 E[y]=0
 var[y]=1
 
 Distribuzione normale
 è continua
 Funzione di densità:
-fi(x) = 1/sqrt(2*pi)*e^(-(x^2)/2)      x v.a. normalizzata
+Φ(x) = 1/sqrt(2*π)*e^(-(x^2)/2)      x v.a. normalizzata
 
 P(x<=x0) = Integrale da -inf a x0 di if(x)*dx
 
 teorema limite centrale
-P{a <= (Mn-mu)/sigma*sqrt(n)<=b}} circa Fi(a) - Fi(b) dove Fi(x) = integrale da -inf a x di 1/sqrt(2*pi)*e^(-(x^2)/2)*dx
+P{a <= (Mn-μ)/σ*sqrt(n)<=b}} circa Φ(a) - Φ(b) dove Φ(x) = integrale da -inf a x di 1/sqrt(2*π)*e^(-(x^2)/2)*dx
 

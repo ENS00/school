@@ -15,30 +15,30 @@ le probabilità (M stante R) == (R) sono indipendenti se con scarto molto vicino
 risultati lancio del dado a 6 faccie
 variabili aleatorie (v.a.)
 - continue          funzione di densità P(x <= x0) = integrale tra -inf e x0 di f(x)dx
-- discrete/finite   {(1,1/6),(2,1/6),(3,1/6),(4,1/6),(5,1/6),(6,1/6)} (la sommatoria fa 1)
+- discrete/finite   {(1,1/6),(2,1/6),(3,1/6),(4,1/6),(5,1/6),(6,1/6)} (la Σ fa 1)
 
 E[x] = indice di centralità
-var[x]=E[(x-E[x])^2] = sommatoria da 0 a n di (xi-E[x])^2*pi = indice di dispersione/2° momento         VARIANZA
+var[x]=E[(x-E[x])^2] = Σ da 0 a n di (xi-E[x])^2*π = indice di dispersione/2° momento         VARIANZA
 var[x]=(1-3.5)^2*1/6+(2-3.5)^2*1/6+...
-sqrt(var[x])                                                                                            SCARTO QUADRATICO MEDIO
+sqrt(var[x])                                                                                  SCARTO QUADRATICO MEDIO
 
-Valore atteso (discrete) = sommatoria del valore per la probabilità = E[x] del dado = 3.5
+Valore atteso (discrete) = Σ del valore per la probabilità = E[x] del dado = 3.5
 Valore atteso (continue) = integrale tra x0 e x1 di x*f(x)dx = E[x]
 
 valore atteso è 1° momento
-k-esimo momento = sommatoria da 0 a n di (xi-E[x])^k*pi
+k-esimo momento = Σ da 0 a n di (xi-E[x])^k*π
 
-x={(xi,pi)} y={(yi,pi)}
-E[x+y] = sommatoria da 0 a n di (xi*pi+yi*pi) = E[x]+E[y]
+x={(xi,π)} y={(yi,π)}
+E[x+y] = Σ da 0 a n di (xi*π+yi*π) = E[x]+E[y]
 E[x*y] = E[x]*E[y]
-E[a*x] = sommatoria da 0 a n di a*xi*pi = a * sommatoria da 0 a n di xi*pi = a*E[x]
-E[x+a] = sommatoria da 0 a n di xi*pi+a*pi = E[x]+a
-var[a*x]= sommatoria da 0 a n di (a*xi - E[a*x])^2*pi
-        = a^2*(sommatoria da 0 a n di (xi - E[x])^2*pi)= a^2*var[x]
-var[x+a]= sommatoria da 0 a n di (xi+a - (E[x]+a))^2*pi
-        = a^2*(sommatoria da 0 a n di (xi - E[x])^2*pi)= var[x]
+E[a*x] = Σ da 0 a n di a*xi*π = a * Σ da 0 a n di xi*π = a*E[x]
+E[x+a] = Σ da 0 a n di xi*π+a*π = E[x]+a
+var[a*x]= Σ da 0 a n di (a*xi - E[a*x])^2*π
+        = a^2*(Σ da 0 a n di (xi - E[x])^2*π)= a^2*var[x]
+var[x+a]= Σ da 0 a n di (xi+a - (E[x]+a))^2*π
+        = a^2*(Σ da 0 a n di (xi - E[x])^2*π)= var[x]
 
-x={(xi,pi)} y={(yk,pk)}                                                 COVARIANZA cov[x,y]
+x={(xi,π)} y={(yk,pk)}                                                 COVARIANZA cov[x,y]
 var[x+y] = E(x+y-E(x+y))^2 = E(x-E(x)+y-E(y)) = E(x-E(x))^2+E(y-E[y])^2+2E((x-E(x))*(y-E[y]))
                                               = var[x]+var[y]+cov[x,y]
                                                               se x,y indipendenti = 0
@@ -61,15 +61,15 @@ p(x=3) = \3/ *p^3*q^4
 
 
 Teorema di Chebyshev
-Sia x una v.a. con un valore atteso mu e varianza sigma^2, allora almeno una frazione 1-1/t^2 della probabilità totale
-è concentrata nell'intervallo: [mu-t*sigma,mu+t*sigma]
+Sia x una v.a. con un valore atteso μ e varianza σ^2, allora almeno una frazione 1-1/t^2 della probabilità totale
+è concentrata nell'intervallo: [μ-t*σ,μ+t*σ]
 
-P(|x-mu|>t*sigma)<=1/t^2
+P(|x-μ|>t*σ)<=1/t^2
 
 Legge dei grandi numeri
 Xk può avere solo due valori (0,1)
 P(Xk==0)=q P(Xk==1)=p q+p=1
 E[Xk]=0*q+1*p
 var[Xk]=(0-p)^2*q+(1-p)^2*p
-E[1/n*(sommatoria da 1 a n di xi)]=n*p/n=p
-var[1/n*(sommatoria da 1 a n di xi)]=1/n^2*n*p*q=p*q/n
+E[1/n*(Σ da 1 a n di xi)]=n*p/n=p
+var[1/n*(Σ da 1 a n di xi)]=1/n^2*n*p*q=p*q/n

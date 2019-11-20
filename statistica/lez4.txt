@@ -16,11 +16,11 @@ f^-1 o f = idDominio
 
 sin: R -> [-1,1]        
 cos: R -> [-1,1]        
-tg: ]-pi/2,pi/2[ -> R   arctg
+tg: ]-π/2,π/2[ -> R   arctg
 
-sin: [-pi/2,pi/2] -> [-1,1]                 arcsin
+sin: [-π/2,π/2] -> [-1,1]                 arcsin
                                 Biettive
-cos: [0,pi]->[-1,1] -> [-1,1]               arccos
+cos: [0,π]->[-1,1] -> [-1,1]               arccos
 
 exp: R -> R^+           ln: R^+->R
     x -> e^x             x -> ln(x)

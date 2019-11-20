@@ -15,7 +15,7 @@ anomalia: angolo  (zeta)
 formule trigonometriche
 
 spazio vettoriale
-funzioni lineari = f(lambda*v+mu*w) = lambda*f(v)+mu*f(w)
+funzioni lineari = f(lambda*v+μ*w) = lambda*f(v)+μ*f(w)
 
 basi di uno spazio vettoriale
 

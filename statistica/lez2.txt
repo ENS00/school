@@ -3,7 +3,7 @@ vrakastalion
 
 Lezione 1 22-10-2019
 
-3 tipi di probabilità:
+3 tipi di probabilitÃ :
  - permutazioni
  - disposizioni
  - combinazioni
@@ -13,10 +13,10 @@ coefficiente binomiale  n=contenitore k=numero
 |     | = ----------
  \ k /     (n-k)!k!
 
-spazio degli eventi (omega): le possibilità considerate
+spazio degli eventi (omega): le possibilitÃ  considerate
 
 modello statistico e matematico
-modello statistico: decisioni statistiche, ogni probabilità è >0%
+modello statistico: decisioni statistiche, ogni probabilitÃ  Ã¨ >0%
 
 modello matematico: una sola risposta
 
