@@ -1,0 +1,19 @@
+trasposizione di una matrice indicata con Mt
+Una matrice è detta simmetrica quando è uguale alla sua trasposta
+PCA - Principal Component Analysis
+{xi} 0<=i<=100		~> k=Cov(xi,xj) ~> scegliere base dello spazio -> E(k) -> eigenvect
+k'=matrice con autovalori nella diagonale e zeri ai lati
+risultato = {xi} 0<=k<=7
+
+esercizio da consegnare su foglio protocollo
+nome cognome 2DAM data
+		esercizio
+Sia x v.a. tale che x descriva il lancio di 4d6. Ciascun dado è distinguibile dagli altri.
+Si chiede, considerando la somma dei 4 dadi:
+ - Disegnare l'istogramma di tutti gli eventi
+ - Determinare la probabilità di
+	-a 4d6 < 9
+	-b 4d6 >= 18
+	-c 4d6 == 13
+ - Supponendo di tirare 4d6 e di togliere il minore (non considero nella somma il minore)
+ricalcolare le probabilità soprastanti e disegnarne l'istogramma
