@@ -1,0 +1,6 @@
+SCD1 - Slowly Changing Dimensions		(Quando vengono aggiornati attributi di dimensioni)
+Le modifiche SCD comportano la perdita delle informazioni precedenti salvate
+es. il trasferimento di città illude che è sempre stato in quella città perché non ho salvato il valore
+precedente a quella data
+se voglio tenere traccia di questa modifica si parla di SCD2
+altre tipologie di cambiamenti sulle dimensioni sono SCD3, SCD4... fino a SCD9

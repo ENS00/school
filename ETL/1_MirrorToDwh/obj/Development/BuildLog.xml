@@ -2,18 +2,18 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>1_MirrorToDwh</Name>
-    <LastWriteTime>2019-11-15T11:40:50.7320925Z</LastWriteTime>
+    <LastWriteTime>2019-11-22T11:06:02.7312704Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>00_Main.dtsx</Name>
-      <LastWriteTime>2019-11-15T11:40:50.6941146Z</LastWriteTime>
+      <LastWriteTime>2019-11-22T09:07:46.9511524Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>01_Vendite.dtsx</Name>
-      <LastWriteTime>2019-11-15T11:36:57.5934561Z</LastWriteTime>
+      <LastWriteTime>2019-11-22T11:06:02.6594617Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

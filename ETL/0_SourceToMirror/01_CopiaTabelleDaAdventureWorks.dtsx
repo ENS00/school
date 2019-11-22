@@ -1,35 +1,25 @@
 ﻿<?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="11/15/2019 10:30:10 AM"
+  DTS:CreationDate="11/15/2019 10:29:10 AM"
   DTS:CreationName="Microsoft.Package"
-  DTS:CreatorComputerName="DESKTOP-T7S181T"
-  DTS:CreatorName="DESKTOP-T7S181T\ENSOO"
-  DTS:DTSID="{1806047E-40A2-4621-B900-BABB8CCCC1CD}"
+  DTS:CreatorComputerName="DESKTOP-1V05LHP"
+  DTS:CreatorName="DESKTOP-1V05LHP\info"
+  DTS:DTSID="{60B14096-7330-4D56-9798-9F55C8BD8684}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.1301.433"
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="3"
-  DTS:VersionGUID="{F1E4B7F9-5E25-47D1-9109-FF45ED27D6C1}">
+  DTS:VersionBuild="4"
+  DTS:VersionGUID="{642E43E9-0270-4218-BC55-5174FF49424D}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
-      DTS:refId="Package.ConnectionManagers[LocalHost]"
-      DTS:CreationName="OLEDB"
-      DTS:DTSID="{72DC1887-FC66-43C1-802D-56C9EFC60FFE}"
-      DTS:ObjectName="LocalHost">
-      <DTS:ObjectData>
-        <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
-      </DTS:ObjectData>
-    </DTS:ConnectionManager>
-    <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.AdventureWorks2017]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{D07785E1-4541-482F-9B8F-046570523ECF}"
+      DTS:DTSID="{849C8E55-7B86-469C-A024-B67C72B3D1AA}"
       DTS:ObjectName="LocalHost.AdventureWorks2017">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -39,31 +29,31 @@
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.DB_MIRROR]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{C76FCF9F-0941-4802-BE39-3C639CB83818}"
+      DTS:DTSID="{202436C4-C00E-4E43-8E61-DF5239126BC8}"
       DTS:ObjectName="LocalHost.DB_MIRROR">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_MIRROR;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_MIRROR;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
     <DTS:Executable
-      DTS:refId="Package\SC - Copia tabelle anagrafiche"
+      DTS:refId="Package\SC - Copia tabelle Anagrafiche"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{f613fb1c-9936-4cb6-8644-af4788909279}"
+      DTS:DTSID="{08c658b3-bf9b-4c82-b4c7-c2a394925389}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SC - Copia tabelle anagrafiche">
+      DTS:ObjectName="SC - Copia tabelle Anagrafiche">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\SC - Copia tabelle anagrafiche\Data Flow Task"
+          DTS:refId="Package\SC - Copia tabelle Anagrafiche\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{75889389-1b46-4450-9fbe-9a1e5e39e79f}"
+          DTS:DTSID="{fd090164-eae4-4651-9969-49d07f719a53}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -77,20 +67,20 @@
       </DTS:Executables>
     </DTS:Executable>
     <DTS:Executable
-      DTS:refId="Package\SC - Copia tabelle prodotti"
+      DTS:refId="Package\SC - Copia tabelle Prodotti"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{3506b552-7fe8-4ffd-bb98-e28ad7800220}"
+      DTS:DTSID="{185e6c9f-c3fd-4c28-b1db-a7fcb586c88b}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
-      DTS:ObjectName="SC - Copia tabelle prodotti">
+      DTS:ObjectName="SC - Copia tabelle Prodotti">
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\SC - Copia tabelle prodotti\Data Flow Task"
+          DTS:refId="Package\SC - Copia tabelle Prodotti\Data Flow Task"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{7ccaadad-746a-4eee-8e83-367b840987e2}"
+          DTS:DTSID="{7edd7acc-2c47-4d20-ade7-7cbc3fcf648c}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="Data Flow Task"
@@ -107,7 +97,7 @@
       DTS:refId="Package\SC - Copia tabelle vendite"
       DTS:CreationName="STOCK:SEQUENCE"
       DTS:Description="Sequence Container"
-      DTS:DTSID="{10167CDC-6F06-4A4D-9EA8-02838C249914}"
+      DTS:DTSID="{0D7EC031-9757-4739-929A-2E0C777F0D2C}"
       DTS:ExecutableType="STOCK:SEQUENCE"
       DTS:LocaleID="-1"
       DTS:ObjectName="SC - Copia tabelle vendite">
@@ -117,7 +107,7 @@
           DTS:refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle"
           DTS:CreationName="Microsoft.Pipeline"
           DTS:Description="Data Flow Task"
-          DTS:DTSID="{B7A81CCB-BE98-4F4C-8A5B-1BADE3A0A1A5}"
+          DTS:DTSID="{A6942757-8A25-4D78-A795-8437A2E7162E}"
           DTS:ExecutableType="Microsoft.Pipeline"
           DTS:LocaleID="-1"
           DTS:ObjectName="DFT - Copia tabelle"
@@ -128,11 +118,11 @@
               version="1">
               <components>
                 <component
-                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini"
+                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="OLEDB  Legge Dettaglio Ordini"
+                  name="OLEDB - Legge Dettaglio Ordini"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -177,7 +167,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Connections[OleDbConnection]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2017]"
                       connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2017]"
                       description="The OLE DB runtime connection used to access the database."
@@ -185,79 +175,79 @@
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
                           name="SalesOrderID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDetailID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDetailID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]"
                           name="SalesOrderDetailID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]"
                           dataType="i2"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderQty]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderQty]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]"
                           name="OrderQty"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]"
                           name="ProductID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SpecialOfferID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SpecialOfferID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SpecialOfferID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SpecialOfferID]"
                           name="SpecialOfferID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPrice]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPrice]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPrice]"
                           name="UnitPrice"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPriceDiscount]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPriceDiscount]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]"
                           name="UnitPriceDiscount"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]"
                           dataType="numeric"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[LineTotal]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[LineTotal]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]"
                           name="LineTotal"
                           precision="38"
                           scale="6"
@@ -266,35 +256,35 @@
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
                           dataType="i4"
                           name="SalesOrderID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDetailID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderDetailID]"
                           dataType="i4"
                           name="SalesOrderDetailID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderQty]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderQty]"
                           dataType="i2"
                           name="OrderQty" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
                           dataType="i4"
                           name="ProductID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[SpecialOfferID]"
                           dataType="i4"
                           name="SpecialOfferID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPrice]"
                           dataType="cy"
                           name="UnitPrice" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPriceDiscount]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[UnitPriceDiscount]"
                           dataType="cy"
                           name="UnitPriceDiscount" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[LineTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[LineTotal]"
                           dataType="numeric"
                           name="LineTotal"
                           precision="38"
@@ -302,62 +292,62 @@
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
                           name="SalesOrderID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderDetailID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderDetailID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderDetailID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderDetailID]"
                           name="SalesOrderDetailID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[OrderQty]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[OrderQty]"
                           dataType="i2"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[OrderQty]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[OrderQty]"
                           name="OrderQty" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductID]"
                           name="ProductID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
                           name="SpecialOfferID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
                           dataType="cy"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPrice]"
                           name="UnitPrice" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPriceDiscount]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPriceDiscount]"
                           dataType="cy"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPriceDiscount]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[UnitPriceDiscount]"
                           name="UnitPriceDiscount" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[LineTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[LineTotal]"
                           dataType="numeric"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[LineTotal]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[LineTotal]"
                           name="LineTotal"
                           precision="38"
                           scale="6" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -366,11 +356,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini"
+                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini"
                   componentClassID="Microsoft.OLEDBSource"
                   contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
                   description="OLE DB Source"
-                  name="OLEDB  Legge Testate Ordini"
+                  name="OLEDB - Legge Testata Ordini"
                   usesDispositions="true"
                   version="7">
                   <properties>
@@ -415,7 +405,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Connections[OleDbConnection]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[LocalHost.AdventureWorks2017]"
                       connectionManagerRefId="Package.ConnectionManagers[LocalHost.AdventureWorks2017]"
                       description="The OLE DB runtime connection used to access the database."
@@ -423,326 +413,326 @@
                   </connections>
                   <outputs>
                     <output
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output]"
                       name="OLE DB Source Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]"
                           name="SalesOrderID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[OrderDate]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[OrderDate]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[OrderDate]"
                           name="OrderDate"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[DueDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[DueDate]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[DueDate]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[DueDate]"
                           name="DueDate"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[ShipDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[ShipDate]"
                           dataType="dbTimeStamp"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[ShipDate]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[ShipDate]"
                           name="ShipDate"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Status]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Status]"
                           dataType="ui1"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[Status]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Status]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Status]"
                           name="Status"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[OnlineOrderFlag]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[OnlineOrderFlag]"
                           dataType="bool"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[OnlineOrderFlag]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[OnlineOrderFlag]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[OnlineOrderFlag]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[OnlineOrderFlag]"
                           name="OnlineOrderFlag"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
                           length="25"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]"
                           name="SalesOrderNumber"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[PurchaseOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[PurchaseOrderNumber]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[PurchaseOrderNumber]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[PurchaseOrderNumber]"
                           length="25"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[PurchaseOrderNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[PurchaseOrderNumber]"
                           name="PurchaseOrderNumber"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[CustomerID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[CustomerID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[CustomerID]"
                           name="CustomerID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesPersonID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesPersonID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesPersonID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesPersonID]"
                           name="SalesPersonID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TerritoryID]"
                           dataType="i4"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TerritoryID]"
                           name="TerritoryID"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SubTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SubTotal]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SubTotal]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SubTotal]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SubTotal]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SubTotal]"
                           name="SubTotal"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TaxAmt]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TaxAmt]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[TaxAmt]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TaxAmt]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[TaxAmt]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TaxAmt]"
                           name="TaxAmt"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Freight]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Freight]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[Freight]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Freight]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[Freight]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Freight]"
                           name="Freight"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TotalDue]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TotalDue]"
                           dataType="cy"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[TotalDue]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TotalDue]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[TotalDue]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TotalDue]"
                           name="TotalDue"
                           truncationRowDisposition="FailComponent" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Comment]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Comment]"
                           dataType="wstr"
                           errorOrTruncationOperation="Conversion"
                           errorRowDisposition="FailComponent"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[Comment]"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[Comment]"
                           length="128"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Comment]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Comment]"
                           name="Comment"
                           truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderID]"
                           dataType="i4"
                           name="SalesOrderID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[OrderDate]"
                           dataType="dbTimeStamp"
                           name="OrderDate" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[DueDate]"
                           dataType="dbTimeStamp"
                           name="DueDate" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[ShipDate]"
                           dataType="dbTimeStamp"
                           name="ShipDate" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[Status]"
                           dataType="ui1"
                           name="Status" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[OnlineOrderFlag]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[OnlineOrderFlag]"
                           dataType="bool"
                           name="OnlineOrderFlag" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesOrderNumber]"
                           dataType="wstr"
                           length="25"
                           name="SalesOrderNumber" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[PurchaseOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[PurchaseOrderNumber]"
                           dataType="wstr"
                           length="25"
                           name="PurchaseOrderNumber" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[CustomerID]"
                           dataType="i4"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonID]"
                           dataType="i4"
                           name="SalesPersonID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
                           dataType="i4"
                           name="TerritoryID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[SubTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[SubTotal]"
                           dataType="cy"
                           name="SubTotal" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[TaxAmt]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[TaxAmt]"
                           dataType="cy"
                           name="TaxAmt" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[Freight]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[Freight]"
                           dataType="cy"
                           name="Freight" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[TotalDue]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[TotalDue]"
                           dataType="cy"
                           name="TotalDue" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].ExternalColumns[Comment]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].ExternalColumns[Comment]"
                           dataType="wstr"
                           length="128"
                           name="Comment" />
                       </externalMetadataColumns>
                     </output>
                     <output
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output]"
                       isErrorOut="true"
                       name="OLE DB Source Error Output">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderID]"
                           name="SalesOrderID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
                           dataType="dbTimeStamp"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[OrderDate]"
                           name="OrderDate" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[DueDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[DueDate]"
                           dataType="dbTimeStamp"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[DueDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[DueDate]"
                           name="DueDate" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
                           dataType="dbTimeStamp"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[ShipDate]"
                           name="ShipDate" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[Status]"
                           dataType="ui1"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[Status]"
                           name="Status" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[OnlineOrderFlag]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[OnlineOrderFlag]"
                           dataType="bool"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[OnlineOrderFlag]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[OnlineOrderFlag]"
                           name="OnlineOrderFlag" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
                           dataType="wstr"
                           length="25"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SalesOrderNumber]"
                           name="SalesOrderNumber" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[PurchaseOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[PurchaseOrderNumber]"
                           dataType="wstr"
                           length="25"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[PurchaseOrderNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[PurchaseOrderNumber]"
                           name="PurchaseOrderNumber" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[CustomerID]"
                           name="CustomerID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SalesPersonID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SalesPersonID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SalesPersonID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SalesPersonID]"
                           name="SalesPersonID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
                           name="TerritoryID" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SubTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SubTotal]"
                           dataType="cy"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[SubTotal]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[SubTotal]"
                           name="SubTotal" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[TaxAmt]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[TaxAmt]"
                           dataType="cy"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[TaxAmt]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[TaxAmt]"
                           name="TaxAmt" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[Freight]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[Freight]"
                           dataType="cy"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[Freight]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[Freight]"
                           name="Freight" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[TotalDue]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[TotalDue]"
                           dataType="cy"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[TotalDue]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[TotalDue]"
                           name="TotalDue" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[Comment]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[Comment]"
                           dataType="wstr"
                           length="128"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[Comment]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[Comment]"
                           name="Comment" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -751,11 +741,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini"
+                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="OLEDB  Scrive Dettaglio Ordini"
+                  name="OLEDB - Scrive Dettaglio Ordini"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -808,7 +798,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Connections[OleDbConnection]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[LocalHost.DB_MIRROR]"
                       connectionManagerRefId="Package.ConnectionManagers[LocalHost.DB_MIRROR]"
                       description="The OLE DB runtime connection used to access the database."
@@ -816,95 +806,95 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderID]"
                           cachedDataType="i4"
                           cachedName="SalesOrderID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderDetailID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderDetailID]"
                           cachedDataType="i4"
                           cachedName="SalesOrderDetailID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderDetailID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[OrderQty]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[OrderQty]"
                           cachedDataType="i2"
                           cachedName="OrderQty"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[ProductID]"
                           cachedDataType="i4"
                           cachedName="ProductID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SpecialOfferID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SpecialOfferID]"
                           cachedDataType="i4"
                           cachedName="SpecialOfferID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SpecialOfferID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[SpecialOfferID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[UnitPrice]"
                           cachedDataType="cy"
                           cachedName="UnitPrice"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPrice]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[UnitPriceDiscount]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[UnitPriceDiscount]"
                           cachedDataType="cy"
                           cachedName="UnitPriceDiscount"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceDiscount]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceDiscount]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[UnitPriceDiscount]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[LineTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[LineTotal]"
                           cachedDataType="numeric"
                           cachedName="LineTotal"
                           cachedPrecision="38"
                           cachedScale="6"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
                           dataType="i4"
                           name="SalesOrderID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderDetailID]"
                           dataType="i4"
                           name="SalesOrderDetailID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
                           dataType="i2"
                           name="OrderQty" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
                           dataType="i4"
                           name="ProductID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferID]"
                           dataType="i4"
                           name="SpecialOfferID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPrice]"
                           dataType="cy"
                           name="UnitPrice" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceDiscount]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[UnitPriceDiscount]"
                           dataType="cy"
                           name="UnitPriceDiscount" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
                           dataType="numeric"
                           name="LineTotal"
                           precision="38"
@@ -914,22 +904,22 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -938,11 +928,11 @@
                   </outputs>
                 </component>
                 <component
-                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini"
+                  refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini"
                   componentClassID="Microsoft.OLEDBDestination"
                   contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
                   description="OLE DB Destination"
-                  name="OLEDB  Scrive Testate Ordini"
+                  name="OLEDB - Scrive Testata Ordini"
                   usesDispositions="true"
                   version="4">
                   <properties>
@@ -953,7 +943,7 @@
                     <property
                       dataType="System.String"
                       description="Specifies the name of the database object used to open a rowset."
-                      name="OpenRowset">[advworks].[TestateOrdini]</property>
+                      name="OpenRowset">[advworks].[TestataOrdini]</property>
                     <property
                       dataType="System.String"
                       description="Specifies the variable that contains the name of the database object used to open a rowset."
@@ -995,7 +985,7 @@
                   </properties>
                   <connections>
                     <connection
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Connections[OleDbConnection]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Connections[OleDbConnection]"
                       connectionManagerID="Package.ConnectionManagers[LocalHost.DB_MIRROR]"
                       connectionManagerRefId="Package.ConnectionManagers[LocalHost.DB_MIRROR]"
                       description="The OLE DB runtime connection used to access the database."
@@ -1003,178 +993,178 @@
                   </connections>
                   <inputs>
                     <input
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input]"
                       errorOrTruncationOperation="Insert"
                       errorRowDisposition="FailComponent"
                       hasSideEffects="true"
                       name="OLE DB Destination Input">
                       <inputColumns>
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderID]"
                           cachedDataType="i4"
                           cachedName="SalesOrderID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[OrderDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[OrderDate]"
                           cachedDataType="dbTimeStamp"
                           cachedName="OrderDate"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[OrderDate]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[OrderDate]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[DueDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[DueDate]"
                           cachedDataType="dbTimeStamp"
                           cachedName="DueDate"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[DueDate]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[DueDate]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[DueDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[DueDate]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[ShipDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[ShipDate]"
                           cachedDataType="dbTimeStamp"
                           cachedName="ShipDate"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[ShipDate]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[ShipDate]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[Status]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[Status]"
                           cachedDataType="ui1"
                           cachedName="Status"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Status]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Status]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[OnlineOrderFlag]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[OnlineOrderFlag]"
                           cachedDataType="bool"
                           cachedName="OnlineOrderFlag"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OnlineOrderFlag]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[OnlineOrderFlag]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OnlineOrderFlag]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[OnlineOrderFlag]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[SalesOrderNumber]"
                           cachedDataType="wstr"
                           cachedLength="25"
                           cachedName="SalesOrderNumber"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesOrderNumber]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[PurchaseOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[PurchaseOrderNumber]"
                           cachedDataType="wstr"
                           cachedLength="25"
                           cachedName="PurchaseOrderNumber"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseOrderNumber]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[PurchaseOrderNumber]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseOrderNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[PurchaseOrderNumber]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[CustomerID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[CustomerID]"
                           cachedDataType="i4"
                           cachedName="CustomerID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[CustomerID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[CustomerID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[SalesPersonID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[SalesPersonID]"
                           cachedDataType="i4"
                           cachedName="SalesPersonID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SalesPersonID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SalesPersonID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
                           cachedDataType="i4"
                           cachedName="TerritoryID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[SubTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[SubTotal]"
                           cachedDataType="cy"
                           cachedName="SubTotal"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SubTotal]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[SubTotal]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SubTotal]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[SubTotal]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[TaxAmt]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[TaxAmt]"
                           cachedDataType="cy"
                           cachedName="TaxAmt"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TaxAmt]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TaxAmt]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TaxAmt]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TaxAmt]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[TotalDue]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[Freight]"
+                          cachedDataType="cy"
+                          cachedName="Freight"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Freight]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Freight]" />
+                        <inputColumn
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[TotalDue]"
                           cachedDataType="cy"
                           cachedName="TotalDue"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TotalDue]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[TotalDue]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TotalDue]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[TotalDue]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[Comment]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].Columns[Comment]"
                           cachedDataType="wstr"
                           cachedLength="128"
                           cachedName="Comment"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Comment]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Comment]" />
-                        <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].Columns[Freight]"
-                          cachedDataType="cy"
-                          cachedName="Freight"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Freight]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output].Columns[Freight]" />
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Comment]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output].Columns[Comment]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderID]"
                           dataType="i4"
                           name="SalesOrderID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderDate]"
                           dataType="dbTimeStamp"
                           name="OrderDate" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[DueDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[DueDate]"
                           dataType="dbTimeStamp"
                           name="DueDate" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ShipDate]"
                           dataType="dbTimeStamp"
                           name="ShipDate" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
                           dataType="ui1"
                           name="Status" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OnlineOrderFlag]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OnlineOrderFlag]"
                           dataType="bool"
                           name="OnlineOrderFlag" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesOrderNumber]"
                           dataType="wstr"
                           length="25"
                           name="SalesOrderNumber" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseOrderNumber]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[PurchaseOrderNumber]"
                           dataType="wstr"
                           length="25"
                           name="PurchaseOrderNumber" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[CustomerID]"
                           dataType="i4"
                           name="CustomerID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonID]"
                           dataType="i4"
                           name="SalesPersonID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
                           dataType="i4"
                           name="TerritoryID" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SubTotal]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SubTotal]"
                           dataType="cy"
                           name="SubTotal" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TaxAmt]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TaxAmt]"
                           dataType="cy"
                           name="TaxAmt" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Freight]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Freight]"
                           dataType="cy"
                           name="Freight" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TotalDue]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[TotalDue]"
                           dataType="cy"
                           name="TotalDue" />
                         <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Comment]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input].ExternalColumns[Comment]"
                           dataType="wstr"
                           length="128"
                           name="Comment" />
@@ -1183,22 +1173,22 @@
                   </inputs>
                   <outputs>
                     <output
-                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Outputs[OLE DB Destination Error Output]"
+                      refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Outputs[OLE DB Destination Error Output]"
                       exclusionGroup="1"
                       isErrorOut="true"
                       name="OLE DB Destination Error Output"
-                      synchronousInputId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input]">
+                      synchronousInputId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input]">
                       <outputColumns>
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
                           name="ErrorCode"
                           specialFlags="1" />
                         <outputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           dataType="i4"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
                           name="ErrorColumn"
                           specialFlags="2" />
                       </outputColumns>
@@ -1210,32 +1200,32 @@
               <paths>
                 <path
                   refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle.Paths[OLE DB Source Output]"
-                  endId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input]"
+                  endId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini.Outputs[OLE DB Source Output]" />
+                  startId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output]" />
                 <path
                   refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle.Paths[OLE DB Source Output1]"
-                  endId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini.Inputs[OLE DB Destination Input]"
+                  endId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini.Inputs[OLE DB Destination Input]"
                   name="OLE DB Source Output"
-                  startId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini.Outputs[OLE DB Source Output]" />
+                  startId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini.Outputs[OLE DB Source Output]" />
               </paths>
             </pipeline>
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
-          DTS:refId="Package\SC - Copia tabelle vendite\EST - Tronca le Tabelle"
+          DTS:refId="Package\SC - Copia tabelle vendite\EST - Tronca le tabelle"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
-          DTS:DTSID="{C272974B-DBAA-4A87-BFAF-E4B35B775A19}"
+          DTS:DTSID="{D3189C28-6022-4AF4-B3BD-D42AA7A29348}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="EST - Tronca le Tabelle"
+          DTS:ObjectName="EST - Tronca le tabelle"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{C76FCF9F-0941-4802-BE39-3C639CB83818}"
-              SQLTask:SqlStatementSource="TRUNCATE TABLE advworks.DettaglioOrdini&#xA;TRUNCATE TABLE advworks.TestateOrdini" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{202436C4-C00E-4E43-8E61-DF5239126BC8}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE advworks.DettaglioOrdini&#xA;TRUNCATE TABLE advworks.TestataOrdini" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -1243,8 +1233,8 @@
         <DTS:PrecedenceConstraint
           DTS:refId="Package\SC - Copia tabelle vendite.PrecedenceConstraints[Constraint]"
           DTS:CreationName=""
-          DTS:DTSID="{8CCCD721-F79F-42F5-928B-B4C111CFEFF1}"
-          DTS:From="Package\SC - Copia tabelle vendite\EST - Tronca le Tabelle"
+          DTS:DTSID="{F637D706-503C-4A34-A9E9-93062CA04440}"
+          DTS:From="Package\SC - Copia tabelle vendite\EST - Tronca le tabelle"
           DTS:LogicalAnd="True"
           DTS:ObjectName="Constraint"
           DTS:To="Package\SC - Copia tabelle vendite\DFT - Copia tabelle" />
@@ -1264,39 +1254,49 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="168,41.6"
-          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle"
-          TopLeft="43.0666590107816,98.4533348596361" />
+          Size="151,42"
+          Id="Package\SC - Copia tabelle Anagrafiche\Data Flow Task"
+          TopLeft="29,20" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="244,117"
+          Size="244,160"
+          Id="Package\SC - Copia tabelle Anagrafiche"
+          TopLeft="368,41" />
         <NodeLayout
-          Size="188,41.6"
-          Id="Package\SC - Copia tabelle vendite\EST - Tronca le Tabelle"
-          TopLeft="46.3999957084658,17.4933340000576" />
+          Size="151,42"
+          Id="Package\SC - Copia tabelle Prodotti\Data Flow Task"
+          TopLeft="29,20" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="210,113"
+          Size="210,156"
+          Id="Package\SC - Copia tabelle Prodotti"
+          TopLeft="56,273" />
+        <NodeLayout
+          Size="169,42"
+          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle"
+          TopLeft="36,82" />
+        <NodeLayout
+          Size="186,42"
+          Id="Package\SC - Copia tabelle vendite\EST - Tronca le tabelle"
+          TopLeft="27,13" />
         <EdgeLayout
           Id="Package\SC - Copia tabelle vendite.PrecedenceConstraints[Constraint]"
-          TopLeft="140.399995708466,59.0933340000576">
+          TopLeft="120.25,55">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-13.3333366976842,39.3600008595785"
+              EndConnector="0,27"
               Start="0,0"
-              End="-13.3333366976842,31.8600008595785">
+              End="0,19.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.6800004297892" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,15.6800004297892"
-                    Point2="0,19.6800004297892"
-                    Point3="-4,19.6800004297892" />
-                  <mssgle:LineSegment
-                    End="-9.33333669768419,19.6800004297892" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-9.33333669768419,19.6800004297892"
-                    Point2="-13.3333366976842,19.6800004297892"
-                    Point3="-13.3333366976842,23.6800004297892" />
-                  <mssgle:LineSegment
-                    End="-13.3333366976842,31.8600008595785" />
+                    End="0,19.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1308,32 +1308,10 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="256.8,195.2"
-          Size="256.8,238.4"
+          PanelSize="258,179"
+          Size="258,222"
           Id="Package\SC - Copia tabelle vendite"
-          TopLeft="61.9999975363415,23.5733335206773" />
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\SC - Copia tabelle anagrafiche\Data Flow Task"
-          TopLeft="12.3999935626987,22.8800009257" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="175.2,115.2"
-          Size="175.2,158.4"
-          Id="Package\SC - Copia tabelle anagrafiche"
-          TopLeft="333.333320087857,13.1733317023382" />
-        <NodeLayout
-          Size="150.4,41.6"
-          Id="Package\SC - Copia tabelle prodotti\Data Flow Task"
-          TopLeft="22.3999931653344,24.2666676033868" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="198.4,120.8"
-          Size="198.4,164"
-          Id="Package\SC - Copia tabelle prodotti"
-          TopLeft="70.6666638586257,240.586665107303" />
+          TopLeft="53,33" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1343,27 +1321,27 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini"
-          TopLeft="43.3333316114215,38.1333336363899" />
+          Size="227,42"
+          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini"
+          TopLeft="303,166" />
         <NodeLayout
-          Size="222.4,41.6"
-          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini"
-          TopLeft="42.6666649712457,117.866667603387" />
+          Size="227,42"
+          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini"
+          TopLeft="305,68" />
         <EdgeLayout
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle.Paths[OLE DB Source Output]"
-          TopLeft="154.199998291334,79.7333336363899">
+          TopLeft="417.5,110">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.133333966997"
+              EndConnector="0,56"
               Start="0,0"
-              End="0,30.633333966997">
+              End="0,48.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.633333966997" />
+                    End="0,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1373,27 +1351,27 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="216,41.6"
-          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini"
-          TopLeft="327.999986966452,38.1333336363899" />
+          Size="220,42"
+          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini"
+          TopLeft="37,167" />
         <NodeLayout
-          Size="216,41.6"
-          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini"
-          TopLeft="327.333320326276,117.866667603387" />
+          Size="220,42"
+          Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini"
+          TopLeft="39,69" />
         <EdgeLayout
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle.Paths[OLE DB Source Output1]"
-          TopLeft="435.666653646364,79.7333336363899">
+          TopLeft="148,111">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38.133333966997"
+              EndConnector="0,56"
               Start="0,0"
-              End="0,30.633333966997">
+              End="0,48.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.633333966997" />
+                    End="0,48.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1406,7 +1384,7 @@
     </LayoutInfo>
   </TaskHost>
   <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Dettaglio Ordini">
+    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1419,7 +1397,7 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Dettaglio Ordini">
+    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1432,7 +1410,20 @@
     </Properties>
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Legge Testate Ordini">
+    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>
@@ -1441,19 +1432,6 @@
         <Name>TableInfoObjectType</Name>
         <Value
           type="q2:string">View</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB  Scrive Testate Ordini">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
       </Property>
     </Properties>
   </PipelineComponentMetadata>

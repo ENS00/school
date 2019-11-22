@@ -1,18 +1,18 @@
 <?xml version="1.0"?>
 <DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
   DTS:refId="Package"
-  DTS:CreationDate="11/15/2019 10:28:11 AM"
+  DTS:CreationDate="11/15/2019 10:28:10 AM"
   DTS:CreationName="Microsoft.Package"
-  DTS:CreatorComputerName="DESKTOP-T7S181T"
-  DTS:CreatorName="DESKTOP-T7S181T\ENSOO"
-  DTS:DTSID="{0FFE811F-91CE-461B-8450-DA94DCAD60D5}"
+  DTS:CreatorComputerName="DESKTOP-1V05LHP"
+  DTS:CreatorName="DESKTOP-1V05LHP\info"
+  DTS:DTSID="{F3EEE944-F786-4212-9210-2F2F58060582}"
   DTS:ExecutableType="Microsoft.Package"
   DTS:LastModifiedProductVersion="15.0.1301.433"
   DTS:LocaleID="1033"
-  DTS:ObjectName="00_Main"
+  DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{08036310-89D9-4DD0-BFF2-FF859782A374}">
+  DTS:VersionBuild="1"
+  DTS:VersionGUID="{76D13824-7176-402C-9656-3A392B73865A}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -21,7 +21,7 @@
       DTS:refId="Package\EPT - Caricamento Dati adworks"
       DTS:CreationName="Microsoft.ExecutePackageTask"
       DTS:Description="Execute Package Task"
-      DTS:DTSID="{642F332A-697D-4F73-A034-CA467F440F3A}"
+      DTS:DTSID="{00A3A20B-E874-4E1D-A6E3-B5439425EA0A}"
       DTS:ExecutableType="Microsoft.ExecutePackageTask"
       DTS:LocaleID="-1"
       DTS:ObjectName="EPT - Caricamento Dati adworks"
@@ -48,9 +48,9 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
         <NodeLayout
-          Size="229.6,41.6"
+          Size="231,42"
           Id="Package\EPT - Caricamento Dati adworks"
-          TopLeft="222.666657818689,159.466667933994" />
+          TopLeft="182,74" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

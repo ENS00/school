@@ -6,7 +6,7 @@
       <Options>
         <ServerName>.</ServerName>
         <PathOnServer>/SSISDB/CorsoETL/1_MirrorToDwh</PathOnServer>
-        <StartObjectID>00_Main.dtsx</StartObjectID>
+        <StartObjectID>01_Vendite.dtsx</StartObjectID>
         <UserIDs />
         <UserPasswords />
         <OfflineMode>false</OfflineMode>
@@ -15,7 +15,7 @@
           <ConfigurationSetting>
             <Id>LastModifiedTime</Id>
             <Name>LastModifiedTime</Name>
-            <Value xsi:type="xsd:dateTime">2019-11-15T11:40:51.3336142Z</Value>
+            <Value xsi:type="xsd:dateTime">2019-11-15T11:40:51.5855515Z</Value>
           </ConfigurationSetting>
         </ParameterConfigurationSensitiveValues>
       </Options>
