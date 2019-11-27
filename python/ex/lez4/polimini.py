@@ -8,17 +8,6 @@ npoly=None
 ignoredpositions=[]
 
 def getCombinations():
-    # global npoly
-    # mat = []
-    # for i in range(npoly):
-    #     row = []
-    #     for j in range(npoly):
-    #         row.append(False)
-    #     mat.append(row)
-    # # starting from 0,0
-    # mat[0][0]=True
-    # # I can add a mono near another existent
-    # combination = mat.copy()
     global npoly
     global ignoredpositions
 
@@ -48,7 +37,9 @@ def attachUnit(positions,allCombo):
     currentLevel=len(positions)
     if currentLevel not in ignoredpositions:
         ignoredpositions[currentLevel]=[]
+    ignoredpositions[currentLevel+1]=[]
     if currentLevel<npoly:
+        # from every position i try to insert a block nearly down or nearly right
         for p in reversed(positions):
             myPos={'x':p['x']+1,'y':p['y']}
             if (myPos not in positions) and (myPos not in ignoredpositions[currentLevel]) and (positions+[myPos] not in allCombo):
@@ -59,6 +50,12 @@ def attachUnit(positions,allCombo):
                 if (myPos not in positions) and (myPos not in ignoredpositions[currentLevel]) and (positions+[myPos] not in allCombo):
                     positions.append(myPos)
                     return attachUnit(positions,allCombo)
+                else:#added for calculate shapes without 0,0; better think to another sol
+                    myPos={'x':p['x']-1,'y':p['y']}
+                    if (myPos not in positions) and (myPos not in ignoredpositions[currentLevel]) and (positions+[myPos] not in allCombo):
+                        positions.append(myPos)
+                        return attachUnit(positions,allCombo)
+        #there aren't any more positions so I have to go back to the previous level
         fakepos=positions.pop()
         currentLevel=len(positions)
         # if i'm setting to ignore position (0,0) we found all combinations
@@ -72,10 +69,9 @@ def attachUnit(positions,allCombo):
 #it checks also for rotated poly
 def exists(combo,array):
     rotated=combo.copy()
+    print()
     for i in range(4):
         rotated=rotate(rotated)
-        if {'x':0,'y':0} not in rotated:
-            continue
         for el in array:
             matches=0
             for pos in rotated:
@@ -117,7 +113,7 @@ def rotate(positions,deg=90):
                 miny=positions[p]['y']
     else:
         return []
-    # # translate it
+    # translate it
     for p in retpos:
         p['x']-=minx
         p['y']-=miny
