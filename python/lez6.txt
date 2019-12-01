@@ -1,0 +1,6 @@
+determinare due indici chiamati i specifico e i descrittivo sul'insieme dei 4p (4 polimini quadrati) in modo che sia possibile
+determinare:
+1- Un modo per costruire una partizione tra tutti che li distingua attraverso una caratteristica da voi determinata (classe)
+2- Un modo per distinguerli singolarmente (id, rotazione ignorata ha stesso id)
+3- Generalizzare i specifico e i descrittivo ad un insieme NP qualsiasi
+4- Generalizzare ad una forma (triangolo/esagono) qualsiasi ([OPT])
