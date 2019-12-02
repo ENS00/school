@@ -1,10 +1,20 @@
 from tkinter import (Tk,Canvas)
+from operator import attrgetter
 
 WIDTH=600
 HEIGHT=400
 BGCOLOR='lightgreen'
 
 #rules are adiacent free sides for every square
+
+def sortFunction(a,b):
+    if a.y>b.y:
+        return b
+    if a.y<b.y:
+        return a
+    if a.x>b.y:
+        return b
+    return a
 
 class Rule():
     def __init__(self,positions):
@@ -34,86 +44,127 @@ class Rule():
     
     def getDimension(self):
         return len(self.values)
+    
+    @staticmethod
+    def orderPositions(positions):
+        positions=list(positions)
+        positions.sort(key=attrgetter('x'))
+        positions.sort(key=attrgetter('y'))
+        return positions
 
     #inverse algorithm to find all positions starting from rules
     @staticmethod
     def getPositions(values):
         values=list(values)
+        currentvalues=[]
         start=Position(0,0)
-        lastvalue=None
-        positions=[]
-        remembervalues=[]
-        count={0:0}
+        # positions=[]
+        # newvalues=list()
+        # [newvalues.append(None) for i in range(len(values))]
+        # lastvalue=None
+        level={0:{'values':0,'currentvalues':0,'lasttry':0}}
         backupvalues={}
         deep=0
         while len(values)>0:
-            count[deep+1]=0
+            level[deep+1]={'values':0,'currentvalues':0,'lasttry':0}
             found=False
-            for i in range(count[deep],len(values)):
-                count[deep]+=1
-                backupvalues[deep]=list(values)
+            backupvalues[deep]=list(values)
+            for i in range(level[deep]['values'],len(values)):
                 currentvalue=values[i]
-                if lastvalue:
-                    #trying to attach to the up
-                    if 0 not in lastvalue and 2 not in currentvalue:
-                        newposition=Position(lastposition.x,lastposition.y)
-                        newposition.move(0,-1)
-                        if not newposition.inArray(positions):
-                            lastposition=newposition
-                            found=True
-                            break
-                    #trying to attach to the right
-                    if 1 not in lastvalue and 3 not in currentvalue:
-                        newposition=Position(lastposition.x,lastposition.y)
-                        newposition.move(1,0)
-                        if not newposition.inArray(positions):
-                            lastposition=newposition
-                            found=True
-                            break
-                    #trying to attach to the down
-                    if 2 not in lastvalue and 0 not in currentvalue:
-                        newposition=Position(lastposition.x,lastposition.y)
-                        newposition.move(0,1)
-                        if not newposition.inArray(positions):
-                            lastposition=newposition
-                            found=True
-                            break
-                    #trying to attach to the left
-                    if 3 not in lastvalue and 1 not in currentvalue:
-                        newposition=Position(lastposition.x,lastposition.y)
-                        newposition.move(-1,0)
-                        if not newposition.inArray(positions):
-                            lastposition=newposition
-                            found=True
-                            break
-                else:
-                    lastposition=start
+                if deep==0:
+                    level[deep]['values']+=1
+                    currentvalues.append({
+                        'position':start,
+                        'value':currentvalue
+                    })
                     found=True
                     break
+                else:
+                    for j in range(level[deep]['currentvalues'],len(currentvalues)):
+                        print('Trying merge '+str(values[i])+' and '+str(currentvalues[j]['value']))
+                        #trying to attach to the up
+                        if 2 not in values[i] and 0 not in currentvalues[j]['value'] and level[deep]['lasttry']<1:
+                            pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
+                            pos.move(0,-1)
+                            if not pos.inArray(currentvalues):
+                                print('Merging up')
+                                currentvalues.append({
+                                    'position':pos,
+                                    'value':values[i]
+                                })
+                                level[deep]['lasttry']=1
+                                found=True
+                        #trying to attach to the right
+                        elif 3 not in values[i] and 1 not in currentvalues[j]['value'] and level[deep]['lasttry']<2:
+                            pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
+                            pos.move(1,0)
+                            if not pos.inArray(currentvalues):
+                                print('Merging right')
+                                currentvalues.append({
+                                    'position':pos,
+                                    'value':values[i]
+                                })
+                                level[deep]['lasttry']=2
+                                found=True
+                        #trying to attach to the down
+                        elif 0 not in values[i] and 2 not in currentvalues[j]['value'] and level[deep]['lasttry']<3:
+                            pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
+                            pos.move(0,1)
+                            if not pos.inArray(currentvalues):
+                                print('Merging down')
+                                currentvalues.append({
+                                    'position':pos,
+                                    'value':values[i]
+                                })
+                                level[deep]['lasttry']=3
+                                found=True
+                        #trying to attach to the left
+                        elif 1 not in values[i] and 3 not in currentvalues[j]['value'] and level[deep]['lasttry']<4:
+                            pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
+                            pos.move(-1,0)
+                            if not pos.inArray(currentvalues):
+                                print('Merging left')
+                                currentvalues.append({
+                                    'position':pos,
+                                    'value':values[i]
+                                })
+                                level[deep]['lasttry']=4
+                                found=True
+                        else:
+                            level[deep]['currentvalues']+=1
+                            level[deep]['lasttry']=0
+                        if found:
+                            break
+                    if found:
+                        break
+                level[deep]['values']+=1
+                level[deep]['currentvalues']=0
             if not found:
-                #it's not possible to attach this at the moment, let's remove the last one and retry
-                lastposition=positions.pop()
-                lastvalue=remembervalues.pop()
-                if len(positions)<1:
-                    lastposition=None
-                    lastvalue=None
+                #it's impossible to attach this at the moment, let's remove the last one and retry
+                if len(currentvalues)<1:
+                    raise Exception('Cannot create a Polyomino with this rule')
+                currentvalues.pop()
                 deep-=1
                 values=backupvalues[deep]
             else:
-                remembervalues.append(currentvalue)
-                positions.append(lastposition)
                 values.remove(currentvalue)
-                lastvalue=currentvalue
                 deep+=1
+            print()
+            print(level)
+            print('Possibilities: '+str(values))
+            print('Current choose: '+str(currentvalues))
+            print()
         minX=900
         minY=900
-        for el in positions:
-            if el.x<minX:
-                minX=el.x
-            if el.y<minY:
-                minY=el.y
-        for el in positions:
-            el.move(-minX,-minY)
+        for el in currentvalues:
+            if el['position'].x<minX:
+                minX=el['position'].x
+            if el['position'].y<minY:
+                minY=el['position'].y
+        positions=[]
+        for el in currentvalues:
+            el['position'].move(-minX,-minY)
+            positions.append(el['position'])
         return positions
 
     #return first occurrence if position respect rule
@@ -157,7 +208,7 @@ class Position():
     
     def inArray(self,arrayPositions):
         for i in arrayPositions:
-            if i.x==self.x and i.y==self.y:
+            if i['position'].x==self.x and i['position'].y==self.y:
                 return True
         return False
 
@@ -191,12 +242,40 @@ class Polyomino():
         self.dim=uniquerule.getDimension()
         self.uniquerule=uniquerule
         self.positions=Rule.getPositions(self.uniquerule.values)
+        print("Positions:")
+        print(self.positions)
+        self.positions=Rule.orderPositions(self.positions)
+        print(self.positions)
         self.elements=[]
         for i in self.positions:
             self.elements.append(Rect(i,self))
     def draw(self):
         for i in self.elements:
             i.draw()
+    def getClass(self):
+        myclass=0
+        for i in self.positions:
+            if True in [True for j in positions if j.y==i.y-1 and j.x==i.x]:
+                if i.y%2==0:
+                    myclass+=1
+                else:
+                    myclass-=1
+            if True in [True for j in positions if j.y==i.y and j.x==i.x+1]:
+                if i.y%2==0:
+                    myclass+=1
+                else:
+                    myclass-=1
+            if True in [True for j in positions if j.y==i.y+1 and j.x==i.x]:
+                if i.y%2==1:
+                    myclass+=1
+                else:
+                    myclass-=1
+            if True in [True for j in positions if j.y==i.y and j.x==i.x-1]:
+                if i.y%2==1:
+                    myclass+=1
+                else:
+                    myclass-=1
+        return myclass
 
     #for print() function
     def __str__(self):
@@ -219,10 +298,11 @@ tk.update()
 
 positionArray=[
     Position(1,0),
-    Position(0,0),
-    Position(-2,0),
-    Position(-1,0)
+    Position(2,0),
+    Position(0,1),
+    Position(1,1)
 ]
+#print(Rule.orderPositions(positionArray))
 myRule=Rule(positionArray)
 print(myRule)
 polyomino=Polyomino(myRule,20,20)
