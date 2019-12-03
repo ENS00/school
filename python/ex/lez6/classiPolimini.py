@@ -1,9 +1,12 @@
-from tkinter import (Tk,Canvas)
+from tkinter import (Tk,Canvas,Label,Button)
 from operator import attrgetter
 
 WIDTH=600
 HEIGHT=400
 BGCOLOR='lightgreen'
+button=None
+lblid=None
+lblclass=None
 
 #rules are adiacent free sides for every square
 
@@ -35,7 +38,11 @@ class Rule():
 
     #for print() function
     def __str__(self):
-        return 'Rule('+str(self.values)+')'
+        ret='{'
+        for i in self.values:
+            ret+=str(i)+', '
+        ret=ret[:-2]+'}'
+        return ret
     def __repr__(self):
         return 'Rule('+str(self.values)+')'
 
@@ -81,13 +88,12 @@ class Rule():
                     break
                 else:
                     for j in range(level[deep]['currentvalues'],len(currentvalues)):
-                        print('Trying merge '+str(values[i])+' and '+str(currentvalues[j]['value']))
+                        #print('Trying merge '+str(values[i])+' and '+str(currentvalues[j]['value']))
                         #trying to attach to the up
                         if 2 not in values[i] and 0 not in currentvalues[j]['value'] and level[deep]['lasttry']<1:
                             pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
                             pos.move(0,-1)
                             if not pos.inArray(currentvalues):
-                                print('Merging up')
                                 currentvalues.append({
                                     'position':pos,
                                     'value':values[i]
@@ -99,7 +105,6 @@ class Rule():
                             pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
                             pos.move(1,0)
                             if not pos.inArray(currentvalues):
-                                print('Merging right')
                                 currentvalues.append({
                                     'position':pos,
                                     'value':values[i]
@@ -111,7 +116,6 @@ class Rule():
                             pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
                             pos.move(0,1)
                             if not pos.inArray(currentvalues):
-                                print('Merging down')
                                 currentvalues.append({
                                     'position':pos,
                                     'value':values[i]
@@ -123,7 +127,6 @@ class Rule():
                             pos=Position(currentvalues[j]['position'].x,currentvalues[j]['position'].y)
                             pos.move(-1,0)
                             if not pos.inArray(currentvalues):
-                                print('Merging left')
                                 currentvalues.append({
                                     'position':pos,
                                     'value':values[i]
@@ -149,11 +152,11 @@ class Rule():
             else:
                 values.remove(currentvalue)
                 deep+=1
-            print()
-            print(level)
-            print('Possibilities: '+str(values))
-            print('Current choose: '+str(currentvalues))
-            print()
+            # print()
+            # print(level)
+            # print('Possibilities: '+str(values))
+            # print('Current choose: '+str(currentvalues))
+            # print()
         minX=900
         minY=900
         for el in currentvalues:
@@ -213,25 +216,13 @@ class Position():
         return False
 
 class Rect(Position):
-    def __init__(self,position,father,conditions=None,size=12,color='#7A7'):
-
-        # self.rule=rule.clone()#TODO: implement a valid cloning function, this sucks!
-        # self.rule.values=rule.values
-        # if not conditions:
-        #     #this rect will represent the first condition in a list of rules
-        #     self.freeSides=self.rule.values.pop(0)
-        # else:
-        #     #this rect will represent the first condition that respects the rule
-        #     self.freeSides=self.rule.find(conditions)
-        #     self.rule.values.remove(self.freeSides)
+    def __init__(self,position,father,conditions=None,size=26,color='#7A7'):
         self.father=father
         self.size=size
         self.color=color
         super().__init__(position.x*self.size+father.x,position.y*self.size+father.y)
     def draw(self):
         canvas.create_rectangle(self.x,self.y,self.x+self.size,self.y+self.size,fill=self.color,outline='black',tags=('square'))
-    # def getNext(self):
-    #     return Rect(rule=self.rule,conditions=self.freeSides,size=self.size,color=self.color)
 
 
 class Polyomino():
@@ -242,39 +233,26 @@ class Polyomino():
         self.dim=uniquerule.getDimension()
         self.uniquerule=uniquerule
         self.positions=Rule.getPositions(self.uniquerule.values)
-        print("Positions:")
-        print(self.positions)
         self.positions=Rule.orderPositions(self.positions)
-        print(self.positions)
         self.elements=[]
         for i in self.positions:
             self.elements.append(Rect(i,self))
     def draw(self):
+        global lblclass
+        global lblid
         for i in self.elements:
             i.draw()
+        lblclass=Label(tk,text="Classe: "+str(self.getClass()))
+        lblclass.place(x=300,y=160)
+        lblid=Label(tk,text="Id: "+str(self.uniquerule))
+        lblid.place(x=300,y=200)
     def getClass(self):
         myclass=0
         for i in self.positions:
-            if True in [True for j in positions if j.y==i.y-1 and j.x==i.x]:
-                if i.y%2==0:
+            if True in [True for j in self.positions if j.y==i.y and j.x==i.x+1]:
                     myclass+=1
-                else:
-                    myclass-=1
-            if True in [True for j in positions if j.y==i.y and j.x==i.x+1]:
-                if i.y%2==0:
+            if True in [True for j in self.positions if j.y==i.y+1 and j.x==i.x]:
                     myclass+=1
-                else:
-                    myclass-=1
-            if True in [True for j in positions if j.y==i.y+1 and j.x==i.x]:
-                if i.y%2==1:
-                    myclass+=1
-                else:
-                    myclass-=1
-            if True in [True for j in positions if j.y==i.y and j.x==i.x-1]:
-                if i.y%2==1:
-                    myclass+=1
-                else:
-                    myclass-=1
         return myclass
 
     #for print() function
@@ -282,31 +260,64 @@ class Polyomino():
         return 'Polyomino('+str(self.elements)+')'
     def __repr__(self):
         return 'Polyomino('+str(self.elements)+')'
-    
+
+    @staticmethod
+    def fromPositionArray(array,x=0,y=0):
+        myRule=Rule(array)
+        return Polyomino(myRule,x,y)
+
+
+
+lvl5=[[
+        Position(0,-1),
+        Position(-1,0),
+        Position(-1,-2),
+        Position(-1,-1),
+        Position(-1,-3)
+    ],[
+        Position(0,-1),
+        Position(0,0),
+        Position(0,-2),
+        Position(0,-4),
+        Position(0,-3)
+    ],[
+        Position(1,0),
+        Position(2,0),
+        Position(2,1),
+        Position(0,1),
+        Position(1,1)
+    ]
+]
 
 def PolyArea(canvas,x,y):
     canvas.create_rectangle(x,y,canvas.winfo_width()-10,canvas.winfo_height()-10,outline='black')
+
+def drawNext(id):
+    global button
+    global lblid
+    global lblclass
+    if id>=len(lvl5):
+        id=0
+    tk.update()
+    polyarea=PolyArea(canvas,10,10)
+    canvas.delete('square')
+    if button:
+        button.destroy()
+    if lblid:
+        lblid.destroy()
+    if lblclass:
+        lblclass.destroy()
+    button=Button(tk,text='Successivo',command=lambda:drawNext(id+1))
+    button.place(x=300, y=50)
+    tk.update()
+    polyomino=Polyomino.fromPositionArray(lvl5[id],140,140)
+    polyomino.draw()
 
 
 tk = Tk()
 tk.title('Polimini')
 canvas=Canvas(tk,width=WIDTH,height=HEIGHT,bg=BGCOLOR)
 canvas.pack()
-tk.update()
-polyarea=PolyArea(canvas,10,10)
-tk.update()
-
-positionArray=[
-    Position(1,0),
-    Position(2,0),
-    Position(0,1),
-    Position(1,1)
-]
-#print(Rule.orderPositions(positionArray))
-myRule=Rule(positionArray)
-print(myRule)
-polyomino=Polyomino(myRule,20,20)
-polyomino.draw()
-print(polyomino)
+drawNext(0)
 
 tk.mainloop()
