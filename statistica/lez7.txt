@@ -1,0 +1,32 @@
+Algoritmi genetici
+
+Problema con popolazione in evoluzione
+un ratto pesa ~ 200g
+vogliamo transformarlo in un ratto di 50kg
+
+Passi principali per risolvere questi problemi:
+- Si misura una caratteristica (si trova e si valuta una funzione di fitness)
+- Scegliamo i migliori e scartiamo i peggiori (gaussiana, considero il 50% sopra il dato centrale)
+- Ricombiniamo la popolazione senza i peggiori
+- Forziamo una mutazione "genetica casuale"
+    -prendendo il dna del padre e della madre scegliamo un quantitativo uguale
+    -creiamo il figlio
+    -modifichiamo un pezzo casualmente
+- ricominciamo dall'inizio e valutiamo se ci siamo avvicinati all'obiettivo
+
+Problema delle 8 regine:
+ogni riga descrive la posizione in y della regina, il "gene" (che rappresenta la popolazione) è rappresentato da una serie di
+cifre che descrivono le regine ordinate dalla x più a sinistra verso quella più a destra
+esempio di gene = 24748552 (ogni numero è un numero casuale da 1 a 8)
+i valori sono 1 2 3 4 5 6 7 8 (devono essere mischiati alla stessa maniera)
+-troviamo la funzione di fitness:
+    la funzione di fitness è una percentuale che definisce quanto sono vicino alla soluzione (quante regine si mangiano per esempio)
+    se si mangiano 2 regine il risultato della funzione potrebbe valere 6/8
+-riordino per scelta:
+    metto in ordine i valori con risultato funzione di fitness più alto
+-ricombinazione:
+    prendo caratteristiche simili dal padre e dalla madre
+- mutazione:
+    ogni tanto scambio i valori mutandoli a caso (può avvicinare o allontanare dal risultato)
+
+drake equation
