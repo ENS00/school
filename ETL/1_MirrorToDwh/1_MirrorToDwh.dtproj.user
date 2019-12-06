@@ -6,7 +6,7 @@
       <Options>
         <ServerName>.</ServerName>
         <PathOnServer>/SSISDB/CorsoETL/1_MirrorToDwh</PathOnServer>
-        <StartObjectID>01_Vendite.dtsx</StartObjectID>
+        <StartObjectID>00_Main.dtsx</StartObjectID>
         <UserIDs />
         <UserPasswords />
         <OfflineMode>false</OfflineMode>

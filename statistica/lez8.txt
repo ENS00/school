@@ -1,0 +1,18 @@
+simulatore di traffico
+
+dato un incrocio ogni macchina può andare in 3 differenti posti (avanti,dx,sx)
+definire la distribuzione considerando durate le ore del giorno quando c'è più traffico
+Calcolare se avverranno incidenti, considerando la velocità dei mezzi
+
+ANALISI
+Bisogna trovare un modo grafico per rappresentare i veicoli
+Bisogna chiarire come funzionano i mezzi
+Bisogna chiarire come si muovono i mezzi
+Grafico di probabilità giornaliero
+Regole e vincoli
+    a- ci sono due veicoli:
+    [ A ] [][   C   ]
+    b- i veicoli devono stare ad una distanza minima tra loro (non intersecanti)
+    c- un veicolo ha 1/4 probabilità di entrare in {A,B,C,D}
+    d- un veicolo alla creazione sa dove deve uscire
+    e- i veicoli hanno la stessa velocità

@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package"
   DTS:PackageType="5"
-  DTS:VersionBuild="2"
-  DTS:VersionGUID="{59F757D2-2C7F-40C1-8B85-8E4A084D555C}">
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{3E4D27F3-9DC0-4299-8744-AA7092A05291}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables />
@@ -50,12 +50,12 @@
         <NodeLayout
           Size="205,42"
           Id="Package\EPT - Caricamneto Vendite"
-          TopLeft="210,68" />
+          TopLeft="207,71" />
         <AnnotationLayout
           Text="Lancia il caricamento delpacchetto vendite"
           ParentId="Package"
           FontInfo="{assembly:Null}"
-          Size="254,60"
+          Size="254,40"
           Id="47ada0aa-bc42-4cbe-b71b-831e521edcbc"
           TopLeft="422,67" />
       </GraphLayout>

@@ -11,15 +11,15 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{2036CD7B-95BC-409E-9625-F01C515919D3}">
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{C2DF268A-FDC8-4EB9-AB92-473A390698F0}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
     <DTS:ConnectionManager
       DTS:refId="Package.ConnectionManagers[LocalHost.DB_CONFIGURATION]"
       DTS:CreationName="OLEDB"
-      DTS:DTSID="{10F3FE82-9DBD-416D-91C4-FCF60E1E5ABF}"
+      DTS:DTSID="{1541046D-3D13-428D-8B88-03BB391E2F5D}"
       DTS:ObjectName="LocalHost.DB_CONFIGURATION">
       <DTS:ObjectData>
         <DTS:ConnectionManager
@@ -49,33 +49,6 @@
   </DTS:ConnectionManagers>
   <DTS:Variables />
   <DTS:Executables>
-    <DTS:Executable
-      DTS:refId="Package\Carica clienti"
-      DTS:CreationName="STOCK:SEQUENCE"
-      DTS:Description="Sequence Container"
-      DTS:DTSID="{36090E1E-014D-4B59-AFC1-79B313AD96BD}"
-      DTS:ExecutableType="STOCK:SEQUENCE"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="Carica clienti">
-      <DTS:Variables />
-      <DTS:Executables>
-        <DTS:Executable
-          DTS:refId="Package\Carica clienti\EST - Elimina Clienti"
-          DTS:CreationName="Microsoft.ExecuteSQLTask"
-          DTS:Description="Execute SQL Task"
-          DTS:DTSID="{BF62BCB2-C849-4A24-94D4-9D749404BDB9}"
-          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
-          DTS:LocaleID="-1"
-          DTS:ObjectName="EST - Elimina Clienti"
-          DTS:ThreadHint="1">
-          <DTS:Variables />
-          <DTS:ObjectData>
-            <SQLTask:SqlTaskData
-              SQLTask:Connection="{A9376C4C-D8E9-48D0-B01E-C3F21D7B5D42}" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
-          </DTS:ObjectData>
-        </DTS:Executable>
-      </DTS:Executables>
-    </DTS:Executable>
     <DTS:Executable
       DTS:refId="Package\Caricamento Incrementale delle vendite"
       DTS:CreationName="STOCK:SEQUENCE"
@@ -950,8 +923,8 @@
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
-              SQLTask:Connection="{10F3FE82-9DBD-416D-91C4-FCF60E1E5ABF}"
-              SQLTask:SqlStatementSource="&#xA;&#xA;UPDATE [dwh].[Caricamenti]&#xA;&#x9;SET [DataUltimoCaricamento] = (&#x9;SELECT MAX(OrderDate)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM DB_DWH.vendite.Ordinato)&#xA;&#x9;WHERE [NomeTabella] = 'Vendite'&#xA;GO" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:Connection="{1541046D-3D13-428D-8B88-03BB391E2F5D}"
+              SQLTask:SqlStatementSource="UPDATE [dwh].[Caricamenti]&#xA;   SET [DataUltimoCaricamento] =  (SELECT MAX(OrderDate)&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;FROM DB_DWH.vendite.Ordinato)&#xA; WHERE [NomeTabella]='Vendite'&#xA;GO&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
         <DTS:Executable
@@ -967,7 +940,7 @@
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
               SQLTask:Connection="{A353C29B-170E-484E-A25D-0ADC65D73223}"
-              SQLTask:SqlStatementSource="DELETE vendite.ordinato&#xA;WHERE OrderDate &gt; (SELECT DataUltimoCaricamento&#xA;FROM DB_CONFIGURATION.dwh.Caricamenti&#xA;WHERE NomeTabella = 'Vendite')" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+              SQLTask:SqlStatementSource="DELETE DB_DWH.vendite.Ordinato &#xA;WHERE orderdate &gt; (SELECT DataUltimoCaricamento &#xA;                       FROM DB_CONFIGURATION.dwh.Caricamenti&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;   WHERE NomeTabella = 'vendite') " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
           </DTS:ObjectData>
         </DTS:Executable>
       </DTS:Executables>
@@ -1004,31 +977,27 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="206.4,41.6"
+          Size="206,42"
           Id="Package\Caricamento Incrementale delle vendite\DFT - Caricamento Vendite"
           TopLeft="33,110" />
         <NodeLayout
-          Size="175.2,41.6"
+          Size="175,42"
           Id="Package\Caricamento Incrementale delle vendite\EST - Tronca tabelle"
-          TopLeft="43,30" />
-        <NodeLayout
-          Size="163.2,41.6"
-          Id="Package\Caricamento Incrementale delle vendite\EST - Aggiorna Data"
-          TopLeft="57,198" />
+          TopLeft="42,25" />
         <EdgeLayout
           Id="Package\Caricamento Incrementale delle vendite.PrecedenceConstraints[Constraint]"
-          TopLeft="133.25,72">
+          TopLeft="132.75,67">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,38"
+              EndConnector="0,43"
               Start="0,0"
-              End="0,30.5">
+              End="0,35.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,30.5" />
+                    End="0,35.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1037,20 +1006,24 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <NodeLayout
+          Size="175,42"
+          Id="Package\Caricamento Incrementale delle vendite\EST - Aggiorna Data"
+          TopLeft="54,257" />
         <EdgeLayout
           Id="Package\Caricamento Incrementale delle vendite.PrecedenceConstraints[Constraint 1]"
-          TopLeft="137.25,152">
+          TopLeft="138.75,152">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,46"
+              EndConnector="0,105"
               Start="0,0"
-              End="0,38.5">
+              End="0,97.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,38.5" />
+                    End="0,97.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -1059,45 +1032,34 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="EST : Cancella tutte le righe sucessive&#xD;&#xA; alla data caricamento presente nella&#xD;&#xA;tabella di caricamento nel database&#xD;&#xA;DB_CONFFIGURATION"
+          ParentId="Package\Caricamento Incrementale delle vendite"
+          FontInfo="{assembly:Null}"
+          Size="225,88"
+          Id="11614853-2b58-4366-b43e-71efb1285171"
+          TopLeft="219,7" />
+        <AnnotationLayout
+          Text="DFT:  Carica tutti i dati in modo incrementale.&#xD;&#xA;La logica di caricamento incrementale&#xD;&#xA;è nella vista vw_C_Odinato nel database&#xD;&#xA;DB_Mirror. La vista carica i dati dal mirror&#xD;&#xA;al dwh in base alla data che trova nella &#xD;&#xA;tabella di caricamentoi nel DB_CONFIGURATION"
+          ParentId="Package\Caricamento Incrementale delle vendite"
+          FontInfo="{assembly:Null}"
+          Size="284,120"
+          Id="981c141b-efe6-40e6-b48e-d96c479b51b5"
+          TopLeft="233,103" />
+        <AnnotationLayout
+          Text="EST: Esegue lo script di aggiornamento della data&#xD;&#xA;di ultimo caricamento vendite nella tabella&#xD;&#xA;di caricamento del DB_CONFIGURATION "
+          ParentId="Package\Caricamento Incrementale delle vendite"
+          FontInfo="{assembly:Null}"
+          Size="290,72"
+          Id="0524b631-faab-454e-a297-d6be8b0f5d84"
+          TopLeft="241,254" />
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="272,257.6"
-          Size="272,300.8"
+          PanelSize="536,381"
+          Size="536,424"
           Id="Package\Caricamento Incrementale delle vendite"
-          TopLeft="293.666661553913,38.853333454556" />
-        <AnnotationLayout
-          Text="EST: Cancella tutte le righe successive&#xD;&#xA; alla data caricamento presente ella&#xD;&#xA;tabella di caricamento nel db &#xD;&#xA;DB_CONFIGURATION"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="226.4,88"
-          Id="0bd0e905-037c-4f72-874b-2ec9dc60dbf0"
-          TopLeft="53.3333312140572,68.9066671570673" />
-        <AnnotationLayout
-          Text="DFT: Carica tutti i dati in modo incrementale&#xD;&#xA;è nella vista vw_c_Ordinato nel db DB_MIRROR&#xD;&#xA;La vista carica i dati dal mirror al DWH in base&#xD;&#xA;all data di caricamento nel DB_CONFIGURATION"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="333.6,88"
-          Id="12deefa4-bb04-4ed6-9a19-13dbcf6c9555"
-          TopLeft="22.6666657659743,162.666667933994" />
-        <AnnotationLayout
-          Text="EST: Esegue lo script di aggiornamento della data&#xD;&#xA;di ultimo caricamento vendite nella tabella di&#xD;&#xA;caricamento del DB_CONFIGURATION"
-          ParentId="Package"
-          FontInfo="{assembly:Null}"
-          Size="289.6,72"
-          Id="df7e9606-b289-4698-aa1d-bedd7f518351"
-          TopLeft="11.3333328829872,268.746668777042" />
-        <NodeLayout
-          Size="164.8,41.6"
-          Id="Package\Carica clienti\EST - Elimina Clienti"
-          TopLeft="54.1777456795739,20.7111122039513" />
-        <ContainerLayout
-          HeaderHeight="43"
-          IsExpanded="True"
-          PanelSize="266.4,416"
-          Size="266.4,459.2"
-          Id="Package\Carica clienti"
-          TopLeft="753.333303398557,73.9555561433016" />
+          TopLeft="54,26" />
       </GraphLayout>
     </LayoutInfo>
   </Package>
@@ -1107,27 +1069,27 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="186.4,41.6"
+          Size="186,42"
           Id="Package\Caricamento Incrementale delle vendite\DFT - Caricamento Vendite\OLEDB - Scrivi Vendite"
           TopLeft="195,150" />
         <NodeLayout
-          Size="185.6,41.6"
+          Size="186,42"
           Id="Package\Caricamento Incrementale delle vendite\DFT - Caricamento Vendite\OLEDB - Leggi Vendite"
           TopLeft="189,53" />
         <EdgeLayout
           Id="Package\Caricamento Incrementale delle vendite\DFT - Caricamento Vendite.Paths[OLE DB Source Output]"
-          TopLeft="285,94.6">
+          TopLeft="285,95">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,55.4"
+              EndConnector="0,55"
               Start="0,0"
-              End="0,47.9">
+              End="0,47.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,47.9" />
+                    End="0,47.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
