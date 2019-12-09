@@ -29,48 +29,83 @@ class TrafficLight():
         elif self.state == const.GREEN:
             self.state = const.YELLOW
 
-class Road():
-    def __init__(self,pstart,pstop,dim,lineW=6,lineS=2):
+    def turnOn(self):
+        pass
+
+    def turnOff(self):
+        pass
+
+    def draw(self):
+        pass
+
+class RoadObject():
+    def isA(self,prop):
+        if prop in self.tags:
+            return True
+        return False
+
+class Road(RoadObject):
+    def __init__(self,pstart,pstop,dim,lineW=16,lineS=6,tags=[]):
         self.pstart=pstart
         self.pstop=pstop
         self.dim=dim
         self.lineW=lineW
         self.lineS=lineS
+        self.tags=tags
         if self.pstart.x != self.pstop.x:
             self.orientation = const.HORIZONTAL
         else:
             self.orientation = const.VERTICAL
     
-    def draw(self):#TO FIX!!!!!!!!!!!!!!!
+    def draw(self):
         if self.orientation == const.HORIZONTAL:
-            self.graphic=draw.canvas.create_rectangle(self.pstart.x-self.dim/2, self.pstart.y-self.dim/2,
-                                                      abs(self.pstart.x-self.pstop.x), self.dim,
-                                                      fill=const.COLOR_ROAD)
+            #draw road
+            self.graphic=draw.canvas.create_rectangle(self.pstart.x, self.pstart.y-self.dim/2,
+                                                      self.pstop.x, self.pstart.y+self.dim/2,
+                                                      fill=const.COLOR_ROAD,width=0)
+            #draw white lines
             if self.pstart.x<self.pstop.x:
                 step=self.lineS+self.lineW
+                road_lines = range(round(self.pstart.x),round(self.pstop.x-step),step)
             else:
-                step=-self.lineS+self.lineW
-            for posx in range(self.pstart.x,self.pstop.x-self.pstart.x,step):
-                draw.canvas.create_rectangle(posx,self.pstart.y-self.dim/8,posx+self.lineW,self.dim/4,fill=const.WHITE)
+                step=-self.lineS-self.lineW
+                road_lines = range(round(self.pstart.x-self.lineW),round(self.pstop.x),step)
+            for posx in road_lines:
+                draw.canvas.create_rectangle(posx,self.pstart.y-self.dim/16,
+                                            posx+self.lineW,self.pstart.y+self.dim/16,
+                                            fill=const.WHITE,width=0)
+            #draw stop line
+            if super().isA('entry'):
+                draw.canvas.create_rectangle(self.pstop.x,self.pstart.y-self.dim/2,
+                                            self.pstop.x-step,self.pstart.y+self.dim/2,
+                                            fill=const.WHITE,width=0)
         else:
-            self.graphic=draw.canvas.create_rectangle(self.pstart.x-self.dim/2, self.pstart.y-self.dim/2,
-                                                      self.dim, abs(self.pstart.y-self.pstop.y),
-                                                      fill=const.COLOR_ROAD)
+            self.graphic=draw.canvas.create_rectangle(self.pstart.x-self.dim/2, self.pstart.y,
+                                                      self.pstart.x+self.dim/2, self.pstop.y,
+                                                      fill=const.COLOR_ROAD,width=0)
             if self.pstart.y<self.pstop.y:
                 step=self.lineS+self.lineW
+                road_lines = range(round(self.pstart.y),round(self.pstop.y-step),step)
             else:
-                step=-self.lineS+self.lineW
-            for posy in range(self.pstart.y,self.pstop.y-self.pstart.y,step):
-                draw.canvas.create_rectangle(self.pstart.x-self.dim/8,posy,self.dim/4,posy+self.lineW,fill=const.WHITE)
-    
-    def drawStopLine(self):
-        pass
+                step=-self.lineS-self.lineW
+                road_lines = range(round(self.pstart.y-self.lineW),round(self.pstop.y),step)
+            for posy in road_lines:
+                draw.canvas.create_rectangle(self.pstart.x-self.dim/16,posy,
+                                            self.pstart.x+self.dim/16,posy+self.lineW,
+                                            fill=const.WHITE,width=0)
+            if super().isA('entry'):
+                draw.canvas.create_rectangle(self.pstart.x-self.dim/2,self.pstop.y,
+                                            self.pstart.x+self.dim/2,self.pstop.y-step,
+                                            fill=const.WHITE,width=0)
 
 class Lane(Road):
     # pstart and pstop centered
-    def __init__(self, pstart, pstop, tLight=None, dim=const.CARDIM*1.5):
-        super().__init__(pstart,pstop,dim)
+    def __init__(self, pstart, pstop, tLight=None, dim=36*1.5):#const.CARDIM*1.5
         if tLight is None or type(tLight) is TrafficLight:
+            if tLight:
+                super().__init__(pstart,pstop,dim,tags=['entry'])
+            else:
+                super().__init__(pstart,pstop,dim,tags=['entry'])#EXIT
             pass
         else:
             raise Exception('invalid TrafficLight')
@@ -82,7 +117,3 @@ class Lane(Road):
 class Crossroad:
     def __init__(lanes):
         pass
-
-lane=Lane(Position(200,200),Position(200,500))
-lane.draw()
-draw.tk.mainloop()
