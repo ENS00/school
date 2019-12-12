@@ -10,5 +10,3 @@ class Gametime():
     def getFormattedTime(self):
         gametime = (time.time()-self.start)*self.ratio
         return time.strftime('%H:%M',time.gmtime(gametime))#'%H:%M:%S'
-        
-gametime=Gametime(const.TIME_SPEED)

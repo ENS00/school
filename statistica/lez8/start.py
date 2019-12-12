@@ -1,17 +1,12 @@
-import objects
-import const
-import draw
-import gametime
+from draw import Game
 
-def loop():
-    print(gametime.gametime.getFormattedTime())
-    draw.tk.after(10,loop)
-    #sum 10 every time to gametime???
-
+class Gameloop(Game):
+    def __init__(self):
+        super().__init__()
+        self.drawField()
+        self.statusLights=0
+        self.loop()
 
 if __name__ == "__main__":
-    #draw roads
-    draw.drawField()
-    loop()
-    
-    draw.tk.mainloop()
+    game=Gameloop()
+    game.tk.mainloop()

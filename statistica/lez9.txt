@@ -1,0 +1,37 @@
+Bernoulli -> Poisson (distribuzione degli eventi rari)
+lambda = n*p
+p = lambda/n
+
+P(x=k) = n!/(K!*(n-k))*(lambda/n)^k*(1-lambda/n)^(n-k)
+Limite n tende a inf di P(x=k)  = lambda^k/k! * Limite n tende a inf di (1-lambda/n)^n
+                                = lambda^k/k! * e^-lambda
+Distribuzione discreta lambda<=100
+Distribuzione normale lambda>100
+E[x]=sommatoria xi*pi=sommatoria k*lambda^k/k!*e^-lambda = e^-lambda*lambda*sommatoria lambda^(k-1)/(k-1)!
+per lo sviluppo in serie di Taylor:
+E[x]=lambda
+
+Distribuzione esponenziale
+è distribuzione continua
+P(x=k)= | lambda*e^(-lambda*x)      per x>=0
+        | 0                             x<0
+
+Probabilità di assenza di memoria
+P(x>a+b|x>a)=P(x>a+b)/P(x>a) = P(x>b)
+
+Generalizzazione della distribuzione esponenziale e di Poisson
+Gamma distribution
+
+Distribuzione chi quadrato (a ni gradi di libertà)
+sommatoria da 1 a ni di i di v.ai^2
+
+Test di student = (Mx-My)/sqrt(((nx-1)*Sx^2+(ny-1)*Sy^2)*(1/nx+1/ny)/(nx+ny-2))
+se vero         = ki^2 di ni con ni = nx+ny-2
+viene calcolata solo quando due popolazioni omoschedastiche e distribuzioni normali
+
+omoschedastiche = due varianze identiche
+
+Consuntivo di Pearson (per trovare se la popolazione è casuale):
+L^2 = sommatoria (ni-n*pii)^2/n*pii
+
+Il libro di fisica - I.Aasimov

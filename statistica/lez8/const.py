@@ -14,6 +14,12 @@ W_TITLE='Traffico'
 W_BACKGROUND='lightgreen'
 COLOR_ROAD='#888'
 WHITE='#FFF'
+GREEN_ON='#0F0'
+GREEN_OFF='#0A0'
+YELLOW_ON='#FF0'
+YELLOW_OFF='#AA0'
+RED_ON='#F00'
+RED_OFF='#A00'
 
 #TrafficLight states
 GREEN=2
