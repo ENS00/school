@@ -1,11 +1,3 @@
-# creates new chessboard
-def chessboard(dimX=8,dimY=8):
-    board = []
-    for i in range(dimX):
-        for j in range(dimY):
-            board.append({'x':i,'y':j})
-    return board
-
 def drawChessboard(positions,dimX=8,dimY=8):
     board = []
     for i in range(dimX):
