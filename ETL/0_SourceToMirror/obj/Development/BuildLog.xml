@@ -2,18 +2,18 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>0_SourceToMirror</Name>
-    <LastWriteTime>2019-11-22T09:02:52.275Z</LastWriteTime>
+    <LastWriteTime>2019-12-13T08:16:40.5533528Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>00_Main.dtsx</Name>
-      <LastWriteTime>2019-11-15T11:56:51.825Z</LastWriteTime>
+      <LastWriteTime>2019-12-13T08:16:40.5845958Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>01_CopiaTabelleDaAdventureWorks.dtsx</Name>
-      <LastWriteTime>2019-11-29T09:11:31.3818322Z</LastWriteTime>
+      <LastWriteTime>2019-12-13T09:28:42.9753112Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>

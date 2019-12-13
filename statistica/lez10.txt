@@ -1,0 +1,2 @@
+perchè un algoritmo genetico converge? (arrivare alla soluzione)
+conway's game of life

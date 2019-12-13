@@ -1,0 +1,4 @@
+Datamart vs ODS
+ODS è DB con tabelle di quello che mi interessa visualizzare nelle applicazioni, niente di più
+Datamart contiene lo schema a stella ridotto di DWH con meno dati, per esempio può contenere uno storico minore rispetto a tutti
+i record su DWH

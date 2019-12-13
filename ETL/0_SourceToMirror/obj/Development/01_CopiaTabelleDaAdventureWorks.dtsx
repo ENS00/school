@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{B3A25756-A6F8-4F6C-84CF-E558FF021865}">
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{45EC5418-A3E1-4EB3-8636-D32AEC291228}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -479,7 +479,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="EST - Tronca le tabelle"
-          DTS:ThreadHint="0">
+          DTS:ThreadHint="1">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1488,7 +1488,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="EST - Tronca le tabelle"
-          DTS:ThreadHint="1">
+          DTS:ThreadHint="2">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -1667,6 +1667,16 @@
                           precision="38"
                           scale="6"
                           truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductNumber]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[ProductNumber]"
+                          length="25"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductNumber]"
+                          name="ProductNumber"
+                          truncationRowDisposition="FailComponent" />
                       </outputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -1704,6 +1714,11 @@
                           name="LineTotal"
                           precision="38"
                           scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].ExternalColumns[ProductNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="ProductNumber" />
                       </externalMetadataColumns>
                     </output>
                     <output
@@ -1731,6 +1746,12 @@
                           dataType="i4"
                           lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductID]"
                           name="ProductID" />
+                        <outputColumn
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductNumber]"
+                          dataType="wstr"
+                          length="25"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[ProductNumber]"
+                          name="ProductNumber" />
                         <outputColumn
                           refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Error Output].Columns[SpecialOfferID]"
                           dataType="i4"
@@ -2246,12 +2267,6 @@
                           externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
                           lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[OrderQty]" />
                         <inputColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[ProductID]"
-                          cachedDataType="i4"
-                          cachedName="ProductID"
-                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
-                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductID]" />
-                        <inputColumn
                           refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[SpecialOfferID]"
                           cachedDataType="i4"
                           cachedName="SpecialOfferID"
@@ -2277,6 +2292,13 @@
                           cachedScale="6"
                           externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[LineTotal]"
                           lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[LineTotal]" />
+                        <inputColumn
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].Columns[ProductNumber]"
+                          cachedDataType="wstr"
+                          cachedLength="25"
+                          cachedName="ProductNumber"
+                          externalMetadataColumnId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductNumber]"
+                          lineageId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini.Outputs[OLE DB Source Output].Columns[ProductNumber]" />
                       </inputColumns>
                       <externalMetadataColumns
                         isUsed="True">
@@ -2292,10 +2314,6 @@
                           refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[OrderQty]"
                           dataType="i2"
                           name="OrderQty" />
-                        <externalMetadataColumn
-                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
-                          dataType="i4"
-                          name="ProductID" />
                         <externalMetadataColumn
                           refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[SpecialOfferID]"
                           dataType="i4"
@@ -2314,6 +2332,11 @@
                           name="LineTotal"
                           precision="38"
                           scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini.Inputs[OLE DB Destination Input].ExternalColumns[ProductNumber]"
+                          dataType="wstr"
+                          length="25"
+                          name="ProductNumber" />
                       </externalMetadataColumns>
                     </input>
                   </inputs>
@@ -2635,7 +2658,7 @@
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
           DTS:ObjectName="EST - Tronca le tabelle"
-          DTS:ThreadHint="2">
+          DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
             <SQLTask:SqlTaskData
@@ -2669,11 +2692,11 @@
       <GraphLayout
         Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="172,42"
+          Size="172,41.6"
           Id="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella"
           TopLeft="34,156" />
         <NodeLayout
-          Size="186,42"
+          Size="185.6,41.6"
           Id="Package\SC - Copia tabelle Anagrafiche\EST - Tronca le tabelle"
           TopLeft="25,78" />
         <EdgeLayout
@@ -2701,16 +2724,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="244,260"
-          Size="244,303"
+          PanelSize="244,224.8"
+          Size="244,268"
           Id="Package\SC - Copia tabelle Anagrafiche"
-          TopLeft="368,41" />
+          TopLeft="365,102" />
         <NodeLayout
-          Size="175,42"
+          Size="175.2,41.6"
           Id="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti"
           TopLeft="27,93" />
         <NodeLayout
-          Size="186,42"
+          Size="185.6,41.6"
           Id="Package\SC - Copia tabelle Prodotti\EST - Tronca le tabelle"
           TopLeft="33,8" />
         <EdgeLayout
@@ -2750,16 +2773,16 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="226,272"
-          Size="226,315"
+          PanelSize="225.6,140.8"
+          Size="225.6,184"
           Id="Package\SC - Copia tabelle Prodotti"
           TopLeft="56,344" />
         <NodeLayout
-          Size="169,42"
+          Size="168.8,41.6"
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle"
           TopLeft="36,82" />
         <NodeLayout
-          Size="186,42"
+          Size="185.6,41.6"
           Id="Package\SC - Copia tabelle vendite\EST - Tronca le tabelle"
           TopLeft="27,13" />
         <EdgeLayout
@@ -2787,8 +2810,8 @@
         <ContainerLayout
           HeaderHeight="43"
           IsExpanded="True"
-          PanelSize="258,179"
-          Size="258,222"
+          PanelSize="257.6,179.2"
+          Size="257.6,222.4"
           Id="Package\SC - Copia tabelle vendite"
           TopLeft="53,104" />
       </GraphLayout>
@@ -2800,13 +2823,13 @@
       <GraphLayout
         Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="220,42"
-          Id="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Legge Tabella Clienti"
-          TopLeft="62,60" />
-        <NodeLayout
-          Size="182,42"
+          Size="182.4,41.6"
           Id="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Scrive Clienti"
           TopLeft="79,148" />
+        <NodeLayout
+          Size="220,41.6"
+          Id="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Legge Tabella Clienti"
+          TopLeft="62,60" />
         <EdgeLayout
           Id="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella.Paths[OLE DB Source Output]"
           TopLeft="171,102">
@@ -2832,11 +2855,37 @@
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Legge Tabella Clienti">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Scrive Clienti">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
           Size="227,42"
           Id="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti\OLEDB - Legge Tabella Prodotti"
@@ -2864,31 +2913,59 @@
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
-            <EdgeLabelCollection />
+            <mssgm:EdgeLabel
+              BoundingBox="0,0,0,0"
+              RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti\OLEDB - Legge Tabella Prodotti">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti\OLEDB - Scrive Clienti">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <TaskHost
     design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle">
     <LayoutInfo>
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
         <NodeLayout
-          Size="220,42"
+          Size="220,41.6"
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Testata Ordini"
           TopLeft="39,69" />
         <NodeLayout
-          Size="227,42"
+          Size="227.2,41.6"
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Dettaglio Ordini"
           TopLeft="303,166" />
         <NodeLayout
-          Size="227,42"
+          Size="227.2,41.6"
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Legge Dettaglio Ordini"
           TopLeft="305,68" />
         <NodeLayout
-          Size="220,42"
+          Size="220,41.6"
           Id="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini"
           TopLeft="37,167" />
         <EdgeLayout
@@ -2979,58 +3056,6 @@
   </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\SC - Copia tabelle vendite\DFT - Copia tabelle\OLEDB - Scrive Testata Ordini">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Legge Tabella Clienti">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">View</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle Anagrafiche\DFT - Copia Tabella\OLEDB - Scrive Clienti">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">Table</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti\OLEDB - Legge Tabella Prodotti">
-    <Properties>
-      <Property>
-        <Name>DataSourceViewID</Name>
-      </Property>
-      <Property>
-        <Name>TableInfoObjectType</Name>
-        <Value
-          type="q2:string">View</Value>
-      </Property>
-    </Properties>
-  </PipelineComponentMetadata>
-  <PipelineComponentMetadata
-    design-time-name="Package\SC - Copia tabelle Prodotti\DFT - Copia Prodotti\OLEDB - Scrive Clienti">
     <Properties>
       <Property>
         <Name>DataSourceViewID</Name>

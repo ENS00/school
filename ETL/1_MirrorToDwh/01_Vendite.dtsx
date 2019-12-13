@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="10"
-  DTS:VersionGUID="{C2DF268A-FDC8-4EB9-AB92-473A390698F0}">
+  DTS:VersionBuild="11"
+  DTS:VersionGUID="{63AB92F7-12B3-4B8B-ABCE-02CD9E7A6B5F}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,12 @@
       DTS:ObjectName="LocalHost.DB_CONFIGURATION">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_CONFIGURATION;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=DB_CONFIGURATION;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwkLJ8ypCPUOJ14Xa99Tk/wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAABW6gNXsBzPucG75wCEuSFODjf8T5SRfC0AZTSZchUB7AAAAAAOgAAAAAIAACAAAACLE0kfp40Ccp8XtNuWU15QIbWHIDy5uJmIZsokjd5SfSAAAAAOzkhNA/8lHItGzbkNHU96avxkkAS1jEyz+h9jAqxcTEAAAAB4nFen0dvAmZ5DYQfcoXAU1mZvXGT73xM1FCFPmvKZSVQiHJ7CUn1R0R/vvDpNWt/2OiaNSra/xIVNTi6lUA1p</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -33,7 +38,12 @@
       DTS:ObjectName="LocalHost.DB_DWH">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=DB_DWH;Provider=MSOLEDBSQL.1;Auto Translate=False;Application Name=SSIS-Package1-{A353C29B-170E-484E-A25D-0ADC65D73223}LocalHost.DB_DWH;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwkLJ8ypCPUOJ14Xa99Tk/wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACzZ57YuTixDUKrxUXw2myUxVDTYHWo1GYdhQFxcuSTaQAAAAAOgAAAAAIAACAAAABOUCYiJh2aIgYJZuCHj7sMZqTQEiyGCqa2izomn6QDxCAAAAAIBVz2w4PGebXLqDwNNlPzbV/gjMLklU8xYWlVkI/ZFUAAAAAW3/vHwaRZa51suAl+pcywWS1G7QKGTSVk2pVdt/YROLw5Pleq47KPsF/tk971MGWA8P00hj0yIaU9boZggPAs</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -43,7 +53,12 @@
       DTS:ObjectName="LocalHost.DB_MIRROR">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_MIRROR;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=DB_MIRROR;Provider=MSOLEDBSQL.1;Persist Security Info=True;Auto Translate=False;Application Name=SSIS-Package1-{A9376C4C-D8E9-48D0-B01E-C3F21D7B5D42}LocalHost.DB_MIRROR;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwkLJ8ypCPUOJ14Xa99Tk/wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAADBrK5NKOFo2vkmV3xL5uH9uDvERj335mFhqP91IVgfFwAAAAAOgAAAAAIAACAAAAB1itO25Z318sDb/lqesrpykbwAi/paMokYwB+b0ItxqSAAAADGCoNEU2ZtOOCKTOce5JNh4l4F9jyvXDddDAPoyIJGbUAAAACUe4P632Fo5JCmkrjbyaAvfxUFQUqKcJYZpjcZJkwDe+ocGi3j9HXvzDV4AB2Nwj88JI0sTyoNU1i9qhpC6KQD</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -982,6 +997,10 @@
           TopLeft="33,110" />
         <NodeLayout
           Size="175,42"
+          Id="Package\Caricamento Incrementale delle vendite\EST - Aggiorna Data"
+          TopLeft="54,257" />
+        <NodeLayout
+          Size="175,42"
           Id="Package\Caricamento Incrementale delle vendite\EST - Tronca tabelle"
           TopLeft="42,25" />
         <EdgeLayout
@@ -1006,10 +1025,6 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <NodeLayout
-          Size="175,42"
-          Id="Package\Caricamento Incrementale delle vendite\EST - Aggiorna Data"
-          TopLeft="54,257" />
         <EdgeLayout
           Id="Package\Caricamento Incrementale delle vendite.PrecedenceConstraints[Constraint 1]"
           TopLeft="138.75,152">
@@ -1033,21 +1048,21 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <AnnotationLayout
-          Text="EST : Cancella tutte le righe sucessive&#xD;&#xA; alla data caricamento presente nella&#xD;&#xA;tabella di caricamento nel database&#xD;&#xA;DB_CONFFIGURATION"
+          Text="EST : Cancella tutte le righe sucessive&#xA; alla data caricamento presente nella&#xA;tabella di caricamento nel database&#xA;DB_CONFFIGURATION"
           ParentId="Package\Caricamento Incrementale delle vendite"
           FontInfo="{assembly:Null}"
           Size="225,88"
           Id="11614853-2b58-4366-b43e-71efb1285171"
           TopLeft="219,7" />
         <AnnotationLayout
-          Text="DFT:  Carica tutti i dati in modo incrementale.&#xD;&#xA;La logica di caricamento incrementale&#xD;&#xA;è nella vista vw_C_Odinato nel database&#xD;&#xA;DB_Mirror. La vista carica i dati dal mirror&#xD;&#xA;al dwh in base alla data che trova nella &#xD;&#xA;tabella di caricamentoi nel DB_CONFIGURATION"
+          Text="DFT:  Carica tutti i dati in modo incrementale.&#xA;La logica di caricamento incrementale&#xA;è nella vista vw_C_Odinato nel database&#xA;DB_Mirror. La vista carica i dati dal mirror&#xA;al dwh in base alla data che trova nella &#xA;tabella di caricamentoi nel DB_CONFIGURATION"
           ParentId="Package\Caricamento Incrementale delle vendite"
           FontInfo="{assembly:Null}"
           Size="284,120"
           Id="981c141b-efe6-40e6-b48e-d96c479b51b5"
           TopLeft="233,103" />
         <AnnotationLayout
-          Text="EST: Esegue lo script di aggiornamento della data&#xD;&#xA;di ultimo caricamento vendite nella tabella&#xD;&#xA;di caricamento del DB_CONFIGURATION "
+          Text="EST: Esegue lo script di aggiornamento della data&#xA;di ultimo caricamento vendite nella tabella&#xA;di caricamento del DB_CONFIGURATION "
           ParentId="Package\Caricamento Incrementale delle vendite"
           FontInfo="{assembly:Null}"
           Size="290,72"

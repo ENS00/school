@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="14"
-  DTS:VersionGUID="{4BBF0098-85DF-47F8-88A2-F2011DFE0CEB}">
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{44691590-739E-4A9E-9EEC-5DB06B7DC9C1}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -23,7 +23,12 @@
       DTS:ObjectName="LocalHost.DB_DWH">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=DB_DWH;Provider=SQLNCLI11.1;Auto Translate=False;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwkLJ8ypCPUOJ14Xa99Tk/wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAA4gFY1QMih2jGlzRzzCsHHqSWsMfvferlkNs6WXVfKaAAAAAAOgAAAAAIAACAAAAADeH86z7r3oPlWVn/eX7KeoyspLN5iP2NNKHETHlaNaiAAAABURUsfq4Pu+RuzK9+hF+2kFw3eFGrFFeDqZHVCWq0w8EAAAAAUcdNZBKMSpQrTodtLN9EVRW7pb5m2dOQjCY5q2d9QVTPkGNOojyJE+djwABvgki/J/2P/52d162c5po2v2iUP</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
     <DTS:ConnectionManager
@@ -33,7 +38,12 @@
       DTS:ObjectName="LocalHost.DB_MIRROR">
       <DTS:ObjectData>
         <DTS:ConnectionManager
-          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_MIRROR;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+          DTS:ConnectionString="Data Source=.;User ID=sa;Initial Catalog=DB_MIRROR;Provider=MSOLEDBSQL.1;Auto Translate=False;Application Name=SSIS-Package1-{1763BBFB-D0BA-4B3D-AA6A-E787052E37B6}LocalHost.DB_MIRROR;">
+          <DTS:Password
+            DTS:Name="Password"
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAwkLJ8ypCPUOJ14Xa99Tk/wAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAACD+gaTqVrLvHELmGUQEyvZuK4aKXSV0K5qXiDqJ/P6PgAAAAAOgAAAAAIAACAAAABFb7NTCu+SZFNbloH4Gyz8adD2HO9QBBShnRReL1iunyAAAAB97VpSlfkVktE+W+4SRcZf4lxmf2pKqQ2SPyKnBX/bcUAAAABfn9CEFzDG/CvrMZTOEXwfV+9zP5jAi0AW/fuFD1vXmvy7ZM82YC1fBWfe53xqRJN0mFL8gSW12ShrJK1xW8Od</DTS:Password>
+        </DTS:ConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
   </DTS:ConnectionManagers>
@@ -41,11 +51,11 @@
     <DTS:PackageParameter
       DTS:CreationName=""
       DTS:DataType="7"
-      DTS:DTSID="{DAD1231B-663D-466A-B51C-14BD68EB77B2}"
+      DTS:DTSID="{06DECB56-690E-4A61-8A57-B09AFDB7C5A8}"
       DTS:ObjectName="DataCorrente">
       <DTS:Property
         DTS:DataType="7"
-        DTS:Name="ParameterValue">12/6/2019 12:13:37 PM</DTS:Property>
+        DTS:Name="ParameterValue">12/6/2019 12:13:34 PM</DTS:Property>
     </DTS:PackageParameter>
   </DTS:PackageParameters>
   <DTS:Variables />
@@ -1624,7 +1634,7 @@
       DTS:refId="Package\DFT - SCD2"
       DTS:CreationName="Microsoft.Pipeline"
       DTS:Description="Data Flow Task"
-      DTS:DTSID="{78fc8283-1155-4904-8bbc-3acec93e2b6e}"
+      DTS:DTSID="{23a4cf7a-d6d5-4492-a831-78c05980f27c}"
       DTS:ExecutableType="Microsoft.Pipeline"
       DTS:LocaleID="-1"
       DTS:ObjectName="DFT - SCD2"
@@ -1659,7 +1669,8 @@
                   <outputColumns>
                     <outputColumn
                       refId="Package\DFT - SCD2\Derived Column.Outputs[Derived Column Output].Columns[DataFine]"
-                      dataType="dbDate"
+                      dataType="dbTimeStamp"
+                      description="DataFine"
                       errorOrTruncationOperation="Computation"
                       errorRowDisposition="FailComponent"
                       lineageId="Package\DFT - SCD2\Derived Column.Outputs[Derived Column Output].Columns[DataFine]"
@@ -1670,13 +1681,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_DBDATE)[DATEADD]("d",-1,[GETDATE]())</property>
+                          name="Expression">(DT_DBTIMESTAMP)(@[$Package::Parameter])</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_DBDATE)DATEADD("d",-1,GETDATE())</property>
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[$Package::Parameter])</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -1744,13 +1755,13 @@
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Expression"
-                          name="Expression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                          name="Expression">(DT_DBTIMESTAMP)(@[$Package::Parameter])</property>
                         <property
                           containsID="true"
                           dataType="System.String"
                           description="Derived Column Friendly Expression"
                           expressionType="Notify"
-                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                          name="FriendlyExpression">(DT_DBTIMESTAMP)(@[$Package::Parameter])</property>
                       </properties>
                     </outputColumn>
                   </outputColumns>
@@ -2197,7 +2208,7 @@
                       lineageId="Package\DFT - SCD2\OLE DB Source.Outputs[OLE DB Source Output].Columns[ProductNumber]" />
                     <inputColumn
                       refId="Package\DFT - SCD2\OLE DB Command.Inputs[OLE DB Command Input].Columns[DataFine]"
-                      cachedDataType="dbDate"
+                      cachedDataType="dbTimeStamp"
                       cachedName="DataFine"
                       externalMetadataColumnId="Package\DFT - SCD2\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
                       lineageId="Package\DFT - SCD2\Derived Column.Outputs[Derived Column Output].Columns[DataFine]" />
@@ -2754,7 +2765,7 @@
                   description="The SQL command to be executed."
                   expressionType="Notify"
                   name="SqlCommand"
-                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [vendite].[Prodotti] SET [Color] = ? WHERE [ProductNumber] = ? AND [DataFine] IS NULL</property>
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [vendite].[Prodotti] SET [Color] = ? WHERE [ProductNumber] = ?</property>
                 <property
                   dataType="System.Int32"
                   description="Specifies the column code page to use when code page information is unavailable from the data source."
@@ -3407,7 +3418,7 @@
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether historical attribute updates are directed to the transformation output for changing attribute updates."
-                  name="UpdateChangingAttributeHistory">false</property>
+                  name="UpdateChangingAttributeHistory">true</property>
                 <property
                   dataType="System.Boolean"
                   description="Indicates whether the transformation fails when columns with fixed attributes contain changes."
@@ -4407,15 +4418,38 @@
         </pipeline>
       </DTS:ObjectData>
     </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Expression Task"
+      DTS:CreationName="Microsoft.ExpressionTask"
+      DTS:Description="Expression Task"
+      DTS:DTSID="{831339CB-D8D8-4314-9585-7505DC8F4BB9}"
+      DTS:ExecutableType="Microsoft.ExpressionTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Expression Task"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <ExpressionTask
+          Expression="" />
+      </DTS:ObjectData>
+    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
       DTS:refId="Package.PrecedenceConstraints[Constraint]"
       DTS:CreationName=""
-      DTS:DTSID="{E96CEAF4-EC08-40CA-8865-C11244AAF5FE}"
-      DTS:From="Package\DFT - SCD1"
+      DTS:DTSID="{27CD8D76-11EC-4BB0-8B94-EC2B7F189686}"
+      DTS:From="Package\Expression Task"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT - SCD1" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{F59C9DE0-7F8E-4747-94FF-415C5AAB63A0}"
+      DTS:From="Package\DFT - SCD1"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
       DTS:To="Package\DFT - SCD2" />
   </DTS:PrecedenceConstraints>
   <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
@@ -4429,36 +4463,62 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="134.4,41.6"
+          Size="134,42"
           Id="Package\DFT - SCD1"
-          TopLeft="222.33333351877,142.760000776927" />
+          TopLeft="229,85" />
         <NodeLayout
-          Size="134.4,41.6"
+          Size="134,42"
           Id="Package\DFT - SCD2"
-          TopLeft="220.333333598243,228.066667438083" />
+          TopLeft="233,155" />
         <AnnotationLayout
           Text="Gestice SCD di tipo 1 sul colore del prodotto"
           ParentId="Package"
           FontInfo="{assembly:Null}"
           Size="236,56"
           Id="529584e0-7397-4004-8ec6-4a17c450aa1f"
-          TopLeft="367.33333351877,137.760000776927" />
+          TopLeft="372,40" />
         <EdgeLayout
-          Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="288.533333558506,184.360000776927">
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="298,127">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,43.7066666611566"
+              EndConnector="0,28"
               Start="0,0"
-              End="0,36.2066666611566">
+              End="0,20.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,36.2066666611566" />
+                    End="0,20.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Expression Task"
+          TopLeft="221,9" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="297.25,51">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,34"
+              Start="0,0"
+              End="0,26.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,26.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4476,35 +4536,35 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="150.4,41.6"
+          Size="150,42"
           Id="Package\DFT - SCD1\OLE DB Source"
           TopLeft="237,5.5" />
         <NodeLayout
-          Size="166.4,41.6"
+          Size="166,42"
           Id="Package\DFT - SCD1\OLE DB Command"
           TopLeft="449,189.5" />
         <NodeLayout
-          Size="208,41.6"
+          Size="209,42"
           Id="Package\DFT - SCD1\Slowly Changing Dimension"
           TopLeft="207.5,107.5" />
         <NodeLayout
-          Size="163.2,41.6"
+          Size="163,42"
           Id="Package\DFT - SCD1\Insert Destination"
           TopLeft="67.5000000000001,197.5" />
         <EdgeLayout
           Id="Package\DFT - SCD1.Paths[OLE DB Source Output]"
-          TopLeft="311.85,47.1">
+          TopLeft="312,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,60.4"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.9">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.9" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4515,73 +4575,73 @@
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - SCD1.Paths[New Output]"
-          TopLeft="278.166666666667,149.1">
+          TopLeft="278.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-129.066666666667,48.4"
+              EndConnector="-129.5,48"
               Start="0,0"
-              End="-129.066666666667,40.9">
+              End="-129.5,40.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,15.581679389313" />
+                    End="0,15.4188034188034" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,15.581679389313"
-                    Point2="0,19.581679389313"
-                    Point3="-4,19.581679389313" />
+                    Point1="0,15.4188034188034"
+                    Point2="0,19.4188034188034"
+                    Point3="-4,19.4188034188034" />
                   <mssgle:LineSegment
-                    End="-125.066666666667,19.581679389313" />
+                    End="-125.5,19.4188034188034" />
                   <mssgle:CubicBezierSegment
-                    Point1="-125.066666666667,19.581679389313"
-                    Point2="-129.066666666667,19.581679389313"
-                    Point3="-129.066666666667,23.581679389313" />
+                    Point1="-125.5,19.4188034188034"
+                    Point2="-129.5,19.4188034188034"
+                    Point3="-129.5,23.4188034188034" />
                   <mssgle:LineSegment
-                    End="-129.066666666667,40.9" />
+                    End="-129.5,40.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-91.6247200520833,24.581679389313,54.1827734375,11.43359375"
+              BoundingBox="-91.84138671875,24.4188034188034,54.1827734375,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - SCD1.Paths[Changing Attribute Updates Output]"
-          TopLeft="344.833333333333,149.1">
+          TopLeft="345.5,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="187.366666666667,40.4"
+              EndConnector="186.5,40"
               Start="0,0"
-              End="187.366666666667,32.9">
+              End="186.5,32.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,12.3450381679389" />
+                    End="0,12.1823361823362" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,12.3450381679389"
-                    Point2="0,16.3450381679389"
-                    Point3="4,16.3450381679389" />
+                    Point1="0,12.1823361823362"
+                    Point2="0,16.1823361823362"
+                    Point3="4,16.1823361823362" />
                   <mssgle:LineSegment
-                    End="183.366666666667,16.3450381679389" />
+                    End="182.5,16.1823361823362" />
                   <mssgle:CubicBezierSegment
-                    Point1="183.366666666667,16.3450381679389"
-                    Point2="187.366666666667,16.3450381679389"
-                    Point3="187.366666666667,20.3450381679389" />
+                    Point1="182.5,16.1823361823362"
+                    Point2="186.5,16.1823361823362"
+                    Point3="186.5,20.1823361823362" />
                   <mssgle:LineSegment
-                    End="187.366666666667,32.9" />
+                    End="186.5,32.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="15.1494270833333,21.3450381679389,157.0678125,11.6630859375"
+              BoundingBox="14.7160937499999,21.1823361823362,157.0678125,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
@@ -4776,27 +4836,27 @@
       <GraphLayout
         Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
         <NodeLayout
-          Size="150.4,41.6"
+          Size="150,42"
           Id="Package\DFT - SCD2\OLE DB Source"
-          TopLeft="158.9,5.49999999999995" />
+          TopLeft="157.5,5.5" />
         <NodeLayout
-          Size="208,41.6"
+          Size="209,42"
           Id="Package\DFT - SCD2\Slowly Changing Dimension"
-          TopLeft="129.7,107.1" />
+          TopLeft="128,107.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[OLE DB Source Output]"
-          TopLeft="233.9,47.1">
+          TopLeft="232.5,47.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4806,75 +4866,63 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="152.8,41.6"
+          Size="154,42"
           Id="Package\DFT - SCD2\Derived Column"
-          TopLeft="20.7,208.7" />
+          TopLeft="17.5,209.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[Historical Attribute Inserts Output]"
-          TopLeft="173.7,148.7">
+          TopLeft="172.2,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-76.6,60"
+              EndConnector="-77.7,60.0000000000001"
               Start="0,0"
-              End="-76.6,52.5">
+              End="-77.7,52.5000000000001">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.8378378378378" />
+                    End="0,13.8345662407532" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.8378378378378"
-                    Point2="0,17.8378378378378"
-                    Point3="-4,17.8378378378378" />
+                    Point1="0,13.8345662407532"
+                    Point2="0,17.8345662407532"
+                    Point3="-4,17.8345662407532" />
                   <mssgle:LineSegment
-                    End="-72.6,17.8378378378378" />
+                    End="-73.7,17.8345662407532" />
                   <mssgle:CubicBezierSegment
-                    Point1="-72.6,17.8378378378378"
-                    Point2="-76.6,17.8378378378378"
-                    Point3="-76.6,21.8378378378378" />
+                    Point1="-73.7,17.8345662407532"
+                    Point2="-77.7,17.8345662407532"
+                    Point3="-77.7,21.8345662407532" />
                   <mssgle:LineSegment
-                    End="-76.6,52.5" />
+                    End="-77.7,52.5000000000001" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-113.35638671875,22.8378378378378,150.1127734375,11.609375"
+              BoundingBox="-113.90638671875,22.8345662407532,150.1127734375,11.609375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="167.2,41.6"
+          Size="166,42"
           Id="Package\DFT - SCD2\OLE DB Command"
-          TopLeft="5.50000000000003,310.3" />
+          TopLeft="5.5,311.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[Derived Column Output]"
-          TopLeft="97.1,250.3">
+          TopLeft="91.5,251.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="-8,59.9999999999999"
+              EndConnector="0,60"
               Start="0,0"
-              End="-8,52.4999999999999">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,26" />
-                  <mssgle:CubicBezierSegment
-                    Point1="0,26"
-                    Point2="0,30"
-                    Point3="-4,30" />
-                  <mssgle:LineSegment
-                    End="-4,30" />
-                  <mssgle:CubicBezierSegment
-                    Point1="-4,30"
-                    Point2="-8,30"
-                    Point3="-8,34" />
-                  <mssgle:LineSegment
-                    End="-8,52.4999999999999" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4884,71 +4932,71 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="120,41.6"
+          Size="121,42"
           Id="Package\DFT - SCD2\Union All"
-          TopLeft="174.1,411.9" />
+          TopLeft="172,413.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[New Output]"
-          TopLeft="213.7,148.7">
+          TopLeft="212.4,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="39.0666666666667,263.2"
+              EndConnector="38.9333333333333,264"
               Start="0,0"
-              End="39.0666666666667,255.7">
+              End="38.9333333333333,256.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,138.046830382638" />
+                    End="0,138.493081663501" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,138.046830382638"
-                    Point2="0,142.046830382638"
-                    Point3="4,142.046830382638" />
+                    Point1="0,138.493081663501"
+                    Point2="0,142.493081663501"
+                    Point3="4,142.493081663501" />
                   <mssgle:LineSegment
-                    End="35.0666666666667,142.046830382638" />
+                    End="34.9333333333333,142.493081663501" />
                   <mssgle:CubicBezierSegment
-                    Point1="35.0666666666667,142.046830382638"
-                    Point2="39.0666666666667,142.046830382638"
-                    Point3="39.0666666666667,146.046830382638" />
+                    Point1="34.9333333333333,142.493081663501"
+                    Point2="38.9333333333333,142.493081663501"
+                    Point3="38.9333333333333,146.493081663501" />
                   <mssgle:LineSegment
-                    End="39.0666666666667,255.7" />
+                    End="38.9333333333333,256.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-7.55805338541667,147.046830382638,54.1827734375,11.43359375"
+              BoundingBox="-7.62472005208335,147.493081663501,54.1827734375,11.43359375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[OLE DB Command Output]"
-          TopLeft="89.1,351.9">
+          TopLeft="88.5,353.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="126.333333333333,59.9999999999998"
+              EndConnector="125.166666666667,59.9999999999999"
               Start="0,0"
-              End="126.333333333333,52.4999999999998">
+              End="125.166666666667,52.4999999999999">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,31.5263157894736" />
+                    End="0,31.5301794453507" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,31.5263157894736"
-                    Point2="0,35.5263157894736"
-                    Point3="4,35.5263157894736" />
+                    Point1="0,31.5301794453507"
+                    Point2="0,35.5301794453507"
+                    Point3="4,35.5301794453507" />
                   <mssgle:LineSegment
-                    End="122.333333333333,35.5263157894736" />
+                    End="121.166666666667,35.5301794453507" />
                   <mssgle:CubicBezierSegment
-                    Point1="122.333333333333,35.5263157894736"
-                    Point2="126.333333333333,35.5263157894736"
-                    Point3="126.333333333333,39.5263157894736" />
+                    Point1="121.166666666667,35.5301794453507"
+                    Point2="125.166666666667,35.5301794453507"
+                    Point3="125.166666666667,39.5301794453507" />
                   <mssgle:LineSegment
-                    End="126.333333333333,52.4999999999998" />
+                    End="125.166666666667,52.4999999999999" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4958,23 +5006,23 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="161.6,41.6"
+          Size="163,42"
           Id="Package\DFT - SCD2\Derived Column 1"
-          TopLeft="153.3,513.5" />
+          TopLeft="151,515.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[Union All Output 1]"
-          TopLeft="234.1,453.5">
+          TopLeft="232.5,455.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -4984,23 +5032,23 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="159.2,41.6"
+          Size="163,42"
           Id="Package\DFT - SCD2\Insert Destination"
-          TopLeft="154.5,615.099999999999" />
+          TopLeft="151,617.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[Derived Column Output1]"
-          TopLeft="234.1,555.1">
+          TopLeft="232.5,557.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="0,59.9999999999999"
+              EndConnector="0,60"
               Start="0,0"
-              End="0,52.4999999999999">
+              End="0,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,52.4999999999999" />
+                    End="0,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
@@ -5010,88 +5058,101 @@
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="176,41.6"
+          Size="175,42"
           Id="Package\DFT - SCD2\OLE DB Command 1"
-          TopLeft="295.1,208.7" />
+          TopLeft="294,209.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[Inferred Member Updates Output]"
-          TopLeft="253.7,148.7">
+          TopLeft="252.6,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="129.4,59.9999999999999"
+              EndConnector="128.9,60"
               Start="0,0"
-              End="129.4,52.4999999999999">
+              End="128.9,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,22.8085106382978" />
+                    End="0,22.8078348332451" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,22.8085106382978"
-                    Point2="0,26.8085106382978"
-                    Point3="4,26.8085106382978" />
+                    Point1="0,22.8078348332451"
+                    Point2="0,26.8078348332451"
+                    Point3="4,26.8078348332451" />
                   <mssgle:LineSegment
-                    End="125.4,26.8085106382978" />
+                    End="124.9,26.8078348332451" />
                   <mssgle:CubicBezierSegment
-                    Point1="125.4,26.8085106382978"
-                    Point2="129.4,26.8085106382978"
-                    Point3="129.4,30.8085106382978" />
+                    Point1="124.9,26.8078348332451"
+                    Point2="128.9,26.8078348332451"
+                    Point3="128.9,30.8078348332451" />
                   <mssgle:LineSegment
-                    End="129.4,52.4999999999999" />
+                    End="128.9,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="-9.70298828125,31.8085106382978,148.8059765625,11.658203125"
+              BoundingBox="-9.95298828125,31.8078348332451,148.8059765625,11.658203125"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
         <NodeLayout
-          Size="176,41.6"
+          Size="175,42"
           Id="Package\DFT - SCD2\OLE DB Command 2"
-          TopLeft="532.1,208.7" />
+          TopLeft="530,209.5" />
         <EdgeLayout
           Id="Package\DFT - SCD2.Paths[Changing Attribute Updates Output]"
-          TopLeft="293.7,148.7">
+          TopLeft="292.8,149.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{assembly:Null}"
-              EndConnector="326.4,59.9999999999999"
+              EndConnector="324.7,60"
               Start="0,0"
-              End="326.4,52.4999999999999">
+              End="324.7,52.5">
               <mssgle:Curve.Segments>
                 <mssgle:SegmentCollection
                   Capacity="5">
                   <mssgle:LineSegment
-                    End="0,13.8378378378378" />
+                    End="0,13.8345662407532" />
                   <mssgle:CubicBezierSegment
-                    Point1="0,13.8378378378378"
-                    Point2="0,17.8378378378378"
-                    Point3="4,17.8378378378378" />
+                    Point1="0,13.8345662407532"
+                    Point2="0,17.8345662407532"
+                    Point3="4,17.8345662407532" />
                   <mssgle:LineSegment
-                    End="322.4,17.8378378378378" />
+                    End="320.7,17.8345662407532" />
                   <mssgle:CubicBezierSegment
-                    Point1="322.4,17.8378378378378"
-                    Point2="326.4,17.8378378378378"
-                    Point3="326.4,21.8378378378378" />
+                    Point1="320.7,17.8345662407532"
+                    Point2="324.7,17.8345662407532"
+                    Point3="324.7,21.8345662407532" />
                   <mssgle:LineSegment
-                    End="326.4,52.4999999999999" />
+                    End="324.7,52.5" />
                 </mssgle:SegmentCollection>
               </mssgle:Curve.Segments>
             </mssgle:Curve>
           </EdgeLayout.Curve>
           <EdgeLayout.Labels>
             <mssgm:EdgeLabel
-              BoundingBox="84.66609375,22.8378378378378,157.0678125,11.6630859375"
+              BoundingBox="83.81609375,22.8345662407532,157.0678125,11.6630859375"
               RelativePosition="Any" />
           </EdgeLayout.Labels>
         </EdgeLayout>
       </GraphLayout>
     </LayoutInfo>
   </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - SCD2\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
   <PipelineComponentMetadata
     design-time-name="Package\DFT - SCD2\Slowly Changing Dimension">
     <Properties>
@@ -5246,7 +5307,7 @@
     &lt;anyType xsi:type="xsd:string"&gt;OLE DB Command 2&lt;/anyType&gt;
   &lt;/GeneratedComponentsIdentificationStrings&gt;
   &lt;FailFixedAttribute&gt;false&lt;/FailFixedAttribute&gt;
-  &lt;FailChangeAttribute&gt;false&lt;/FailChangeAttribute&gt;
+  &lt;FailChangeAttribute&gt;true&lt;/FailChangeAttribute&gt;
   &lt;UseStartEndDate&gt;true&lt;/UseStartEndDate&gt;
   &lt;CurrentIndicatorColumn /&gt;
   &lt;InferredIndicatorColumn /&gt;
@@ -5254,7 +5315,7 @@
   &lt;ValueExpired /&gt;
   &lt;StartDateColumn&gt;DataInizio&lt;/StartDateColumn&gt;
   &lt;EndDateColumn&gt;DataFine&lt;/EndDateColumn&gt;
-  &lt;DateVariable&gt;System::StartTime&lt;/DateVariable&gt;
+  &lt;DateVariable&gt;$Package::Parameter&lt;/DateVariable&gt;
   &lt;EnableInferredSupport&gt;true&lt;/EnableInferredSupport&gt;
 &lt;/SCDWizardMetadata&gt;</Value>
       </Property>

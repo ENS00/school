@@ -1,4 +1,4 @@
-from draw import Game
+from game import Game
 
 class Gameloop(Game):
     def __init__(self):

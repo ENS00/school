@@ -2,23 +2,23 @@
 <BuildLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <ProjectInfo>
     <Name>1_MirrorToDwh</Name>
-    <LastWriteTime>2019-12-06T11:23:24.0887953Z</LastWriteTime>
+    <LastWriteTime>2019-12-06T09:24:55.472886Z</LastWriteTime>
     <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
   </ProjectInfo>
   <LastBuildInfos>
     <ProjectBuildItemInfo>
       <Name>00_Main.dtsx</Name>
-      <LastWriteTime>2019-12-06T08:31:16.9808638Z</LastWriteTime>
+      <LastWriteTime>2019-11-29T10:35:15.2828095Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>01_Vendite.dtsx</Name>
-      <LastWriteTime>2019-12-06T08:31:17.0745936Z</LastWriteTime>
+      <LastWriteTime>2019-11-22T13:21:08.349Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
     <ProjectBuildItemInfo>
       <Name>02_CaricamentoProdotti.dtsx</Name>
-      <LastWriteTime>2019-12-06T11:23:24.0030244Z</LastWriteTime>
+      <LastWriteTime>2019-12-06T10:58:01.2912453Z</LastWriteTime>
       <LastKnownProtectionLevel>EncryptSensitiveWithUserKey</LastKnownProtectionLevel>
     </ProjectBuildItemInfo>
   </LastBuildInfos>
