@@ -17,6 +17,9 @@ class GraphicObject():
             self.canvas.move(self.graphic, x, y)
         if hasattr(self, 'position'):
             self.position.move(x, y)
+        if hasattr(self, 'sides'):
+            for i in self.sides:
+                i.move(x, y)
 
     def moveTo(self, x, y):
         if hasattr(self, 'graphicitems'):
@@ -26,6 +29,32 @@ class GraphicObject():
             self.canvas.moveTo(self.graphic, x, y)
         if hasattr(self, 'position'):
             self.position.moveTo(x, y)
+    
+    def rotate(self,rad):
+        if hasattr(self, 'graphic'):
+            self.degrees += rad
+
+            def _rot(x, y):
+                #note: the rotation is done in the opposite fashion from for a right-handed coordinate system due to the left-handedness of computer coordinates
+                x -= self.position.x
+                y -= self.position.y
+                _x = x * math.cos(rad) + y * math.sin(rad)
+                _y = -x * math.sin(rad) + y * math.cos(rad)
+                return _x + self.position.x, _y + self.position.y
+
+            x,y=_rot(self.sides[0].x, self.sides[0].y)
+            self.sides[0].moveTo(x,y)
+            x,y=_rot(self.sides[1].x, self.sides[1].y)
+            self.sides[1].moveTo(x,y)
+            x,y=_rot(self.sides[2].x, self.sides[2].y)
+            self.sides[2].moveTo(x,y)
+            x,y=_rot(self.sides[3].x, self.sides[3].y)
+            self.sides[3].moveTo(x,y)
+            self.canvas.coords(self.graphic, self.sides[0].x, self.sides[0].y,
+                                self.sides[1].x, self.sides[1].y,
+                                self.sides[2].x, self.sides[2].y,
+                                self.sides[3].x, self.sides[3].y)
+
 
 
 class Position():
@@ -171,10 +200,20 @@ class Road(RoadObject):
 
 class Lane(Road):
     # pstart and pstop centered
-    def __init__(self, canvas, pstart, pstop, tLight=None, dim=36*1.5):  # const.CARDIM*1.5
+    def __init__(self, canvas, pstart, pstop, tLight=None, dim=const.CAR_HEIGHT*1.5):
         if tLight is None or type(tLight) is TrafficLight:
             if tLight:
                 super().__init__(canvas, pstart, pstop, dim, tags=['entry'])
+                if self.orientation == const.HORIZONTAL:
+                    self.spawnPoints=(
+                        Position(pstart.x,pstart.y+2-const.CAR_HEIGHT/2),
+                        Position(pstart.x,pstart.y-2+const.CAR_HEIGHT/2)
+                    )
+                else:
+                    self.spawnPoints=(
+                        Position(pstart.x+2-const.CAR_HEIGHT/2,pstart.y),
+                        Position(pstart.x-2+const.CAR_HEIGHT/2,pstart.y)
+                    )
             else:
                 super().__init__(canvas, pstart, pstop,
                                  dim, tags=['exit'])  # EXIT
@@ -191,7 +230,7 @@ class Crossroad(RoadObject):
         super().__init__(canvas)
         self.entries = [i for i in lanes if i.isA('entry')]
         self.exits = [i for i in lanes if i.isA('exit')]
-        self.spawnPoints = [i.pstart for i in self.entries]
+        self.spawnPoints = [i.spawnPoints for i in self.entries]
         self.crossPoints = [i.pstop for i in self.entries]
         self.turnPoints = [i.pstart for i in self.exits]
         self.destinationPoints = [i.pstop for i in self.exits]
@@ -225,25 +264,39 @@ class Car(RoadObject):
         self.tags = tags
         self.velocity = 50
         self.degrees = round(math.pi/2,6)
+        self.steerDeg = 0
+        # SIDES
+        self.sides = (
+            Position(self.position.x-const.CAR_WIDTH/4,self.position.y-const.CAR_HEIGHT/4),
+            Position(self.position.x+const.CAR_WIDTH/4,self.position.y-const.CAR_HEIGHT/4),
+            Position(self.position.x+const.CAR_WIDTH/4,self.position.y+const.CAR_HEIGHT/4),
+            Position(self.position.x-const.CAR_WIDTH/4,self.position.y+const.CAR_HEIGHT/4)
+        )
 
     def draw(self):
         if not hasattr(self, 'graphic'):
-            self.graphic = self.canvas.create_rectangle(self.position.x-const.CAR_WIDTH/4, self.position.y-const.CAR_HEIGHT/4,
-                                                        self.position.x+const.CAR_WIDTH/4, self.position.y+const.CAR_HEIGHT/4,
+            self.graphic = self.canvas.create_polygon(self.sides[0].x, self.sides[0].y,
+                                                        self.sides[1].x, self.sides[1].y,
+                                                        self.sides[2].x, self.sides[2].y,
+                                                        self.sides[3].x, self.sides[3].y,
                                                         fill=const.RED_ON, width=0)
 
     def update(self):
+        self.rotate(-self.steerDeg*math.pi*self.velocity/6000)
         calc_x = round(math.sin(self.degrees)*self.velocity/40, 6)
         calc_y = round(math.cos(self.degrees)*self.velocity/40, 6)
         self.move(calc_x, calc_y)
         if self.velocity > 0:
-            self.velocity -= 0.1
+            self.velocity -= 0.1+math.fabs(self.steerDeg/10)
         else:
             self.velocity = 0
+    
+    def steer(self,pow=0.5):
+        self.steerDeg=pow
 
-    def accelerate(self):
+    def throttle(self,pow=0.5):
         if self.velocity < 90:
-            self.velocity += 2
+            self.velocity += 2*pow
 
     def brake(self):
         if self.velocity < 90:

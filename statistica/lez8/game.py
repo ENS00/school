@@ -55,8 +55,10 @@ class Game():
         self.lane_right_exit=objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2+36*1.5,const.W_HEIGHT/2+36*0.75),
                                     objects.Position(const.W_WIDTH,const.W_HEIGHT/2+36*0.75))
 
-        self.crossroad=objects.Crossroad(self.canvas,[self.lane_up_entry,self.lane_up_exit,self.lane_right_entry,self.lane_right_exit,
-                                self.lane_down_entry,self.lane_down_exit,self.lane_left_entry,self.lane_left_exit])
+        self.crossroad=objects.Crossroad(self.canvas,(self.lane_up_entry,self.lane_up_exit,
+                                        self.lane_left_entry,self.lane_left_exit,
+                                        self.lane_down_entry,self.lane_down_exit,
+                                        self.lane_right_entry,self.lane_right_exit))
 
 
         #let's draw everything
@@ -71,8 +73,9 @@ class Game():
         self.crossroad.draw()
         
         self.cars=[]
-        self.cars.append(objects.Car(self.canvas,self.lane_left_entry.pstart))
+        self.cars.append(objects.Car(self.canvas,self.crossroad.spawnPoints[1][1]))#objects.Position(200,200)
         self.cars[0].draw()
+        #self.cars[0].steer(1)
 
     def updateField(self):
         self.tlight_up.draw()
