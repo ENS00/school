@@ -75,6 +75,7 @@ class Game():
         self.cars=[]
         self.cars.append(objects.Car(self.canvas,self.crossroad.spawnPoints[1][1]))#objects.Position(200,200)
         self.cars[0].draw()
+        self.cars[0].setObjective(self.crossroad.exits[2])
         #self.cars[0].steer(1)
 
     def updateField(self):
@@ -112,6 +113,9 @@ class Game():
                 self.tlight_up.changeState()
                 self.tlight_down.changeState()
 
+        # the cars are moving
+        for i in self.cars:
+            i.drive()
         # necessary to upload object states
         self.updateField()
         # cicle
