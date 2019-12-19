@@ -4,7 +4,7 @@ class Gameloop(Game):
     def __init__(self):
         super().__init__()
         self.drawField()
-        self.statusLights=0
+        self.time.start()
         self.loop()
 
 if __name__ == "__main__":

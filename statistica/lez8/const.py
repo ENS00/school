@@ -22,10 +22,14 @@ RED_ON='#F00'
 RED_OFF='#A00'
 
 #TrafficLight states
-GREEN=2
-YELLOW=1
-RED=0
+TL_OFF=3
+TL_GREEN=2
+TL_YELLOW=1
+TL_RED=0
 
 #Orientation
 HORIZONTAL=0
 VERTICAL=1
+
+#Variables
+FLOAT_PRECISION=5

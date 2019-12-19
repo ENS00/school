@@ -8,7 +8,6 @@ class TimePanel(objects.GraphicObject):
         super().__init__(canvas)
         self.gametime=gametime
         self.position=objects.Position(const.W_WIDTH-80,20)
-        self.update()
     
     def update(self):
         self.value=self.gametime.getFormattedTime()
@@ -25,6 +24,7 @@ class Game():
         self.canvas = tkinter.Canvas(
             self.tk, width=const.W_WIDTH, height=const.W_HEIGHT, bg=const.W_BACKGROUND)
         self.canvas.pack()
+        self.statusLights=None
         self.time = gametime.Gametime(const.TIME_SPEED)
         self.timepanel=TimePanel(self.canvas,self.time)
 
@@ -32,10 +32,10 @@ class Game():
         self.canvas.create_rectangle(0, 0, self.canvas.winfo_width(), self.canvas.winfo_height(), width=0)
 
         #Traffic lights
-        self.tlight_up = objects.TrafficLight(self.canvas, objects.Position(320, 320), objects.Position(320, 270))
-        self.tlight_down = objects.TrafficLight(self.canvas, objects.Position(460, 460), objects.Position(460, 510))
-        self.tlight_left = objects.TrafficLight(self.canvas, objects.Position(320, 460), objects.Position(270, 460))
-        self.tlight_right = objects.TrafficLight(self.canvas, objects.Position(460, 320), objects.Position(510, 320))
+        self.tlight_up = objects.TrafficLight(self.canvas, objects.Position(320, 320), objects.Position(320, 270),const.TL_RED)
+        self.tlight_down = objects.TrafficLight(self.canvas, objects.Position(460, 460), objects.Position(460, 510),const.TL_RED)
+        self.tlight_left = objects.TrafficLight(self.canvas, objects.Position(320, 460), objects.Position(270, 460),const.TL_GREEN)
+        self.tlight_right = objects.TrafficLight(self.canvas, objects.Position(460, 320), objects.Position(510, 320),const.TL_GREEN)
 
         #lanes
         self.lane_up_entry = objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2-36*0.75, 0),
@@ -61,6 +61,12 @@ class Game():
                                         self.lane_right_entry,self.lane_right_exit))
 
 
+        # turn on traffic lights
+        self.tlight_up.turnOn()
+        self.tlight_down.turnOn()
+        self.tlight_left.turnOn()
+        self.tlight_right.turnOn()
+
         #let's draw everything
         self.lane_up_entry.draw()
         self.lane_up_exit.draw()
@@ -76,7 +82,8 @@ class Game():
         self.cars.append(objects.Car(self.canvas,self.crossroad.spawnPoints[1][1]))#objects.Position(200,200)
         self.cars[0].draw()
         self.cars[0].setObjective(self.crossroad.exits[2])
-        #self.cars[0].steer(1)
+        self.cars[0].steer(1)
+
 
     def updateField(self):
         self.tlight_up.draw()
@@ -87,35 +94,25 @@ class Game():
         self.cars[0].update()
 
     def loop(self):
-        # print(gametime.gametime.getFormattedTime())
         # sum 10 every time to gametime???
         currentTimeFromStart = int(self.time.getTime())
 
         # control all trafficlights
         if currentTimeFromStart//120 % 10 != self.statusLights:
             self.statusLights = currentTimeFromStart//120 % 10
-            if self.statusLights == 9:  # YELLOW
-                self.tlight_up.changeState()
-                self.tlight_down.changeState()
-            if self.statusLights == 0:  # RED
-                self.tlight_up.changeState()
-                self.tlight_down.changeState()
-            if self.statusLights == 1:  # GREEN
-                self.tlight_left.changeState()
-                self.tlight_right.changeState()
-            if self.statusLights == 4:  # YELLOW
-                self.tlight_left.changeState()
-                self.tlight_right.changeState()
-            if self.statusLights == 5:  # RED
-                self.tlight_left.changeState()
-                self.tlight_right.changeState()
-            if self.statusLights == 6:  # GREEN
-                self.tlight_up.changeState()
-                self.tlight_down.changeState()
+            self.tlight_up.update()
+            self.tlight_down.update()
+            self.tlight_left.update()
+            self.tlight_right.update()
 
         # the cars are moving
         for i in self.cars:
             i.drive()
+        ####DEBUG####
+        if currentTimeFromStart<10:
+            self.cars[0].predict(1)
+        print(self.cars[0].position,currentTimeFromStart*10)
+
         # necessary to upload object states
         self.updateField()
         # cicle
