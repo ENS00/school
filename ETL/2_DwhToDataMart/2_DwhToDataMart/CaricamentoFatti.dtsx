@@ -1,0 +1,753 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="12/20/2019 9:33:24 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="TOMASELLO-PC"
+  DTS:CreatorName="TOMASELLO-PC\User"
+  DTS:DTSID="{2AFF9F73-35CE-408A-A592-0383007EF9EE}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.1301.433"
+  DTS:LocaleID="2057"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="3"
+  DTS:VersionGUID="{99B8E8AA-87CE-4405-A48F-4B05DCD7EF8B}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DB_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{AFE36644-65A2-4323-AD9A-5F7083A9276D}"
+      DTS:ObjectName="LocalHost.DB_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DB_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[LocalHost.DM_ORDINATO]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{5A1CDEC7-CF72-464A-A211-27254535532F}"
+      DTS:ObjectName="LocalHost.DM_ORDINATO">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Data Source=.;Initial Catalog=DM_ORDINATO;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DFT - Carica tabelle dei fatti"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{0DD86E96-C1F1-485A-8DF0-C2C79567CD1D}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DFT - Carica tabelle dei fatti"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="ODS - Legge Ordinato"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[cube].[Ordinato]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">0</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DB_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DB_DWH]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Data ordine]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Data ordine]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Data ordine]"
+                      name="Data ordine"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Stato ordine]"
+                      dataType="ui1"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Stato ordine]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Stato ordine]"
+                      name="Stato ordine"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Ordine online]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Ordine online]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Ordine online]"
+                      name="Ordine online"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[SalesPersonID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonID]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[SalesPersonID]"
+                      name="SalesPersonID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[TerritoryID]"
+                      name="TerritoryID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Tasse]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Tasse]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Tasse]"
+                      name="Tasse"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Totale consegnato]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Totale consegnato]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Totale consegnato]"
+                      name="Totale consegnato"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Quantità ordinata]"
+                      dataType="i2"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Quantità ordinata]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Quantità ordinata]"
+                      name="Quantità ordinata"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[ProductID]"
+                      name="ProductID"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Prezzo unitario]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Prezzo unitario]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Prezzo unitario]"
+                      name="Prezzo unitario"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Sconto]"
+                      dataType="cy"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Sconto]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Sconto]"
+                      name="Sconto"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Totale riga]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Totale riga]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Totale riga]"
+                      name="Totale riga"
+                      precision="38"
+                      scale="6"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Data ordine]"
+                      dataType="dbTimeStamp"
+                      name="Data ordine" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Stato ordine]"
+                      dataType="ui1"
+                      name="Stato ordine" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Ordine online]"
+                      dataType="bool"
+                      name="Ordine online" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[SalesPersonID]"
+                      dataType="i4"
+                      name="SalesPersonID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Tasse]"
+                      dataType="cy"
+                      name="Tasse" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Totale consegnato]"
+                      dataType="cy"
+                      name="Totale consegnato" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Quantità ordinata]"
+                      dataType="i2"
+                      name="Quantità ordinata" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Prezzo unitario]"
+                      dataType="cy"
+                      name="Prezzo unitario" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Sconto]"
+                      dataType="cy"
+                      name="Sconto" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].ExternalColumns[Totale riga]"
+                      dataType="numeric"
+                      name="Totale riga"
+                      precision="38"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Data ordine]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Data ordine]"
+                      name="Data ordine" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Stato ordine]"
+                      dataType="ui1"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Stato ordine]"
+                      name="Stato ordine" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Ordine online]"
+                      dataType="bool"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Ordine online]"
+                      name="Ordine online" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[SalesPersonID]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[SalesPersonID]"
+                      name="SalesPersonID" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[TerritoryID]"
+                      name="TerritoryID" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Tasse]"
+                      dataType="cy"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Tasse]"
+                      name="Tasse" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Totale consegnato]"
+                      dataType="cy"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Totale consegnato]"
+                      name="Totale consegnato" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Quantità ordinata]"
+                      dataType="i2"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Quantità ordinata]"
+                      name="Quantità ordinata" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[ProductID]"
+                      name="ProductID" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Prezzo unitario]"
+                      dataType="cy"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Prezzo unitario]"
+                      name="Prezzo unitario" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Sconto]"
+                      dataType="cy"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Sconto]"
+                      name="Sconto" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Totale riga]"
+                      dataType="numeric"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[Totale riga]"
+                      name="Totale riga"
+                      precision="38"
+                      scale="6" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="ODS - Scrive Ordinato"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[ordinato].[Ordinato]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[LocalHost.DM_ORDINATO]"
+                  connectionManagerRefId="Package.ConnectionManagers[LocalHost.DM_ORDINATO]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Data ordine]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="Data ordine"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Data ordine]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Data ordine]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Stato ordine]"
+                      cachedDataType="ui1"
+                      cachedName="Stato ordine"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Stato ordine]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Stato ordine]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Ordine online]"
+                      cachedDataType="bool"
+                      cachedName="Ordine online"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Ordine online]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Ordine online]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[SalesPersonID]"
+                      cachedDataType="i4"
+                      cachedName="SalesPersonID"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonID]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[SalesPersonID]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[TerritoryID]"
+                      cachedDataType="i4"
+                      cachedName="TerritoryID"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[TerritoryID]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Tasse]"
+                      cachedDataType="cy"
+                      cachedName="Tasse"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Tasse]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Tasse]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Totale consegnato]"
+                      cachedDataType="cy"
+                      cachedName="Totale consegnato"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Totale consegnato]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Totale consegnato]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Quantità ordinata]"
+                      cachedDataType="i2"
+                      cachedName="Quantità ordinata"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Quantità ordinata]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Quantità ordinata]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[ProductID]"
+                      cachedDataType="i4"
+                      cachedName="ProductID"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[ProductID]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Prezzo unitario]"
+                      cachedDataType="cy"
+                      cachedName="Prezzo unitario"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Prezzo unitario]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Prezzo unitario]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Sconto]"
+                      cachedDataType="cy"
+                      cachedName="Sconto"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Sconto]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Sconto]" />
+                    <inputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].Columns[Totale riga]"
+                      cachedDataType="numeric"
+                      cachedName="Totale riga"
+                      cachedPrecision="38"
+                      cachedScale="6"
+                      externalMetadataColumnId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Totale riga]"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output].Columns[Totale riga]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Data ordine]"
+                      dataType="dbTimeStamp"
+                      name="Data ordine" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Stato ordine]"
+                      dataType="ui1"
+                      name="Stato ordine" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Ordine online]"
+                      dataType="bool"
+                      name="Ordine online" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[SalesPersonID]"
+                      dataType="i4"
+                      name="SalesPersonID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[TerritoryID]"
+                      dataType="i4"
+                      name="TerritoryID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Tasse]"
+                      dataType="cy"
+                      name="Tasse" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Totale consegnato]"
+                      dataType="cy"
+                      name="Totale consegnato" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Quantità ordinata]"
+                      dataType="i2"
+                      name="Quantità ordinata" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[ProductID]"
+                      dataType="i4"
+                      name="ProductID" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Prezzo unitario]"
+                      dataType="cy"
+                      name="Prezzo unitario" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Sconto]"
+                      dataType="cy"
+                      name="Sconto" />
+                    <externalMetadataColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input].ExternalColumns[Totale riga]"
+                      dataType="numeric"
+                      name="Totale riga"
+                      precision="38"
+                      scale="6" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DFT - Carica tabelle dei fatti.Paths[OLE DB Source Output]"
+              endId="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato.Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EST - Tronca Tabelle"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{B2AAC68D-2E55-4045-B37A-95041C0491CC}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EST - Tronca Tabelle"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{5A1CDEC7-CF72-464A-A211-27254535532F}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE ordinato.Ordinato" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{0E58F3B1-86CD-4814-81F9-280C86DC6E9D}"
+      DTS:From="Package\EST - Tronca Tabelle"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\DFT - Carica tabelle dei fatti" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="207.2,41.6"
+          Id="Package\DFT - Carica tabelle dei fatti"
+          TopLeft="282.666655434503,135.893334413316" />
+        <NodeLayout
+          Size="176.8,41.6"
+          Id="Package\EST - Tronca Tabelle"
+          TopLeft="293.333321677314,52.0000004132589" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="383.999988555909,93.6000004132589">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,42.2933340000576"
+              Start="0,0"
+              End="0,34.7933340000576">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34.7933340000576" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DFT - Carica tabelle dei fatti">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato"
+          TopLeft="378.666651619806,92.2133340661791" />
+        <NodeLayout
+          Size="181.6,41.6"
+          Id="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato"
+          TopLeft="361.333318975237,177.493334743924" />
+        <EdgeLayout
+          Id="Package\DFT - Carica tabelle dei fatti.Paths[OLE DB Source Output]"
+          TopLeft="469.466651619806,133.813334066179">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-17.3333326445686,43.6800006777446"
+              Start="0,0"
+              End="-17.3333326445686,36.1800006777446">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,17.8400003388723" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,17.8400003388723"
+                    Point2="0,21.8400003388723"
+                    Point3="-4,21.8400003388723" />
+                  <mssgle:LineSegment
+                    End="-13.3333326445686,21.8400003388723" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-13.3333326445686,21.8400003388723"
+                    Point2="-17.3333326445686,21.8400003388723"
+                    Point3="-17.3333326445686,25.8400003388723" />
+                  <mssgle:LineSegment
+                    End="-17.3333326445686,36.1800006777446" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Carica tabelle dei fatti\ODS - Legge Ordinato">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">View</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DFT - Carica tabelle dei fatti\ODS - Scrive Ordinato">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

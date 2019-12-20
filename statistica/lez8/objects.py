@@ -100,7 +100,7 @@ class Position():
 
 
 class TrafficLight(GraphicObject):
-    def __init__(self, canvas, posred, posgreen, state=const.TL_RED, on=False):
+    def __init__(self, canvas, posred, direction=const.DOWN, state=const.TL_RED, on=False):
         super().__init__(canvas)
         self.on = on
         self.state = state
@@ -110,11 +110,19 @@ class TrafficLight(GraphicObject):
             self.count = 4
         else:
             self.count = -1
+
         self.posred = posred
-        self.posgreen = posgreen
-        self.posyellow = Position(
-            (posgreen.x+posred.x)/2, (posgreen.y+posred.y)/2)
-        if posgreen.x == posred.x:
+        if direction == const.LEFT:
+            self.posgreen = Position((self.posred.x+const.TL_SIZE), (self.posred.y))
+        elif direction == const.RIGHT:
+            self.posgreen = Position((self.posred.x-const.TL_SIZE), (self.posred.y))
+        elif direction == const.UP:
+            self.posgreen = Position((self.posred.x), (self.posred.y+const.TL_SIZE))
+        else:
+            self.posgreen = Position((self.posred.x), (self.posred.y-const.TL_SIZE))
+        self.posyellow = Position((self.posgreen.x+self.posred.x)/2, (self.posgreen.y+self.posred.y)/2)
+
+        if self.posgreen.x == self.posred.x:
             self.orientation = const.HORIZONTAL
         else:
             self.orientation = const.VERTICAL
@@ -156,13 +164,15 @@ class TrafficLight(GraphicObject):
     def draw(self):
         if not (hasattr(self, 'redLight') or hasattr(self, 'yellowLight') or hasattr(self, 'greenLight')):
             self.redLight = self.canvas.create_oval(
-                self.posred.x, self.posred.y, self.posred.x+20, self.posred.y+20, fill=const.RED_OFF)
+                self.posred.x-const.TL_LIGHT_SIZE, self.posred.y-const.TL_LIGHT_SIZE,
+                self.posred.x+const.TL_LIGHT_SIZE, self.posred.y+const.TL_LIGHT_SIZE, fill=const.RED_OFF)
             self.yellowLight = self.canvas.create_oval(
-                self.posyellow.x, self.posyellow.y, self.posyellow.x+20, self.posyellow.y+20, fill=const.YELLOW_OFF)
+                self.posyellow.x-const.TL_LIGHT_SIZE, self.posyellow.y-const.TL_LIGHT_SIZE,
+                self.posyellow.x+const.TL_LIGHT_SIZE, self.posyellow.y+const.TL_LIGHT_SIZE, fill=const.YELLOW_OFF)
             self.greenLight = self.canvas.create_oval(
-                self.posgreen.x, self.posgreen.y, self.posgreen.x+20, self.posgreen.y+20, fill=const.GREEN_OFF)
-            self.graphicitems = (
-                self.redLight, self.yellowLight, self.greenLight)
+                self.posgreen.x-const.TL_LIGHT_SIZE, self.posgreen.y-const.TL_LIGHT_SIZE,
+                self.posgreen.x+const.TL_LIGHT_SIZE, self.posgreen.y+const.TL_LIGHT_SIZE, fill=const.GREEN_OFF)
+            self.graphicitems = (self.redLight, self.yellowLight, self.greenLight)
         if self.state == const.TL_RED:
             self.canvas.itemconfigure(self.redLight, fill=const.RED_ON)
             self.canvas.itemconfigure(self.yellowLight, fill=const.YELLOW_OFF)
@@ -192,7 +202,7 @@ class RoadObject(GraphicObject):
 
 
 class Road(RoadObject):
-    def __init__(self, canvas, pstart, pstop, dim, lineW=16, lineS=6, tags=[]):
+    def __init__(self, canvas, pstart, pstop, dim, lineW=const.ROAD_LINE_WIDTH, lineS=const.ROAD_LINE_SIZE, tags=[]):
         super().__init__(canvas)
         self.pstart = pstart
         self.pstop = pstop
@@ -217,14 +227,14 @@ class Road(RoadObject):
                 if self.pstart.x < self.pstop.x:
                     road_lines = range(round(self.pstart.x),
                                        round(self.pstop.x), step)
-                    stopline = self.lineW
+                    stopline = self.lineS+2
                 else:
                     road_lines = range(round(self.pstop.x),
                                        round(self.pstart.x), step)
-                    stopline = -self.lineW
+                    stopline = -self.lineS-2
                 for posx in road_lines:
-                    self.graphicitems.append(self.canvas.create_rectangle(posx, self.pstart.y-self.dim/16,
-                                                                          posx+self.lineW, self.pstart.y+self.dim/16,
+                    self.graphicitems.append(self.canvas.create_rectangle(posx, self.pstart.y-self.dim/24,
+                                                                          posx+self.lineW, self.pstart.y+self.dim/24,
                                                                           fill=const.WHITE, width=0))
                 # draw stop line
                 if super().isA('entry'):
@@ -237,16 +247,14 @@ class Road(RoadObject):
                                                                   fill=const.COLOR_ROAD, width=0)]
                 step = self.lineS+self.lineW
                 if self.pstart.y < self.pstop.y:
-                    road_lines = range(round(self.pstart.y),
-                                       round(self.pstop.y), step)
-                    stopline = self.lineW
+                    road_lines = range(round(self.pstart.y),round(self.pstop.y), step)
+                    stopline = self.lineS+2
                 else:
-                    road_lines = range(round(self.pstop.y),
-                                       round(self.pstart.y), step)
-                    stopline = -self.lineW
+                    road_lines = range(round(self.pstop.y),round(self.pstart.y), step)
+                    stopline = -self.lineS-2
                 for posy in road_lines:
-                    self.graphicitems.append(self.canvas.create_rectangle(self.pstart.x-self.dim/16, posy,
-                                                                          self.pstart.x+self.dim/16, posy+self.lineW,
+                    self.graphicitems.append(self.canvas.create_rectangle(self.pstart.x-self.dim/24, posy,
+                                                                          self.pstart.x+self.dim/24, posy+self.lineW,
                                                                           fill=const.WHITE, width=0))
                 if super().isA('entry'):
                     self.graphicitems.append(self.canvas.create_rectangle(self.pstart.x-self.dim/2, self.pstop.y,
@@ -258,57 +266,76 @@ class Lane(Road):
     # pstart and pstop centered
     def __init__(self, canvas, pstart, pstop, tLight=None, dim=const.CAR_HEIGHT*1.5):
         tags = Position.getDirection(pstart, pstop)
-        if tLight is None or type(tLight) is TrafficLight:
-            if tLight:
-                self.tLight = tLight
-                tags.extend(['entry'])
-                super().__init__(canvas, pstart, pstop, dim, tags=tags)
-                if self.orientation == const.HORIZONTAL:
-                    # spawn points are two, left (you can turn left or go straight) and right side (you can turn right or go straight)
-                    self.spawnPoints = (
-                        Position(pstart.x, pstart.y+2-const.CAR_HEIGHT/2),
-                        Position(pstart.x, pstart.y-2+const.CAR_HEIGHT/2)
-                    )
-                    # end lane points are the first stage before steer respectively
-                    self.endLanePoints = (
-                        Position(pstop.x, pstop.y+2-const.CAR_HEIGHT/2),
-                        Position(pstop.x, pstop.y-2+const.CAR_HEIGHT/2)
-                    )
-                else:
-                    self.spawnPoints = (
-                        Position(pstart.x+2-const.CAR_HEIGHT/2, pstart.y),
-                        Position(pstart.x-2+const.CAR_HEIGHT/2, pstart.y)
-                    )
-                    self.endLanePoints = (
-                        Position(pstop.x+2-const.CAR_HEIGHT/2, pstop.y),
-                        Position(pstop.x-2+const.CAR_HEIGHT/2, pstop.y)
-                    )
-            else:
-                tags.extend(['exit'])
-                super().__init__(canvas, pstart, pstop, dim, tags=tags)
-                if self.orientation == const.HORIZONTAL:
-                    # direction points are two, left (for cars that chose to turn right or go straight)
-                    # and right side (for cars that chose to turn left or go straight)
-                    self.directionPoints = (
-                        Position(pstart.x, pstart.y+2-const.CAR_HEIGHT/2),
-                        Position(pstart.x, pstart.y-2+const.CAR_HEIGHT/2)
-                    )
-                    # finally the car arrives at its destination
-                    self.destinationPoints = (
-                        Position(pstop.x, pstop.y+2-const.CAR_HEIGHT/2),
-                        Position(pstop.x, pstop.y-2+const.CAR_HEIGHT/2)
-                    )
-                else:
-                    self.directionPoints = (
-                        Position(pstart.x+2-const.CAR_HEIGHT/2, pstart.y),
-                        Position(pstart.x-2+const.CAR_HEIGHT/2, pstart.y)
-                    )
-                    self.destinationPoints = (
-                        Position(pstop.x+2-const.CAR_HEIGHT/2, pstop.y),
-                        Position(pstop.x-2+const.CAR_HEIGHT/2, pstop.y)
-                    )
+        tags.extend(['exit'])
+        super().__init__(canvas, pstart, pstop, dim, tags=tags)
+        if self.isA('left'):
+            self.startLanePoints = (
+                Position(pstart.x, pstart.y+2-const.CAR_HEIGHT/2),
+                Position(pstart.x, pstart.y-2+const.CAR_HEIGHT/2)
+            )
+            self.endLanePoints = (
+                Position(pstop.x, pstop.y+2-const.CAR_HEIGHT/2),
+                Position(pstop.x, pstop.y-2+const.CAR_HEIGHT/2)
+            )
+        elif self.isA('right'):
+            self.startLanePoints = (
+                Position(pstart.x, pstart.y-2+const.CAR_HEIGHT/2),
+                Position(pstart.x, pstart.y+2-const.CAR_HEIGHT/2)
+            )
+            self.endLanePoints = (
+                Position(pstop.x, pstop.y-2+const.CAR_HEIGHT/2),
+                Position(pstop.x, pstop.y+2-const.CAR_HEIGHT/2)
+            )
+        elif self.isA('up'):
+            self.startLanePoints = (
+                Position(pstart.x-2+const.CAR_HEIGHT/2, pstart.y),
+                Position(pstart.x+2-const.CAR_HEIGHT/2, pstart.y)
+            )
+            self.endLanePoints = (
+                Position(pstop.x-2+const.CAR_HEIGHT/2, pstop.y),
+                Position(pstop.x+2-const.CAR_HEIGHT/2, pstop.y)
+            )
         else:
-            raise Exception('invalid TrafficLight')
+            self.startLanePoints = (
+                Position(pstart.x+2-const.CAR_HEIGHT/2, pstart.y),
+                Position(pstart.x-2+const.CAR_HEIGHT/2, pstart.y)
+            )
+            self.endLanePoints = (
+                Position(pstop.x+2-const.CAR_HEIGHT/2, pstop.y),
+                Position(pstop.x-2+const.CAR_HEIGHT/2, pstop.y)
+            )
+   
+    def createTrafficLight(self,status=const.TL_RED):
+        self.tags.remove('exit')
+        self.tags.append('entry')
+        self.tLight = None
+        # create the tl near the right side of the road
+        if self.isA('down'):
+            self.tLight = TrafficLight(self.canvas,
+                                        Position(self.endLanePoints[0].x-const.TL_DIST_X, self.endLanePoints[0].y-const.TL_DIST_Y),
+                                        const.DOWN,
+                                        status)
+        elif self.isA('up'):
+            self.tLight = TrafficLight(self.canvas,
+                                        Position(self.endLanePoints[0].x+const.TL_DIST_X, self.endLanePoints[0].y+const.TL_DIST_Y),
+                                        const.UP,
+                                        status)
+        elif self.isA('left'):
+            self.tLight = TrafficLight(self.canvas,
+                                        Position(self.endLanePoints[0].x+const.TL_DIST_Y, self.endLanePoints[0].y-const.TL_DIST_X),
+                                        const.LEFT,
+                                        status)
+        elif self.isA('right'):
+            self.tLight = TrafficLight(self.canvas,
+                                        Position(self.endLanePoints[0].x-const.TL_DIST_Y, self.endLanePoints[0].y+const.TL_DIST_X),
+                                        const.RIGHT,
+                                        status)
+        return self.tLight
+
+    def removeTrafficLight(self):
+        self.tags.remove('entry')
+        self.tags.append('exit')
+        del self.tLight
 
     def draw(self):
         if not (hasattr(self, 'graphic') or hasattr(self, 'graphicitems')):
@@ -320,10 +347,6 @@ class Crossroad(RoadObject):
         super().__init__(canvas)
         self.entries = [i for i in lanes if i.isA('entry')]
         self.exits = [i for i in lanes if i.isA('exit')]
-        self.spawnPoints = [i.spawnPoints for i in self.entries]
-        self.endLanePoints = [i.endLanePoints for i in self.entries]
-        self.directionPoints = [i.directionPoints for i in self.exits]
-        self.destinationPoints = [i.destinationPoints for i in self.exits]
         # assuming all lanes have equal dimensions
         self.dim = self.entries[0].dim
         minpstop = Position(2000, 2000)
@@ -352,17 +375,17 @@ class Crossroad(RoadObject):
 
     def getLaneFromPos(self, pos):
         for i in self.entries:
-            if pos.between(i.spawnPoints[0], i.endLanePoints[0]):
+            if pos.between(i.startLanePoints[0], i.endLanePoints[0]):
                 return i, 0
-            if pos.between(i.spawnPoints[1], i.endLanePoints[1]):
+            if pos.between(i.startLanePoints[1], i.endLanePoints[1]):
                 return i, 1
         for i in self.exits:
-            if pos.between(i.directionPoints[0], i.destinationPoints[0]):
+            if pos.between(i.startLanePoints[0], i.endLanePoints[0]):
                 return i, 0
-            if pos.between(i.directionPoints[1], i.destinationPoints[1]):
+            if pos.between(i.startLanePoints[1], i.endLanePoints[1]):
                 return i, 1
         # this point is not in a lane
-        return None
+        return None, None
 
 
 class Car(RoadObject):
@@ -397,33 +420,32 @@ class Car(RoadObject):
 
     def update(self):
         if self.velocity < 90:
-            self.velocity += 0.5*self.acceleration
+            self.velocity += const.CAR_POWER*self.acceleration
         if self.velocity > 0:
-            self.velocity -= 2*self.deceleration
+            self.velocity -= const.CAR_POWER*4*self.deceleration
         self.acceleration=0
         self.deceleration=0
         if self.velocity > 0:
-            self.velocity -= round(0.1+math.fabs(self.steerDeg/10),const.FLOAT_PRECISION)
+            self.velocity = round(self.velocity-const.CAR_POWER*1.5-+math.fabs(self.steerDeg/10),const.FLOAT_PRECISION)
         else:
             self.velocity = 0
-        print('----',self.velocity,self.degrees)
         self.rotate(-self.steerDeg*math.pi*self.velocity/6000)
         calc_x = round(math.sin(self.degrees)*self.velocity/40,const.FLOAT_PRECISION)
         calc_y = round(math.cos(self.degrees)*self.velocity/40,const.FLOAT_PRECISION)
         self.move(calc_x, calc_y)
-        if self.position.x >= const.W_WIDTH or self.position.y >= const.W_HEIGHT:
-            # destroy object
-            self.canvas.delete(self.graphic)
-            del self
-            print('object deleted')
+        # DELETE OBJECT???
+        # if self.position.x >= const.W_WIDTH or self.position.y >= const.W_HEIGHT:
+        #     # destroy object
+        #     self.canvas.delete(self.graphic)
+        #     print('object deleted')
 
-    def steer(self, pow=0.5):
+    def steer(self, pow=const.CAR_POWER):
         self.steerDeg = pow
 
-    def throttle(self, pow=0.5):
+    def accelerate(self, pow=const.CAR_POWER):
         self.acceleration=pow
 
-    def brake(self, pow=0.5):
+    def brake(self, pow=const.CAR_POWER):
         self.deceleration=pow
     # we tell to the car where to go and we set a step by step guide to get there
 
@@ -433,17 +455,16 @@ class Car(RoadObject):
             raise Exception('Lane selected is not an exit')
         self.crossroad = lane.crossroad
         currentLane, rightS = self.crossroad.getLaneFromPos(self.position)
+        if not currentLane:
+            raise Exception('This object is not in a lane')
         if not currentLane.isA('entry'):
-            raise Exception(
-                'Cannot set objective when the car is already leaving')
+            raise Exception('Cannot set objective when the car is already leaving')
         if ((currentLane.isA('right') and lane.isA('left')) or
             (currentLane.isA('up') and lane.isA('down')) or
             (currentLane.isA('left') and lane.isA('right')) or
                 (currentLane.isA('down') and lane.isA('up'))):
-            raise Exception(
-                'Cannot set objective same road (you can only move right, forward or left)')
-        desideredDirection = Position.getDirection(
-            currentLane.spawnPoints[rightS], lane.destinationPoints[rightS])
+            raise Exception('Cannot set objective same road (you can only move right, forward or left)')
+        desideredDirection = Position.getDirection(currentLane.startLanePoints[rightS], lane.endLanePoints[rightS])
         # we are on the wrong side
         if (((currentLane.isA('left') and lane.isA('down')) or
              (currentLane.isA('up') and lane.isA('left')) or
@@ -458,8 +479,8 @@ class Car(RoadObject):
                 rightS == 1):
             rightS = 0
         self.waypoints.append(currentLane.endLanePoints[rightS])
-        self.waypoints.append(lane.directionPoints[rightS])
-        self.waypoints.append(lane.destinationPoints[rightS])
+        self.waypoints.append(lane.startLanePoints[rightS])
+        self.waypoints.append(lane.endLanePoints[rightS])
     # predict where it will be in t time
 
     def predict(self, t=1):
@@ -468,18 +489,17 @@ class Car(RoadObject):
         degrees = self.degrees
 
         def p():
+            #TODO: FIX VELOCITY INCREMENT WITH SMALLER SIZE
             nonlocal degrees
             nonlocal velocity
             if velocity < 90:
-                velocity += 0.5*self.acceleration
+                velocity += const.CAR_POWER*self.acceleration
             if velocity > 0:
-                velocity -= 2*self.deceleration
+                velocity -= const.CAR_POWER*4*self.deceleration
             if velocity > 0:
-                velocity -= 0.1+math.fabs(self.steerDeg/10)
+                velocity = round(velocity-const.CAR_POWER*1.5-math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
             else:
                 velocity = 0
-            #TODO: FIX ROUND OF VELOCITY!!!!!!!!
-            print('----',velocity,degrees)
             degrees = round(degrees-self.steerDeg*math.pi*velocity/6000,const.FLOAT_PRECISION)
             calc_x = round(math.sin(degrees)*velocity/40, const.FLOAT_PRECISION)
             calc_y = round(math.cos(degrees)*velocity/40, const.FLOAT_PRECISION)
@@ -502,7 +522,7 @@ class Car(RoadObject):
             self.status = 3-len(self.waypoints)
         if self.status == 2:
             # exiting
-            self.throttle()
+            self.accelerate()
             return
         if self.status == 0:
             if self.position.between(self.waypoints[0], self.waypoints[1]):
@@ -511,21 +531,20 @@ class Car(RoadObject):
             else:
                 # we are about to face the traffic light
                 if not hasattr(self, 'myTrafficLight'):
-                    currentLane, rightS = self.crossroad.getLaneFromPos(
-                        self.position)
+                    currentLane, rightS = self.crossroad.getLaneFromPos(self.position)
                     self.myTrafficLight = currentLane.tLight
                 if self.myTrafficLight.state == const.TL_GREEN:
-                    self.throttle()
+                    self.accelerate()
                 if self.myTrafficLight.state == const.TL_YELLOW:
                     # we can pass in 3 seconds
                     dist = self.position.distance(self.waypoints[0])
                     # distance per sec
                     if self.velocity > dist:
-                        self.throttle(1)
+                        self.accelerate(1)
                     else:
                         self.brake()
                 if self.myTrafficLight.state == const.TL_RED:
                     self.brake()
         if self.status == 1:
             # TODO: turn or go forward
-            self.throttle()
+            self.accelerate()

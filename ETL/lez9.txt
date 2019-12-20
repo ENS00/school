@@ -1,0 +1,9 @@
+Il cube può essere Multidimensionale (MDX) o Tabular (DAX, più recente). Tabular lavora in-Memory ed è ottimizzato per
+lavorare nelle righe, mentre MDX lavora con le relazioni (dimensioni = più tabelle)
+
+Power BI
+- Power Query               (Linguaggio M, si connette al SSIS) -nel cloud-> ADF - Azure Data Factory
+- Vertipak                  (si connette al cube, tabular)      -nel cloud-> SSAS Azure
+- Paur Vien (Power view)    (SSRS, report statistici)           -nel cloud-> SQL Azure DB
+
+anche excel permette queste integrazioni, tuttavia Power BI è stato sviluppato proprio per quello
