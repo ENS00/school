@@ -32,13 +32,17 @@ class GraphicObject():
 
     def rotate(self, rad):
         self.degrees = round(self.degrees+rad,const.FLOAT_PRECISION)
+        if self.degrees > math.pi:
+            self.degrees=round(self.degrees-math.pi*2,const.FLOAT_PRECISION)
+        if self.degrees < -math.pi:
+            self.degrees=round(self.degrees+math.pi*2,const.FLOAT_PRECISION)
 
         def _rot(x, y):
             # note: the rotation is done in the opposite fashion from for a right-handed coordinate system due to the left-handedness of computer coordinates
             x -= self.position.x
             y -= self.position.y
-            _x = x * math.cos(rad) + y * math.sin(rad)
-            _y = -x * math.sin(rad) + y * math.cos(rad)
+            _x = x * math.cos(-rad) + y * math.sin(-rad)
+            _y = -x * math.sin(-rad) + y * math.cos(-rad)
             return _x + self.position.x, _y + self.position.y
 
         x, y = _rot(self.sides[0].x, self.sides[0].y)
@@ -74,12 +78,20 @@ class Position():
     # this point is between two points?
 
     def between(self, pos1, pos2):
-        if (self.x <= pos1.x and self.x >= pos2.x) or (self.x >= pos1.x and self.x <= pos2.x):
-            if self.y <= pos1.y and self.y >= pos2.y:
+        sensibility=2
+        if (self.x <= pos1.x+sensibility and self.x >= pos2.x-sensibility) or (self.x >= pos1.x-sensibility and self.x <= pos2.x+sensibility):
+            if self.y <= pos1.y+sensibility and self.y >= pos2.y-sensibility:
                 return True
-            if self.y >= pos1.y and self.y <= pos2.y:
+            if self.y >= pos1.y-sensibility and self.y <= pos2.y+sensibility:
                 return True
         return False
+    
+    def near(self,pos):
+        sensibility=2
+        if self.x <= pos.x+sensibility and self.x >= pos.x-sensibility and self.y <= pos.y+sensibility and self.y >= pos.y-sensibility:
+            return True
+        return False
+
 
     def distance(self, pos):
         return math.sqrt(math.pow(self.x-pos.x, 2)+math.pow(self.y-pos.y, 2))
@@ -98,6 +110,12 @@ class Position():
             ret.append('up')
         return ret
 
+class Waypoint(Position):
+    def __init__(self, x, y, velocity=0):
+        # position of waypoint
+        super().__init__(x,y)
+        # target velocity
+        self.velocity=velocity
 
 class TrafficLight(GraphicObject):
     def __init__(self, canvas, posred, direction=const.DOWN, state=const.TL_RED, on=False):
@@ -394,10 +412,11 @@ class Car(RoadObject):
         self.position = pos
         self.tags = tags
         self.velocity = 50
-        self.degrees = round(math.pi/2, const.FLOAT_PRECISION)
+        self.degrees = 0
         self.steerDeg = 0
         self.acceleration=0
         self.deceleration=0
+        self.sensibility=1
         # SIDES
         self.sides = (
             Position(self.position.x-const.CAR_WIDTH/4,
@@ -419,33 +438,42 @@ class Car(RoadObject):
                                                       fill=const.RED_ON, width=0)
 
     def update(self):
-        if self.velocity < 90:
-            self.velocity += const.CAR_POWER*self.acceleration
+        if self.velocity < const.CAR_MAX_SPEED:
+            self.velocity += self.acceleration
         if self.velocity > 0:
-            self.velocity -= const.CAR_POWER*4*self.deceleration
+            self.velocity -= self.deceleration*4
         self.acceleration=0
         self.deceleration=0
         if self.velocity > 0:
-            self.velocity = round(self.velocity-const.CAR_POWER*1.5-+math.fabs(self.steerDeg/10),const.FLOAT_PRECISION)
-        else:
+            self.velocity = round(self.velocity-0.004*self.velocity-math.fabs(self.steerDeg/10),const.FLOAT_PRECISION)
+        if self.velocity < 0:
             self.velocity = 0
-        self.rotate(-self.steerDeg*math.pi*self.velocity/6000)
-        calc_x = round(math.sin(self.degrees)*self.velocity/40,const.FLOAT_PRECISION)
-        calc_y = round(math.cos(self.degrees)*self.velocity/40,const.FLOAT_PRECISION)
+        self.rotate(self.steerDeg*self.velocity/(self.velocity*self.velocity+const.CAR_MAX_SPEED)*1.1)
+        #self.rotate(self.steerDeg*math.pi*self.velocity/6000)
+        calc_x = round(math.cos(self.degrees)*self.velocity/6*const.CAR_POWER,const.FLOAT_PRECISION)
+        calc_y = round(math.sin(self.degrees)*self.velocity/6*const.CAR_POWER,const.FLOAT_PRECISION)
         self.move(calc_x, calc_y)
-        # DELETE OBJECT???
-        # if self.position.x >= const.W_WIDTH or self.position.y >= const.W_HEIGHT:
-        #     # destroy object
-        #     self.canvas.delete(self.graphic)
-        #     print('object deleted')
+        #print(self.velocity)
 
     def steer(self, pow=const.CAR_POWER):
+        if pow<-1:
+            pow=-1
+        if pow>1:
+            pow=1
         self.steerDeg = pow
 
     def accelerate(self, pow=const.CAR_POWER):
+        if pow<0:
+            pow=0
+        if pow>1:
+            pow=1
         self.acceleration=pow
 
     def brake(self, pow=const.CAR_POWER):
+        if pow<0:
+            pow=0
+        if pow>1:
+            pow=1
         self.deceleration=pow
     # we tell to the car where to go and we set a step by step guide to get there
 
@@ -478,73 +506,87 @@ class Car(RoadObject):
              (currentLane.isA('down') and lane.isA('left'))) and
                 rightS == 1):
             rightS = 0
-        self.waypoints.append(currentLane.endLanePoints[rightS])
-        self.waypoints.append(lane.startLanePoints[rightS])
-        self.waypoints.append(lane.endLanePoints[rightS])
+        self.waypoints.append(Waypoint(currentLane.endLanePoints[rightS].x-20,currentLane.endLanePoints[rightS].y,10))
+        self.waypoints.append(Waypoint(lane.startLanePoints[rightS].x,lane.startLanePoints[rightS].y+20,10))
+        self.waypoints.append(Waypoint(lane.endLanePoints[rightS].x,lane.endLanePoints[rightS].y,const.CAR_MAX_SPEED))
     # predict where it will be in t time
 
-    def predict(self, t=1):
+    def predict(self, t=1, wp=None):
         t=int(t*100)
         velocity = self.velocity
         degrees = self.degrees
 
         def p():
-            #TODO: FIX VELOCITY INCREMENT WITH SMALLER SIZE
             nonlocal degrees
             nonlocal velocity
-            if velocity < 90:
-                velocity += const.CAR_POWER*self.acceleration
+            if velocity < const.CAR_MAX_SPEED:
+                velocity += self.acceleration
             if velocity > 0:
-                velocity -= const.CAR_POWER*4*self.deceleration
+                velocity -= 4*self.deceleration
             if velocity > 0:
-                velocity = round(velocity-const.CAR_POWER*1.5-math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
-            else:
+                velocity = round(self.velocity-0.004*self.velocity-math.fabs(self.steerDeg/10),const.FLOAT_PRECISION)
+            if velocity < 0:
                 velocity = 0
             degrees = round(degrees-self.steerDeg*math.pi*velocity/6000,const.FLOAT_PRECISION)
-            calc_x = round(math.sin(degrees)*velocity/40, const.FLOAT_PRECISION)
-            calc_y = round(math.cos(degrees)*velocity/40, const.FLOAT_PRECISION)
+            calc_x = round(math.cos(degrees)*velocity/40, const.FLOAT_PRECISION)
+            calc_y = round(math.sin(degrees)*velocity/40, const.FLOAT_PRECISION)
             return calc_x, calc_y
 
         retx = 0
         rety = 0
         myp=Position(self.position.x,self.position.y)
-        for i in range(1,t+1):
+        if not wp:
+            for i in range(1,t+1):
+                x, y = p()
+                myp.move(x,y)
+        count=0
+        while wp and myp.between(self.position,wp) and velocity>0 and count<200: 
             x, y = p()
             myp.move(x,y)
-            print(myp,i)
-        return myp
+            count+=1
+        return Waypoint(myp.x,myp.y,velocity)
     # decide what to do...
 
     def drive(self):
-        if not hasattr(self, 'waypoints'):
+        if not hasattr(self, 'waypoints') or len(self.waypoints)<1:
             return
-        if not hasattr(self, 'status'):
-            self.status = 3-len(self.waypoints)
-        if self.status == 2:
-            # exiting
+        if self.sensibility>1:
+            self.sensibility=1
+        if self.position.near(self.waypoints[0]):
+            # we passed the target
+            self.waypoints.pop(0)
+            if len(self.waypoints)<1:
+                return
+
+        futureWaypoint=self.predict(wp=self.waypoints[0])
+        print(self.waypoints[0],self.position)
+        rad = round(math.atan2(self.waypoints[0].y-self.position.y, self.waypoints[0].x-self.position.x), const.FLOAT_PRECISION)
+        print(self.steerDeg,self.degrees,rad)
+        left=self.degrees-rad
+        if left<0:
+            left=round(left+math.pi*2,const.FLOAT_PRECISION)
+        right=rad-self.degrees
+        if right<0:
+            right=round(right+math.pi*2,const.FLOAT_PRECISION)
+        if right<left:
+            self.steer(right)
+        else:
+            self.steer(left)
+        print(right,left)
+
+        if self.waypoints[0].velocity>self.velocity:
             self.accelerate()
-            return
-        if self.status == 0:
-            if self.position.between(self.waypoints[0], self.waypoints[1]):
-                # we passed the traffic light
-                self.status = 1
+        else:
+            if futureWaypoint.between(self.position,self.waypoints[0]):
+                self.accelerate()
             else:
-                # we are about to face the traffic light
-                if not hasattr(self, 'myTrafficLight'):
-                    currentLane, rightS = self.crossroad.getLaneFromPos(self.position)
-                    self.myTrafficLight = currentLane.tLight
-                if self.myTrafficLight.state == const.TL_GREEN:
-                    self.accelerate()
-                if self.myTrafficLight.state == const.TL_YELLOW:
-                    # we can pass in 3 seconds
-                    dist = self.position.distance(self.waypoints[0])
-                    # distance per sec
-                    if self.velocity > dist:
-                        self.accelerate(1)
-                    else:
-                        self.brake()
-                if self.myTrafficLight.state == const.TL_RED:
-                    self.brake()
-        if self.status == 1:
-            # TODO: turn or go forward
-            self.accelerate()
+                self.brake(self.sensibility)
+                futureWaypoint=self.predict(wp=self.waypoints[0])
+                if futureWaypoint.between(self.position,self.waypoints[0]):
+                    self.sensibility/=Position.distance(futureWaypoint,self.waypoints[0])
+                    self.brake(self.sensibility)
+                else:
+                    self.sensibility*=Position.distance(futureWaypoint,self.waypoints[0])
+                    self.brake(self.sensibility)
+            
+        # think how turn

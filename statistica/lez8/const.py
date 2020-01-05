@@ -2,17 +2,21 @@ from math import sqrt
 # here there are all constants
 # CAR_WH_RATIO
 # CAR_DIM=36
+CAR_MAX_SPEED = 90
 TIME_SPEED = 60  # REAL 1s = GAME 60s
 
+# Variables
+FLOAT_PRECISION = 5
+
 # window dimension
-W_WIDTH = 300
-W_HEIGHT = 300
+W_WIDTH = 800
+W_HEIGHT = 800
 W_TITLE = 'Traffico'
-CAR_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/40*3/40*3))  # dimension of the car
-CAR_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9))  # dimension of the car
+CAR_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/40*3/40*3),FLOAT_PRECISION)  # dimension of the car
+CAR_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9),FLOAT_PRECISION)  # dimension of the car
 ROAD_LINE_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/60/60)) # width of the white line
 ROAD_LINE_SIZE = round(sqrt(W_WIDTH*W_HEIGHT/100/100)) # size of the white line
-CAR_POWER = round(sqrt(W_WIDTH*W_HEIGHT/1600/1600))
+CAR_POWER = round(sqrt(W_WIDTH*W_HEIGHT/1600/1600),FLOAT_PRECISION)
 
 # Colors
 W_BACKGROUND = 'lightgreen'
@@ -44,6 +48,3 @@ UP = 0
 DOWN = 1
 LEFT = 2
 RIGHT = 3
-
-# Variables
-FLOAT_PRECISION = 5

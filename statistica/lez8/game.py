@@ -23,9 +23,12 @@ class Game():
         self.tk.title(const.W_TITLE)
         self.canvas = tkinter.Canvas(self.tk, width=const.W_WIDTH, height=const.W_HEIGHT, bg=const.W_BACKGROUND)
         self.canvas.pack()
+
         self.statusLights=None
         self.time = gametime.Gametime(const.TIME_SPEED)
         self.timepanel=TimePanel(self.canvas,self.time)
+
+        self.removeObjects=[]
 
     def drawField(self):
         self.canvas.create_rectangle(0, 0, self.canvas.winfo_width(), self.canvas.winfo_height(), width=0)
@@ -97,7 +100,8 @@ class Game():
         self.tlight_left.draw()
         self.tlight_right.draw()
         self.timepanel.update()
-        self.cars[0].update()
+        for i in self.cars:
+            i.update()
 
     def loop(self):
         # sum 10 every time to gametime???
@@ -114,6 +118,16 @@ class Game():
         # the cars are moving
         for i in self.cars:
             i.drive()
+            if i.position.x >= const.W_WIDTH or i.position.y >= const.W_HEIGHT:
+                # destroy object
+                self.canvas.delete(i.graphic)
+                self.removeObjects.append(i)
+
+        for i in self.removeObjects:
+            self.cars.remove(i)
+
+        self.removeObjects.clear()
+
 
         # necessary to upload object states
         self.updateField()
