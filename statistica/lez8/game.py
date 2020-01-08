@@ -88,10 +88,10 @@ class Game():
         self.crossroad.draw()
         
         self.cars=[]
-        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[0]))# objects.Position(389,280)))
+        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[1]))
+        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[0]))
         self.cars[0].draw()
         self.cars[0].setObjective(self.crossroad.exits[2])
-        #del self.cars[0]
 
 
     def updateField(self):

@@ -86,8 +86,7 @@ class Position():
                 return True
         return False
     
-    def near(self,pos):
-        sensibility=2
+    def near(self,pos,sensibility=2):
         if self.x <= pos.x+sensibility and self.x >= pos.x-sensibility and self.y <= pos.y+sensibility and self.y >= pos.y-sensibility:
             return True
         return False
@@ -448,7 +447,7 @@ class Car(RoadObject):
             self.velocity = round(self.velocity-0.004*self.velocity-math.fabs(self.steerDeg/10),const.FLOAT_PRECISION)
         if self.velocity < 0:
             self.velocity = 0
-        self.rotate(self.steerDeg*self.velocity/(self.velocity*self.velocity+const.CAR_MAX_SPEED)*1.1)
+        self.rotate(self.steerDeg*self.velocity/(self.velocity*self.velocity+const.CAR_MAX_SPEED)*1.8)
         #self.rotate(self.steerDeg*math.pi*self.velocity/6000)
         calc_x = round(math.cos(self.degrees)*self.velocity/6*const.CAR_POWER,const.FLOAT_PRECISION)
         calc_y = round(math.sin(self.degrees)*self.velocity/6*const.CAR_POWER,const.FLOAT_PRECISION)
@@ -493,6 +492,8 @@ class Car(RoadObject):
                 (currentLane.isA('down') and lane.isA('up'))):
             raise Exception('Cannot set objective same road (you can only move right, forward or left)')
         desideredDirection = Position.getDirection(currentLane.startLanePoints[rightS], lane.endLanePoints[rightS])
+        # find if we want to turn left or right or go forward
+        # then think if we need extra waypoints
         # we are on the wrong side
         if (((currentLane.isA('left') and lane.isA('down')) or
              (currentLane.isA('up') and lane.isA('left')) or
@@ -500,15 +501,25 @@ class Car(RoadObject):
              (currentLane.isA('down') and lane.isA('right'))) and
                 rightS == 0):
             rightS = 1
+            self.waypoints.append(Waypoint(currentLane.endLanePoints[rightS].x/2,currentLane.endLanePoints[rightS].y,20))
         if (((currentLane.isA('left') and lane.isA('up')) or
              (currentLane.isA('up') and lane.isA('right')) or
              (currentLane.isA('right') and lane.isA('down')) or
              (currentLane.isA('down') and lane.isA('left'))) and
                 rightS == 1):
             rightS = 0
-        self.waypoints.append(Waypoint(currentLane.endLanePoints[rightS].x-20,currentLane.endLanePoints[rightS].y,10))
-        self.waypoints.append(Waypoint(lane.startLanePoints[rightS].x,lane.startLanePoints[rightS].y+20,10))
+            self.waypoints.append(Waypoint(currentLane.endLanePoints[rightS].x/2,currentLane.endLanePoints[rightS].y,20))
+
+        self.waypoints.append(Waypoint(currentLane.endLanePoints[rightS].x,currentLane.endLanePoints[rightS].y,20))
+        self.waypoints.append(Waypoint(lane.startLanePoints[rightS].x,lane.startLanePoints[rightS].y,10))
         self.waypoints.append(Waypoint(lane.endLanePoints[rightS].x,lane.endLanePoints[rightS].y,const.CAR_MAX_SPEED))
+
+        # self.canvas.create_oval(
+        #         currentLane.endLanePoints[rightS].x-45,currentLane.endLanePoints[rightS].y-5,
+        #         currentLane.endLanePoints[rightS].x-35,currentLane.endLanePoints[rightS].y+5, fill=const.RED_OFF)
+        # self.canvas.create_oval(
+        #         lane.startLanePoints[rightS].x-5,lane.startLanePoints[rightS].y-5,
+        #         lane.startLanePoints[rightS].x+5,lane.startLanePoints[rightS].y+5, fill=const.RED_OFF)
     # predict where it will be in t time
 
     def predict(self, t=1, wp=None):
@@ -552,7 +563,7 @@ class Car(RoadObject):
             return
         if self.sensibility>1:
             self.sensibility=1
-        if self.position.near(self.waypoints[0]):
+        if self.position.near(self.waypoints[0],4):
             # we passed the target
             self.waypoints.pop(0)
             if len(self.waypoints)<1:
@@ -565,13 +576,13 @@ class Car(RoadObject):
         left=self.degrees-rad
         if left<0:
             left=round(left+math.pi*2,const.FLOAT_PRECISION)
-        right=rad-self.degrees
+        right=rad-self.degrees# migliorabile?
         if right<0:
             right=round(right+math.pi*2,const.FLOAT_PRECISION)
         if right<left:
             self.steer(right)
         else:
-            self.steer(left)
+            self.steer(-left)
         print(right,left)
 
         if self.waypoints[0].velocity>self.velocity:
