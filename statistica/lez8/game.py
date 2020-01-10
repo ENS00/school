@@ -59,7 +59,7 @@ class Game():
                                     objects.Position(const.W_WIDTH,const.W_HEIGHT/2+const.CAR_HEIGHT*0.75))
 
         # Traffic lights
-        self.tlight_up=self.lane_up_entry.createTrafficLight(const.TL_RED)
+        self.tlight_up=self.lane_up_entry.createTrafficLight(const.TL_YELLOW)#TL_RED
         self.tlight_left=self.lane_left_entry.createTrafficLight(const.TL_GREEN)
         self.tlight_down=self.lane_down_entry.createTrafficLight(const.TL_RED)
         self.tlight_right=self.lane_right_entry.createTrafficLight(const.TL_GREEN)
@@ -88,8 +88,8 @@ class Game():
         self.crossroad.draw()
         
         self.cars=[]
-        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[1]))
-        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[0]))
+        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[0].startLanePoints[0]))
+        #self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[0]))
         self.cars[0].draw()
         self.cars[0].setObjective(self.crossroad.exits[2])
 
