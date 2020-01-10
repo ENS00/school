@@ -1,0 +1,7 @@
+Data Analysis eXpressions è un linguaggio funzionale per ottenere più informazioni dai dati esistenti
+Operator overloading, a seconda dell'operatore eseguo il cast
+'NomeTabella'[NomeColonna]
+
+misure e colonne calcolate:
+	- le prime sono calcoli in memoria e non persistenti (a scopo rappresentativo)
+	- le colonne calcolate sono informazioni in più tratte da colonne esistenti

@@ -548,7 +548,7 @@ class Car(RoadObject):
     def predict(self, t=0, objective=None):
         if not t and not objective:
             t=1
-        t = int(t*100)
+        # t = int(t*100)
         velocity = self.velocity
         degrees = self.degrees
 
@@ -679,22 +679,24 @@ class Car(RoadObject):
                 objective1=Waypoint(currentEndLane.x+10,currentEndLane.y,0)
             elif currentLane.isA('right'):
                 objective1=Waypoint(currentEndLane.x-10,currentEndLane.y,0)
-            canPassTL = self.predict(20,objective1).desidered
+            canPassTL = self.predict(40,objective1).desidered
             if not canPassTL:
                 objective=objective1
             else:
                 self.accelerate()
             print('yellow tlight')
 
-        if objective.velocity > futureWaypoint.velocity and futureWaypoint.desidered:
+        if (objective.velocity > futureWaypoint.velocity or Position.distance(self.position,objective)>self.velocity*20) and futureWaypoint.desidered:
             print('OK! :) but slow')
             self.accelerate(self.sensibility)
             futureWaypoint = self.predict(objective=objective)
-            if objective.velocity and objective.velocity > futureWaypoint.velocity:
+            if objective.velocity > futureWaypoint.velocity:
                 self.sensibility += 0.1
                 self.accelerate(self.sensibility)
             else:
                 self.sensibility -= 0.1
+                if self.sensibility<0.1:
+                    self.sensibility = 0.1
                 self.accelerate(self.sensibility)
         elif not futureWaypoint.desidered and Position.distance(self.position,objective)<self.velocity*10:
             print('i have to turn badly')
@@ -702,7 +704,7 @@ class Car(RoadObject):
             self.brake(self.sensibility)
         elif self.velocity>Position.distance(self.position,objective)/100 or objective.velocity < futureWaypoint.velocity:
             print('i have to turn')
-            self.sensibility = 10/Position.distance(self.position,objective)
+            self.sensibility = 100/Position.distance(self.position,objective)
             self.brake(self.sensibility)
         elif self.velocity<5:
             print('basically nothing')
