@@ -3,6 +3,14 @@ import const
 import objects
 import gametime
 
+class IDassigner():
+    def __init__(self):
+        self.__idassign = 0
+    
+    def getNewID(self):
+        self.__idassign += 1
+        return self.__idassign
+
 class TimePanel(objects.GraphicObject):
     def __init__(self,canvas,gametime):
         super().__init__(canvas)
@@ -23,11 +31,13 @@ class Game():
         self.tk.title(const.W_TITLE)
         self.canvas = tkinter.Canvas(self.tk, width=const.W_WIDTH, height=const.W_HEIGHT, bg=const.W_BACKGROUND)
         self.canvas.pack()
+        self.canvas.idassigner = IDassigner()
 
         self.statusLights=None
         self.time = gametime.Gametime(const.TIME_SPEED)
         self.timepanel=TimePanel(self.canvas,self.time)
 
+        self.cars=[]
         self.removeObjects=[]
 
     def drawField(self):
@@ -59,7 +69,7 @@ class Game():
                                     objects.Position(const.W_WIDTH,const.W_HEIGHT/2+const.CAR_HEIGHT*0.75))
 
         # Traffic lights
-        self.tlight_up=self.lane_up_entry.createTrafficLight(const.TL_YELLOW)#TL_RED
+        self.tlight_up=self.lane_up_entry.createTrafficLight(const.TL_RED)
         self.tlight_left=self.lane_left_entry.createTrafficLight(const.TL_GREEN)
         self.tlight_down=self.lane_down_entry.createTrafficLight(const.TL_RED)
         self.tlight_right=self.lane_right_entry.createTrafficLight(const.TL_GREEN)
@@ -71,10 +81,10 @@ class Game():
                                         self.lane_right_entry,self.lane_right_exit))
 
         # turn on traffic lights
-        self.tlight_up.turnOn()
-        self.tlight_down.turnOn()
-        self.tlight_left.turnOn()
-        self.tlight_right.turnOn()
+        # self.tlight_up.turnOn()
+        # self.tlight_down.turnOn()
+        # self.tlight_left.turnOn()
+        # self.tlight_right.turnOn()
 
         # let's draw everything
         self.lane_up_entry.draw()
@@ -87,12 +97,21 @@ class Game():
         self.lane_right_exit.draw()
         self.crossroad.draw()
         
-        self.cars=[]
-        self.cars.append(objects.Car(self.canvas,self.crossroad.entries[0].startLanePoints[0]))
-        #self.cars.append(objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[0]))
-        self.cars[0].draw()
-        self.cars[0].setObjective(self.crossroad.exits[2])
+        self.spawnCar()
 
+    def spawnCar(self):
+        # newCar = objects.Car(self.canvas,self.crossroad.entries[0].startLanePoints[0])
+        # self.cars.append(newCar)
+        # newCar.draw()
+        # newCar.setObjective(self.crossroad.exits[2])
+        newCar = objects.Car(self.canvas,self.crossroad.entries[3].startLanePoints[1])
+        self.cars.append(newCar)
+        newCar.draw()
+        newCar.setObjective(self.crossroad.exits[1])
+        newCar2 = objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[1])
+        self.cars.append(newCar2)
+        newCar2.draw()
+        newCar2.setObjective(self.crossroad.exits[3])
 
     def updateField(self):
         self.tlight_up.draw()
@@ -104,7 +123,6 @@ class Game():
             i.update()
 
     def loop(self):
-        # sum 10 every time to gametime???
         currentTimeFromStart = int(self.time.getTime())
 
         # control all trafficlights
@@ -114,14 +132,17 @@ class Game():
             self.tlight_down.update()
             self.tlight_left.update()
             self.tlight_right.update()
+        # if currentTimeFromStart % 163 > 161:
+        #     self.spawnCar()
 
         # the cars are moving
         for i in self.cars:
-            i.drive()
-            if i.position.x >= const.W_WIDTH or i.position.y >= const.W_HEIGHT:
+            if i.position.x > const.W_WIDTH or i.position.y > const.W_HEIGHT:
                 # destroy object
                 self.canvas.delete(i.graphic)
                 self.removeObjects.append(i)
+            else:
+                i.drive(self.cars)
 
         for i in self.removeObjects:
             self.cars.remove(i)
