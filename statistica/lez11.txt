@@ -1,0 +1,22 @@
+- ki^2 di indipendenza (serve per trovare se due variabili sono indipendenti)
+(x,y)   x,y finiti
+ESEMPIO
+n=60    x,y
+        x=occhio sinistro/destro
+        y=mano sinistra/destra
+        occhio sx & mano sx = 14
+        occhio sx & mano dx = 19
+        occhio dx & mano sx = 6
+        occhio dx & mano dx = 21
+    consuntivo di Pearson
+    gradi libertà = (numX-1)*(numY-1)
+    confrontare con tabella ki^2 (per trovare la percentuale)
+
+- Test statistico
+    Ipotesi -> applicazione consuntivo -> verifica con distribuzione consuntivo ------> accettazione ipotesi
+        A                                            |
+         \-------------------------------------------/
+                       rigetto ipotesi
+- PCA
+- FA
+- Ragionamenti generali

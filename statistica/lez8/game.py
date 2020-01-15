@@ -104,14 +104,14 @@ class Game():
         # self.cars.append(newCar)
         # newCar.draw()
         # newCar.setObjective(self.crossroad.exits[2])
-        newCar = objects.Car(self.canvas,self.crossroad.entries[3].startLanePoints[1])
+        newCar = objects.Car(self.canvas,self.crossroad.entries[2].startLanePoints[1])
         self.cars.append(newCar)
         newCar.draw()
-        newCar.setObjective(self.crossroad.exits[1])
-        newCar2 = objects.Car(self.canvas,self.crossroad.entries[1].startLanePoints[1])
+        newCar.setObjective(self.crossroad.exits[0])
+        newCar2 = objects.Car(self.canvas,self.crossroad.entries[3].startLanePoints[1])
         self.cars.append(newCar2)
         newCar2.draw()
-        newCar2.setObjective(self.crossroad.exits[3])
+        newCar2.setObjective(self.crossroad.exits[1])
 
     def updateField(self):
         self.tlight_up.draw()
@@ -137,7 +137,7 @@ class Game():
 
         # the cars are moving
         for i in self.cars:
-            if i.position.x > const.W_WIDTH or i.position.y > const.W_HEIGHT:
+            if i.position.x > const.W_WIDTH or i.position.y > const.W_HEIGHT or i.position.x < 0 or i.position.y < 0:
                 # destroy object
                 self.canvas.delete(i.graphic)
                 self.removeObjects.append(i)
