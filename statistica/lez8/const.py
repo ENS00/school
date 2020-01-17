@@ -2,7 +2,6 @@ from math import sqrt
 # here there are all constants
 # CAR_WH_RATIO
 # CAR_DIM=36
-CAR_MAX_SPEED = 90
 TIME_SPEED = 60  # REAL 1s = GAME 60s
 
 # Variables
@@ -17,6 +16,9 @@ CAR_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9),FLOAT_PRECISION)  # dimens
 ROAD_LINE_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/60/60)) # width of the white line
 ROAD_LINE_SIZE = round(sqrt(W_WIDTH*W_HEIGHT/100/100)) # size of the white line
 CAR_POWER = round(sqrt(W_WIDTH*W_HEIGHT/1600/1600),FLOAT_PRECISION)
+CAR_ACCELERATION = 249/1200 # this number permits to have a maximum velocity of 90
+VEHICLE_FRICTION = 0.0006   # friction constant combined with car acceleration we get the maximum velocity of a vehicle
+CAR_SPAWN_SPEED = 30
 
 # Colors
 W_BACKGROUND = 'lightgreen'

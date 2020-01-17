@@ -1,0 +1,7 @@
+evaluation context = filter context + [row context]
+filter context (condizione per iterare durante aggregazione)
+row context (riga iterata durante funzione di aggregazione)
+
+il risultato totale non è condizionato dai risultati parziali, ma calcolato a sè utilizzando il filter context
+
+visual total = totale dei dati visualizzabili (nel caso di una tabella filtrata da selezioni si intende quel calcolo)

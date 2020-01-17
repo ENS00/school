@@ -81,10 +81,10 @@ class Game():
                                         self.lane_right_entry,self.lane_right_exit))
 
         # turn on traffic lights
-        # self.tlight_up.turnOn()
-        # self.tlight_down.turnOn()
-        # self.tlight_left.turnOn()
-        # self.tlight_right.turnOn()
+        self.tlight_up.turnOn()
+        self.tlight_down.turnOn()
+        self.tlight_left.turnOn()
+        self.tlight_right.turnOn()
 
         # let's draw everything
         self.lane_up_entry.draw()
@@ -96,7 +96,7 @@ class Game():
         self.lane_right_entry.draw()
         self.lane_right_exit.draw()
         self.crossroad.draw()
-        
+        self.a=0##########################################################################################à
         self.spawnCar()
 
     def spawnCar(self):
@@ -108,10 +108,10 @@ class Game():
         self.cars.append(newCar)
         newCar.draw()
         newCar.setObjective(self.crossroad.exits[0])
-        newCar2 = objects.Car(self.canvas,self.crossroad.entries[3].startLanePoints[1])
-        self.cars.append(newCar2)
-        newCar2.draw()
-        newCar2.setObjective(self.crossroad.exits[1])
+        # newCar2 = objects.Car(self.canvas,self.crossroad.entries[3].startLanePoints[1])
+        # self.cars.append(newCar2)
+        # newCar2.draw()
+        # newCar2.setObjective(self.crossroad.exits[1])
 
     def updateField(self):
         self.tlight_up.draw()
@@ -132,8 +132,10 @@ class Game():
             self.tlight_down.update()
             self.tlight_left.update()
             self.tlight_right.update()
-        # if currentTimeFromStart % 163 > 161:
-        #     self.spawnCar()
+
+        if currentTimeFromStart//200 % 10 != self.a:
+            self.a = currentTimeFromStart//200 % 10
+            self.spawnCar()
 
         # the cars are moving
         for i in self.cars:

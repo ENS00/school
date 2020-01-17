@@ -451,26 +451,35 @@ class Crossroad(RoadObject):
         # this point is not in a lane
         return None, None
     
-    def hasPrecedence(self,pos1,pos2):
-        lanePos1,laneN1 = self.getLaneFromPos(pos1)
-        lanePos2,laneN2 = self.getLaneFromPos(pos2)
-        if lanePos1 and lanePos2:
-            if(lanePos1.isA('up') and lanePos2.isA('right')):
+    def hasPrecedence(self,car1,car2):
+        ## it's possible to get collisions from cars that turn
+        if car2.objectiveDirection == const.RIGHT:
+            return False
+        if car1.objectiveDirection == const.RIGHT:
+            return True
+        if car1.objectiveDirection == car2.objectiveDirection:
+            if(car1.spawnDirection == const.UP and car2.spawnDirection == const.RIGHT):
                 return True
-            if(lanePos1.isA('left') and lanePos2.isA('up')):
+            if(car1.spawnDirection == const.LEFT and car2.spawnDirection == const.UP):
                 return True
-            if(lanePos1.isA('down') and lanePos2.isA('left')):
+            if(car1.spawnDirection == const.DOWN and car2.spawnDirection == const.LEFT):
                 return True
-            if(lanePos1.isA('right') and lanePos2.isA('down')):
+            if(car1.spawnDirection == const.RIGHT and car2.spawnDirection == const.DOWN):
                 return True
-        return False
+            return False
+        if car2.objectiveDirection == const.FORWARD:
+            return False
+        if car1.objectiveDirection == const.FORWARD:
+            return True
+        
+
 
 class Car(RoadObject):
     def __init__(self, canvas, pos, tags=[]):
         super().__init__(canvas)
         self.position = pos.clonePosition()
         self.tags = tags
-        self.velocity = 50
+        self.velocity = const.CAR_SPAWN_SPEED
         self.degrees = 0
         self.steerDeg = 0
         self.acceleration = 0
@@ -494,19 +503,19 @@ class Car(RoadObject):
                                                       self.sides[1].x, self.sides[1].y,
                                                       self.sides[2].x, self.sides[2].y,
                                                       self.sides[3].x, self.sides[3].y,
-                                                      fill=const.RED_ON, width=0)
+                                                      fill=const.RED_ON,outline='black',width=3)
 
     def update(self):
-        self.velocity += self.acceleration*249/1200
+        self.velocity += self.acceleration*const.CAR_ACCELERATION
         if self.velocity > 0:
             self.velocity -= self.deceleration/1.5
         self.acceleration = 0
         self.deceleration = 0
         if self.velocity > 0:
-            self.velocity = round(self.velocity-0.0006*self.velocity - math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
+            self.velocity = round(self.velocity - const.VEHICLE_FRICTION*self.velocity - math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
         if self.velocity < 0:
             self.velocity = 0
-        self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.2+const.CAR_MAX_SPEED))
+        self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1))
         calc_x = round(math.cos(self.degrees)*self.velocity / 6*const.CAR_POWER, const.FLOAT_PRECISION)
         calc_y = round(math.sin(self.degrees)*self.velocity / 6*const.CAR_POWER, const.FLOAT_PRECISION)
         self.move(calc_x, calc_y)
@@ -544,10 +553,15 @@ class Car(RoadObject):
         # straight the car with the lane
         if currentLane.isA('up'):
             self.rotate(-math.pi/2)
+            self.spawnDirection = const.UP
         elif currentLane.isA('down'):
             self.rotate(math.pi/2)
+            self.spawnDirection = const.DOWN
         elif currentLane.isA('left'):
             self.rotate(math.pi)
+            self.spawnDirection = const.LEFT
+        else:
+            self.spawnDirection = const.RIGHT
         if not currentLane:
             raise Exception('This object is not in a lane')
         if not currentLane.isA('entry'):
@@ -588,7 +602,7 @@ class Car(RoadObject):
             self.objectiveDirection = const.FORWARD
 
         # exit of new line
-        self.waypoints.append(Waypoint(lane.endLanePoints[rightS].x, lane.endLanePoints[rightS].y, const.CAR_MAX_SPEED))
+        self.waypoints.append(Waypoint(lane.endLanePoints[rightS].x, lane.endLanePoints[rightS].y, 90))
 
         # self.canvas.create_oval(
         #         currentLane.endLanePoints[rightS].x-45,currentLane.endLanePoints[rightS].y-5,
@@ -613,15 +627,15 @@ class Car(RoadObject):
         myp = self.position.clonePosition()
         if not objective:
             for i in range(1, t+1):
-                velocity += self.acceleration*249/1200
+                velocity += self.acceleration*const.CAR_ACCELERATION
                 if velocity > 0:
                     velocity -= self.deceleration/1.5
                 if velocity > 0:
-                    velocity = round(self.velocity-0.0006*self.velocity -
+                    velocity = round(self.velocity-const.VEHICLE_FRICTION*self.velocity -
                                     math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
                 if velocity < 0:
                     velocity = 0
-                degrees += round(self.steerDeg*velocity / (velocity*velocity*1.2+const.CAR_MAX_SPEED), const.FLOAT_PRECISION)
+                degrees += round(self.steerDeg*velocity / (velocity*velocity*1.25+1), const.FLOAT_PRECISION)
                 calc_x += round(math.cos(degrees)*velocity / 6*const.CAR_POWER, const.FLOAT_PRECISION)
                 calc_y += round(math.sin(degrees)*velocity / 6*const.CAR_POWER, const.FLOAT_PRECISION)
             myp.move(calc_x, calc_y)
@@ -631,15 +645,15 @@ class Car(RoadObject):
             count = 0
             while velocity > 0 and last_distance>=Position.distance(myp,objective):
                 last_distance = Position.distance(myp,objective)
-                velocity += self.acceleration*249/1200
+                velocity += self.acceleration*const.CAR_ACCELERATION
                 if velocity > 0:
                     velocity -= self.deceleration/1.5
                 if velocity > 0:
-                    velocity = round(self.velocity-0.0006*self.velocity -
+                    velocity = round(self.velocity-const.VEHICLE_FRICTION*self.velocity -
                                     math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
                 if velocity < 0:
                     velocity = 0
-                degrees += round(self.steerDeg*velocity / (velocity*velocity*1.2+const.CAR_MAX_SPEED), const.FLOAT_PRECISION)
+                degrees += round(self.steerDeg*velocity / (velocity*velocity*1.25+1), const.FLOAT_PRECISION)
                 calc_x += round(math.cos(degrees)*velocity / 6*const.CAR_POWER, const.FLOAT_PRECISION)
                 calc_y += round(math.sin(degrees)*velocity / 6*const.CAR_POWER, const.FLOAT_PRECISION)
                 myp.move(calc_x, calc_y)
@@ -656,7 +670,62 @@ class Car(RoadObject):
             if not myp.near(nearestPoint,20) and velocity > 0:
                 return Waypoint(nearestPoint.x, nearestPoint.y, velocity, False)
         return Waypoint(myp.x, myp.y, velocity)
-    # decide what to do...
+
+    def predictCollide(self,car,t=1):
+        velocity1 = self.velocity
+        degrees1 = self.degrees
+        velocity2 = car.velocity
+        degrees2 = car.degrees
+
+        myp1 = self.position.clonePosition()
+        myp2 = car.position.clonePosition()
+
+        distance = myp1.distance(myp2)
+
+        for i in range(1, t+1):
+            velocity1 += self.acceleration*const.CAR_ACCELERATION
+            velocity2 += car.acceleration*const.CAR_ACCELERATION
+            if velocity1 > 0:
+                velocity1 -= self.deceleration/3*2
+            if velocity2 > 0:
+                velocity2 -= car.deceleration/3*2
+            if velocity1 > 0:
+                velocity1 = self.velocity - self.velocity*const.VEHICLE_FRICTION - math.fabs(self.steerDeg/10)
+            if velocity2 > 0:
+                velocity2 = car.velocity - car.velocity*const.VEHICLE_FRICTION - math.fabs(car.steerDeg/10)
+            if velocity1 < 0:
+                velocity1 = 0
+            if velocity2 < 0:
+                velocity2 = 0
+            degrees1 += self.steerDeg*velocity1 / (velocity1*velocity1*1.25)
+            degrees2 += car.steerDeg*velocity2 / (velocity2*velocity2*1.25)
+
+            oldp1 = myp1.clonePosition()
+            oldp2 = myp2.clonePosition()
+            myp1.move(math.cos(degrees1)*velocity1 / 6*const.CAR_POWER,
+                        math.sin(degrees1)*velocity1 / 6*const.CAR_POWER)
+            myp2.move(math.cos(degrees2)*velocity2 / 6*const.CAR_POWER,
+                        math.sin(degrees2)*velocity2 / 6*const.CAR_POWER)
+            newDistance=myp1.distance(myp2)
+            if newDistance>=distance:
+                # from now cars are moving away
+                if i>1:
+                    selfSide00 = Position(self.sides[0].x+oldp1.x-self.position.x,self.sides[0].y+oldp1.y-self.position.y)
+                    selfSide01 = Position(self.sides[1].x+oldp1.x-self.position.x,self.sides[1].y+oldp1.y-self.position.y)
+                    selfSide02 = Position(self.sides[2].x+oldp1.x-self.position.x,self.sides[2].y+oldp1.y-self.position.y)
+                    selfSide03 = Position(self.sides[3].x+oldp1.x-self.position.x,self.sides[3].y+oldp1.y-self.position.y)
+                    selfSide10 = Position(car.sides[0].x+oldp2.x-car.position.x,car.sides[0].y+oldp2.y-car.position.y)
+                    selfSide11 = Position(car.sides[1].x+oldp2.x-car.position.x,car.sides[1].y+oldp2.y-car.position.y)
+                    selfSide12 = Position(car.sides[2].x+oldp2.x-car.position.x,car.sides[2].y+oldp2.y-car.position.y)
+                    # check collision TODO ADD TOLLERANCE
+                    if (selfSide00.between(selfSide10,selfSide11,0) and selfSide00.between(selfSide11,selfSide12,0)) or (selfSide01.between(selfSide10,selfSide11,0) and selfSide01.between(selfSide11,selfSide12,0)) or (selfSide02.between(selfSide10,selfSide11,0) and selfSide02.between(selfSide11,selfSide12,0)) or (selfSide03.between(selfSide10,selfSide11,0) and selfSide03.between(selfSide11,selfSide12,0)):
+                        return True
+                return False
+            else:
+                distance = newDistance
+        # cars will move closer but will not collide
+        return False
+
 
     def drive(self,allcars):
         if not hasattr(self, 'waypoints') or len(self.waypoints) < 1:
@@ -737,22 +806,9 @@ class Car(RoadObject):
         
         # check for cars with more precedence
         for car in allcars:
-            if car.position.distance(self.position)<300 and (self.crossroad.hasPrecedence(car.position,self.position) or (not self.crossroad.hasPrecedence(self.position,car.position) and car.id<self.id)):
-                for i in range(int(car.position.distance(self.position)/10),40):
-                    ### TO DO FUNCTION
-                    myFuturePos = self.predict(i)
-                    selfSide00 = Position(self.sides[0].x+myFuturePos.x-self.position.x,self.sides[0].y+myFuturePos.y-self.position.y)
-                    selfSide01 = Position(self.sides[1].x+myFuturePos.x-self.position.x,self.sides[1].y+myFuturePos.y-self.position.y)
-                    selfSide02 = Position(self.sides[2].x+myFuturePos.x-self.position.x,self.sides[2].y+myFuturePos.y-self.position.y)
-                    selfSide03 = Position(self.sides[3].x+myFuturePos.x-self.position.x,self.sides[3].y+myFuturePos.y-self.position.y)
-                    futurePosition = car.predict(i)
-                    selfSide10 = Position(car.sides[0].x+futurePosition.x-car.position.x,car.sides[0].y+futurePosition.y-car.position.y)
-                    selfSide11 = Position(car.sides[1].x+futurePosition.x-car.position.x,car.sides[1].y+futurePosition.y-car.position.y)
-                    selfSide12 = Position(car.sides[2].x+futurePosition.x-car.position.x,car.sides[2].y+futurePosition.y-car.position.y)
-                    ###
-                    # print(futurePosition,futurePosition.projection(selfSide0,selfSide1),selfSide0,selfSide1)
-                    # print(futurePosition,futurePosition.projection(selfSide1,selfSide2),selfSide1,selfSide2)
-                    if (selfSide00.between(selfSide10,selfSide11,0) and selfSide00.between(selfSide11,selfSide12,0)) or (selfSide01.between(selfSide10,selfSide11,0) and selfSide01.between(selfSide11,selfSide12,0)) or (selfSide02.between(selfSide10,selfSide11,0) and selfSide02.between(selfSide11,selfSide12,0)) or (selfSide03.between(selfSide10,selfSide11,0) and selfSide03.between(selfSide11,selfSide12,0)):
-                        self.brake(150/Position.distance(futurePosition,myFuturePos))
-                        print('WARNING',self.id,self.deceleration)
-                        break
+            if car.position.distance(self.position)<300 and (self.crossroad.hasPrecedence(car,self) or (not self.crossroad.hasPrecedence(self,car) and car.id<self.id)):
+                # print('check for',self.id)
+                if (self.predictCollide(car,40)):
+                    self.brake(1)#FIX
+                    print('WARNING',self.id,self.deceleration)
+                    break
