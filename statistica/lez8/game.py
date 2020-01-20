@@ -37,36 +37,36 @@ class Game():
         self.time = gametime.Gametime(const.TIME_SPEED)
         self.timepanel=TimePanel(self.canvas,self.time)
 
-        self.cars=[]
+        self.vehicles=[]
         self.removeObjects=[]
 
     def drawField(self):
         self.canvas.create_rectangle(0, 0, self.canvas.winfo_width(), self.canvas.winfo_height(), width=0)
 
         #lanes
-        self.lane_up_entry = objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2-const.CAR_HEIGHT*0.75, 0),
-                                          objects.Position(const.W_WIDTH/2-const.CAR_HEIGHT*0.75, const.W_HEIGHT/2-const.CAR_HEIGHT*1.5))
+        self.lane_up_entry = objects.Lane(self.canvas, objects.Position(const.POSITION_A_x, 0),
+                                          objects.Position(const.POSITION_A_x, const.POSITION_A_y))
         
-        self.lane_up_exit = objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2+const.CAR_HEIGHT*0.75, const.W_HEIGHT/2-const.CAR_HEIGHT*1.5),
-                                         objects.Position(const.W_WIDTH/2+const.CAR_HEIGHT*0.75, 0))
+        self.lane_up_exit = objects.Lane(self.canvas, objects.Position(const.POSITION_C_x, const.POSITION_A_y),
+                                         objects.Position(const.POSITION_C_x, 0))
         
-        self.lane_left_entry = objects.Lane(self.canvas, objects.Position(0, const.W_HEIGHT/2+const.CAR_HEIGHT*0.75),
-                                           objects.Position(const.W_WIDTH/2-const.CAR_HEIGHT*1.5, const.W_HEIGHT/2+const.CAR_HEIGHT*0.75))
+        self.lane_left_entry = objects.Lane(self.canvas, objects.Position(0, const.POSITION_C_y),
+                                           objects.Position(const.POSITION_B_x, const.POSITION_C_y))
         
-        self.lane_left_exit = objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2-const.CAR_HEIGHT*1.5, const.W_HEIGHT/2-const.CAR_HEIGHT*0.75),
-                                            objects.Position(0, const.W_HEIGHT/2-const.CAR_HEIGHT*0.75))
+        self.lane_left_exit = objects.Lane(self.canvas, objects.Position(const.POSITION_B_x, const.POSITION_B_y),
+                                            objects.Position(0, const.POSITION_B_y))
         
-        self.lane_down_entry = objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2+const.CAR_HEIGHT*0.75, const.W_HEIGHT),
-                                            objects.Position(const.W_WIDTH/2+const.CAR_HEIGHT*0.75, const.W_HEIGHT/2+const.CAR_HEIGHT*1.5))
+        self.lane_down_entry = objects.Lane(self.canvas, objects.Position(const.POSITION_C_x, const.W_HEIGHT),
+                                            objects.Position(const.POSITION_C_x, const.POSITION_D_y))
         
-        self.lane_down_exit = objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2-const.CAR_HEIGHT*0.75, const.W_HEIGHT/2+const.CAR_HEIGHT*1.5),
-                                           objects.Position(const.W_WIDTH/2-const.CAR_HEIGHT*0.75, const.W_HEIGHT))
+        self.lane_down_exit = objects.Lane(self.canvas, objects.Position(const.POSITION_A_x, const.POSITION_D_y),
+                                           objects.Position(const.POSITION_A_x, const.W_HEIGHT))
         
-        self.lane_right_entry=objects.Lane(self.canvas, objects.Position(const.W_WIDTH,const.W_HEIGHT/2-const.CAR_HEIGHT*0.75),
-                                    objects.Position(const.W_WIDTH/2+const.CAR_HEIGHT*1.5,const.W_HEIGHT/2-const.CAR_HEIGHT*0.75))
+        self.lane_right_entry=objects.Lane(self.canvas, objects.Position(const.W_WIDTH,const.POSITION_B_y),
+                                    objects.Position(const.POSITION_D_x,const.POSITION_B_y))
         
-        self.lane_right_exit=objects.Lane(self.canvas, objects.Position(const.W_WIDTH/2+const.CAR_HEIGHT*1.5,const.W_HEIGHT/2+const.CAR_HEIGHT*0.75),
-                                    objects.Position(const.W_WIDTH,const.W_HEIGHT/2+const.CAR_HEIGHT*0.75))
+        self.lane_right_exit=objects.Lane(self.canvas, objects.Position(const.POSITION_D_x,const.POSITION_C_y),
+                                    objects.Position(const.W_WIDTH,const.POSITION_C_y))
 
         # Traffic lights
         self.tlight_up=self.lane_up_entry.createTrafficLight(const.TL_RED)
@@ -96,22 +96,9 @@ class Game():
         self.lane_right_entry.draw()
         self.lane_right_exit.draw()
         self.crossroad.draw()
-        self.a=0##########################################################################################à
-        self.spawnCar()
-
-    def spawnCar(self):
-        # newCar = objects.Car(self.canvas,self.crossroad.entries[0].startLanePoints[0])
-        # self.cars.append(newCar)
-        # newCar.draw()
-        # newCar.setObjective(self.crossroad.exits[2])
-        newCar = objects.Car(self.canvas,self.crossroad.entries[2].startLanePoints[1])
-        self.cars.append(newCar)
-        newCar.draw()
-        newCar.setObjective(self.crossroad.exits[0])
-        # newCar2 = objects.Car(self.canvas,self.crossroad.entries[3].startLanePoints[1])
-        # self.cars.append(newCar2)
-        # newCar2.draw()
-        # newCar2.setObjective(self.crossroad.exits[1])
+        self.a=0##########################################################################################
+        newVehicle=self.crossroad.spawnVehicle()
+        self.vehicles.append(newVehicle)
 
     def updateField(self):
         self.tlight_up.draw()
@@ -119,7 +106,7 @@ class Game():
         self.tlight_left.draw()
         self.tlight_right.draw()
         self.timepanel.update()
-        for i in self.cars:
+        for i in self.vehicles:
             i.update()
 
     def loop(self):
@@ -135,19 +122,22 @@ class Game():
 
         if currentTimeFromStart//200 % 10 != self.a:
             self.a = currentTimeFromStart//200 % 10
-            self.spawnCar()
+            newVehicle=self.crossroad.spawnVehicle()
+            self.vehicles.append(newVehicle)
 
-        # the cars are moving
-        for i in self.cars:
+        # the vehicles are moving
+        for i in self.vehicles:
             if i.position.x > const.W_WIDTH or i.position.y > const.W_HEIGHT or i.position.x < 0 or i.position.y < 0:
                 # destroy object
                 self.canvas.delete(i.graphic)
+                if i.isA('Truck'):
+                    self.canvas.delete(i.graphic_trailer)
                 self.removeObjects.append(i)
             else:
-                i.drive(self.cars)
+                i.drive(self.vehicles)
 
         for i in self.removeObjects:
-            self.cars.remove(i)
+            self.vehicles.remove(i)
 
         self.removeObjects.clear()
 
