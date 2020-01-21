@@ -599,10 +599,11 @@ class Vehicle(RoadObject):
             self.velocity = round(self.velocity - const.VEHICLE_FRICTION*self.velocity - math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
         if self.velocity < 0:
             self.velocity = 0
-        self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1))
-        calc_x = round(math.cos(self.degrees)*self.velocity*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-        calc_y = round(math.sin(self.degrees)*self.velocity*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-        self.move(calc_x, calc_y)
+        else:
+            self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1))
+            calc_x = round(math.cos(self.degrees)*self.velocity*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
+            calc_y = round(math.sin(self.degrees)*self.velocity*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
+            self.move(calc_x, calc_y)
 
     def simulateUpdate(self):
         self.velocity += self.acceleration*self.power
@@ -614,9 +615,39 @@ class Vehicle(RoadObject):
             self.velocity = self.velocity - math.fabs(self.steerDeg/10)
         if self.velocity < 0:
             self.velocity = 0
-        self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1), False)
-        self.move(math.cos(self.degrees)*self.velocity*const.VEHICLE_RENDER,
+        else:
+            self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1), False)
+            self.move(math.cos(self.degrees)*self.velocity*const.VEHICLE_RENDER,
                     math.sin(self.degrees)*self.velocity*const.VEHICLE_RENDER, False)
+
+    @staticmethod  
+    def simulateUpdate2(vel,deg,position,sides,acceleration,deceleration,power,steerDeg):
+        vel += acceleration*power
+        if vel > 0:
+            vel -= deceleration/1.5
+        if vel > 0:
+            vel = vel - math.fabs(steerDeg/10)
+        if vel < 0:
+            vel = 0
+        else:
+            rad = steerDeg*vel / (vel*vel*1.25+1)
+            deg += rad
+            if deg > math.pi:
+                deg = deg-math.pi*2
+            if deg < -math.pi:
+                deg = deg+math.pi*2
+
+            const.ROTATE(sides[0], position, rad)
+            const.ROTATE(sides[1], position, rad)
+            const.ROTATE(sides[2], position, rad)
+            const.ROTATE(sides[3], position, rad)
+
+            x = math.cos(deg)*vel*const.VEHICLE_RENDER
+            y = math.sin(deg)*vel*const.VEHICLE_RENDER
+            position.move(x, y)
+            for i in sides:
+                i.move(x, y)
+        return sides,position,vel
 
 
     def steer(self, pow=0):
@@ -721,57 +752,70 @@ class Vehicle(RoadObject):
 
         if not t and not objective:
             t=1
-        # t = int(t*100)
 
-        me = self.clone()
+        mypos = self.position.clonePosition()
+        myvel = self.velocity
+        mydeg = self.degrees
+        mysides = [self.sides[0].clonePosition(),self.sides[1].clonePosition(),
+                self.sides[2].clonePosition(),self.sides[3].clonePosition()]
 
         if not objective:
             for i in range(1, t+1):
-                me.simulateUpdate()
+                mysides,mypos,myvel = Vehicle.simulateUpdate2(myvel,mydeg,mypos,mysides,self.acceleration,
+                                                                self.deceleration,self.power,self.steerDeg)
         # predict a non-linear movement until it moves far away the desidered point
         else:
             last_distance = 100000
             count = 0
-            while me.velocity > 0 and last_distance>=Position.distance(me.position,objective):
-                last_distance = Position.distance(me.position,objective)
-                oldpos = me.position.clonePosition()
-                me.simulateUpdate()
+            while myvel > 0 and last_distance>=Position.distance(mypos,objective):
+                last_distance = Position.distance(mypos,objective)
+                oldpos = mypos.clonePosition()
+                mysides,mypos,myvel = Vehicle.simulateUpdate2(myvel,mydeg,mypos,mysides,self.acceleration,
+                                                                self.deceleration,self.power,self.steerDeg)
                 count += 1
             
-            nearestPoint = objective.projection(me.position,oldpos)
+            nearestPoint = objective.projection(mypos,oldpos)
             
             if t and t < count:
-                return Waypoint(nearestPoint.x, nearestPoint.y, me.velocity, False)
+                return Waypoint(nearestPoint.x, nearestPoint.y, myvel, False)
             else:
-                return Waypoint(me.position.x, me.position.y, me.velocity)
-            if not me.position.near(nearestPoint,20) and me.velocity > 0:
-                return Waypoint(nearestPoint.x, nearestPoint.y, me.velocity, False)
-        return Waypoint(me.position.x, me.position.y, me.velocity)
+                return Waypoint(mypos.x, mypos.y, myvel)
+            if not mypos.near(nearestPoint,20) and myvel > 0:
+                return Waypoint(nearestPoint.x, nearestPoint.y, myvel, False)
+        return Waypoint(mypos.x, mypos.y, myvel)
 
     def predictCollide(self,vehicle,t=1,tollerance=6):
         startT=time()
-        me = self.clone()
-        vehicle = vehicle.clone()
 
-        # myp1 = me.position.clonePosition()
-        # myp2 = vehicle.position.clonePosition()
+        mypos = self.position.clonePosition()
+        myvel = self.velocity
+        mydeg = self.degrees
+        mysides = [self.sides[0].clonePosition(),self.sides[1].clonePosition(),
+                self.sides[2].clonePosition(),self.sides[3].clonePosition()]
+        vehiclepos = vehicle.position.clonePosition()
+        vehiclevel = self.velocity
+        vehicledeg = self.degrees
+        vehiclesides = [vehicle.sides[0].clonePosition(),vehicle.sides[1].clonePosition(),
+                vehicle.sides[2].clonePosition(),vehicle.sides[3].clonePosition()]
 
-        distance = me.position.distance(vehicle.position)
+        distance = self.position.distance(vehicle.position)
 
         for i in range(1, t+1):
-            me.simulateUpdate()
-            vehicle.simulateUpdate()
+            mysides,mypos,myvel = Vehicle.simulateUpdate2(myvel,mydeg,mypos,mysides,self.acceleration,
+                                                                self.deceleration,self.power,self.steerDeg)
+            vehiclesides,vehiclepos,vehiclevel = Vehicle.simulateUpdate2(vehiclevel,vehicledeg,vehiclepos,vehiclesides,vehicle.acceleration,
+                                                                vehicle.deceleration,vehicle.power,vehicle.steerDeg)
 
-            newDistance = me.position.distance(vehicle.position)
+            newDistance = mypos.distance(vehiclepos)
             if newDistance>=distance:
                 # from now vehicles are moving away
                 if i>1:
-                    if (me.sides[0].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[0].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[1].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[1].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[2].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[2].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[3].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[3].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)):
+                    if (mysides[0].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[0].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)) or (mysides[1].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[1].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)) or (mysides[2].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[2].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)) or (mysides[3].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[3].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)):
                         return True
                 return False
             else:
                 distance = newDistance
-        if (me.sides[0].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[0].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[1].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[1].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[2].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[2].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[3].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[3].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)):
+        if (mysides[0].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[0].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)) or (mysides[1].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[1].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)) or (mysides[2].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[2].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)) or (mysides[3].betweenProjection(vehiclesides[0],vehiclesides[1],tollerance) and mysides[3].betweenProjection(vehiclesides[1],vehiclesides[2],tollerance)):
             return True
         return False
 
@@ -798,9 +842,9 @@ class Vehicle(RoadObject):
         if right < 0:
             right = round(right+math.pi*2, const.FLOAT_PRECISION)
         if right < left:
-            self.steer(right)#+0.2
+            self.steer(right)
         else:
-            self.steer(-left)#-0.2
+            self.steer(-left)
         
         currentLane,laneN = self.crossroad.getLaneFromPos(self.position)
         objectiveLane,laneObjN = self.crossroad.getLaneFromPos(objective,-1)
