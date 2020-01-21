@@ -1,5 +1,7 @@
 import const
 import math
+import copy
+from time import time#############TODO###############################################################################
 
 
 class GraphicObject():
@@ -10,18 +12,20 @@ class GraphicObject():
     def draw(self):
         raise Exception('Not yet implemented')
 
-    def move(self, x, y):
-        if hasattr(self, 'sides'):
-            prevSides = []
-            for i in self.sides:
-                prevSides.append(i.clonePosition())
-        if hasattr(self, 'graphicitems'):
-            [self.canvas.move(self.graphicitems[i], round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
-             for i in self.graphicitems]
-        if hasattr(self, 'graphic'):
-            self.canvas.move(self.graphic, round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
-        if hasattr(self, 'graphic_trailer'):
-            self.canvas.move(self.graphic_trailer, round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
+    def move(self, x, y, render_graphic=True):
+        # if hasattr(self, 'sides'):
+        #     prevSides = []
+        #     for i in self.sides:
+        #         prevSides.append(i.clonePosition())
+        if render_graphic:
+            if hasattr(self, 'graphicitems'):
+                [self.canvas.move(self.graphicitems[i], round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
+                for i in self.graphicitems]
+            if hasattr(self, 'graphic'):
+                self.canvas.move(self.graphic, round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
+            if hasattr(self, 'graphic_trailer'):
+                self.canvas.move(self.graphic_trailer, round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
+                
         if hasattr(self, 'position'):
             self.position.move(x, y)
         if hasattr(self, 'sides'):
@@ -30,7 +34,7 @@ class GraphicObject():
         if hasattr(self, 'trailer_sides'):
             hook1 = Position(math.fabs(self.trailer_sides[0].x-self.trailer_sides[1].x),math.fabs(self.trailer_sides[0].y-self.trailer_sides[1].y))
             hook2 = Position(math.fabs(self.sides[0].x-self.sides[1].x),math.fabs(self.sides[0].y-self.sides[1].y))
-            prevhook2 = Position(math.fabs(self.prevSides[0].x-self.prevSides[1].x),math.fabs(self.prevSides[0].y-self.prevSides[1].y))
+            prevhook2 = Position(math.fabs(prevSides[0].x-prevSides[1].x),math.fabs(prevSides[0].y-prevSides[1].y))
             hookDist = hook1.distance(hook2)
             # diff = hookDist-self.hookDist
             newhook1 = prevhook2.projection(hook1,hook2)
@@ -46,45 +50,34 @@ class GraphicObject():
             # self.trailer_sides[2].moveTo(x, y)
             # x, y = _rot(self.trailer_sides[3].x, self.trailer_sides[3].y)
             # self.trailer_sides[3].moveTo(x, y)
-        if hasattr(self, 'graphic_trailer'):
+        if render_graphic and hasattr(self, 'graphic_trailer'):
             self.canvas.coords(self.graphic_trailer, self.trailer_sides[0].x, self.trailer_sides[0].y,
                                self.trailer_sides[1].x, self.trailer_sides[1].y,
                                self.trailer_sides[2].x, self.trailer_sides[2].y,
                                self.trailer_sides[3].x, self.trailer_sides[3].y)
 
-    def moveTo(self, x, y):
-        if hasattr(self, 'graphicitems'):
-            [self.canvas.moveTo(self.graphicitems[i], round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
-             for i in self.graphicitems]
-        if hasattr(self, 'graphic'):
-            self.canvas.moveTo(self.graphic, round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
+    def moveTo(self, x, y, render_graphic=True):
+        if render_graphic:
+            if hasattr(self, 'graphicitems'):
+                [self.canvas.moveTo(self.graphicitems[i], round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
+                for i in self.graphicitems]
+            if hasattr(self, 'graphic'):
+                self.canvas.moveTo(self.graphic, round(x, const.FLOAT_PRECISION), round(y, const.FLOAT_PRECISION))
         if hasattr(self, 'position'):
             self.position.moveTo(x, y)
 
-    def rotate(self, rad):
-        self.degrees = round(self.degrees+rad, const.FLOAT_PRECISION)
+    def rotate(self, rad, render_graphic=True):
+        self.degrees = self.degrees+rad
         if self.degrees > math.pi:
-            self.degrees = round(self.degrees-math.pi*2, const.FLOAT_PRECISION)
+            self.degrees = self.degrees-math.pi*2
         if self.degrees < -math.pi:
-            self.degrees = round(self.degrees+math.pi*2, const.FLOAT_PRECISION)
+            self.degrees = self.degrees+math.pi*2
 
-        def _rot(x, y):
-            # note: the rotation is done in the opposite fashion from for a right-handed coordinate system due to the left-handedness of computer coordinates
-            x -= self.position.x
-            y -= self.position.y
-            _x = x * math.cos(-rad) + y * math.sin(-rad)
-            _y = -x * math.sin(-rad) + y * math.cos(-rad)
-            return _x + self.position.x, _y + self.position.y
-
-        x, y = _rot(self.sides[0].x, self.sides[0].y)
-        self.sides[0].moveTo(x, y)
-        x, y = _rot(self.sides[1].x, self.sides[1].y)
-        self.sides[1].moveTo(x, y)
-        x, y = _rot(self.sides[2].x, self.sides[2].y)
-        self.sides[2].moveTo(x, y)
-        x, y = _rot(self.sides[3].x, self.sides[3].y)
-        self.sides[3].moveTo(x, y)
-        if hasattr(self, 'graphic'):
+        const.ROTATE(self.sides[0], self.position, rad)
+        const.ROTATE(self.sides[1], self.position, rad)
+        const.ROTATE(self.sides[2], self.position, rad)
+        const.ROTATE(self.sides[3], self.position, rad)
+        if render_graphic and hasattr(self, 'graphic'):
             self.canvas.coords(self.graphic, self.sides[0].x, self.sides[0].y,
                                self.sides[1].x, self.sides[1].y,
                                self.sides[2].x, self.sides[2].y,
@@ -108,8 +101,10 @@ class Position():
         self.y = y
 
     def move(self, x, y):
-        self.x = round(self.x+x, const.FLOAT_PRECISION)
-        self.y = round(self.y+y, const.FLOAT_PRECISION)
+        self.x += x
+        self.y += y
+        # self.x = round(self.x+x, const.FLOAT_PRECISION)
+        # self.y = round(self.y+y, const.FLOAT_PRECISION)
 
     # this point is between two points? (with projection)
     def betweenProjection(self, pos1, pos2, tollerance=2):
@@ -166,7 +161,7 @@ class Position():
         return False
 
     def distance(self, pos):
-        return math.sqrt(math.pow(self.x-pos.x, 2)+math.pow(self.y-pos.y, 2))
+        return math.sqrt((self.x-pos.x)*(self.x-pos.x)+(self.y-pos.y)*(self.y-pos.y))
     # starting from pos1, where i am going if i want to arrive in pos2?
     @staticmethod
     def getDirection(pos1, pos2):
@@ -197,6 +192,10 @@ class Waypoint(Position):
         self.velocity = velocity
         # is this the point I was waiting for?
         self.desidered=desidered
+    
+    # do not clone me
+    def __deepcopy__(self,memo=None):
+        return self
 
 
 class TrafficLight(GraphicObject):
@@ -304,6 +303,9 @@ class RoadObject(GraphicObject):
         if True in [True for prop in self.tags if not prop in obj.tags]:
             return True
         return False
+
+    def clone(self):
+        return copy.deepcopy(self)
 
 
 class Road(RoadObject):
@@ -444,6 +446,10 @@ class Lane(Road):
         if not (hasattr(self, 'graphic') or hasattr(self, 'graphicitems')):
             super().draw()
 
+    # do not clone me
+    def __deepcopy__(self,memo=None):
+        return self
+
 
 class Crossroad(RoadObject):
     def __init__(self, canvas, lanes):
@@ -512,10 +518,14 @@ class Crossroad(RoadObject):
             return True
 
     def spawnVehicle(self):
-        newVehicle = Truck(self.canvas,self.entries[1].startLanePoints[1],self)
+        newVehicle = Car(self.canvas,self.entries[1].startLanePoints[1],self)
         newVehicle.draw()
         newVehicle.setObjective(self.exits[0])
         return newVehicle
+
+    # do not clone me
+    def __deepcopy__(self,memo=None):
+        return self
         
 
 
@@ -531,6 +541,9 @@ class Vehicle(RoadObject):
         self.deceleration = 0
         self.sensibility = 1
         self.crossroad = crossroad
+
+    def clone(self):
+        return copy.deepcopy(self)
 
     def draw(self):
         # not implemented in father class
@@ -587,9 +600,24 @@ class Vehicle(RoadObject):
         if self.velocity < 0:
             self.velocity = 0
         self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1))
-        calc_x = round(math.cos(self.degrees)*self.velocity / 6*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-        calc_y = round(math.sin(self.degrees)*self.velocity / 6*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
+        calc_x = round(math.cos(self.degrees)*self.velocity*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
+        calc_y = round(math.sin(self.degrees)*self.velocity*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
         self.move(calc_x, calc_y)
+
+    def simulateUpdate(self):
+        self.velocity += self.acceleration*self.power
+        if self.velocity > 0:
+            self.velocity -= self.deceleration/1.5
+        # self.acceleration = 0
+        # self.deceleration = 0
+        if self.velocity > 0:
+            self.velocity = self.velocity - math.fabs(self.steerDeg/10)
+        if self.velocity < 0:
+            self.velocity = 0
+        self.rotate(self.steerDeg*self.velocity / (self.velocity*self.velocity*1.25+1), False)
+        self.move(math.cos(self.degrees)*self.velocity*const.VEHICLE_RENDER,
+                    math.sin(self.degrees)*self.velocity*const.VEHICLE_RENDER, False)
+
 
     def steer(self, pow=0):
         if pow < -1:
@@ -687,134 +715,64 @@ class Vehicle(RoadObject):
     # predict where it will be in t time
 
     def predict(self, t=0, objective=None):
+
+        if not (self.velocity > 0):
+            return Waypoint(self.position.x, self.position.y, 0, False)
+
         if not t and not objective:
             t=1
         # t = int(t*100)
-        velocity = self.velocity
-        degrees = self.degrees
 
-        calc_x = 0
-        calc_y = 0
-        myp = self.position.clonePosition()
+        me = self.clone()
+
         if not objective:
             for i in range(1, t+1):
-                velocity += self.acceleration*self.power
-                if velocity > 0:
-                    velocity -= self.deceleration/1.5
-                if velocity > 0:
-                    velocity = round(self.velocity-const.VEHICLE_FRICTION*self.velocity -
-                                    math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
-                if velocity < 0:
-                    velocity = 0
-                degrees += round(self.steerDeg*velocity / (velocity*velocity*1.25+1), const.FLOAT_PRECISION)
-                calc_x += round(math.cos(degrees)*velocity / 6*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-                calc_y += round(math.sin(degrees)*velocity / 6*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-            myp.move(calc_x, calc_y)
+                me.simulateUpdate()
         # predict a non-linear movement until it moves far away the desidered point
         else:
             last_distance = 100000
             count = 0
-            while velocity > 0 and last_distance>=Position.distance(myp,objective):
-                last_distance = Position.distance(myp,objective)
-                velocity += self.acceleration*self.power
-                if velocity > 0:
-                    velocity -= self.deceleration/1.5
-                if velocity > 0:
-                    velocity = round(self.velocity-const.VEHICLE_FRICTION*self.velocity -
-                                    math.fabs(self.steerDeg/10), const.FLOAT_PRECISION)
-                if velocity < 0:
-                    velocity = 0
-                degrees += round(self.steerDeg*velocity / (velocity*velocity*1.25+1), const.FLOAT_PRECISION)
-                calc_x += round(math.cos(degrees)*velocity / 6*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-                calc_y += round(math.sin(degrees)*velocity / 6*const.VEHICLE_RENDER, const.FLOAT_PRECISION)
-                myp.move(calc_x, calc_y)
+            while me.velocity > 0 and last_distance>=Position.distance(me.position,objective):
+                last_distance = Position.distance(me.position,objective)
+                oldpos = me.position.clonePosition()
+                me.simulateUpdate()
                 count += 1
-            myp2 = myp.clonePosition()
-            myp.move(-calc_x,-calc_y)
             
-            nearestPoint = objective.projection(myp,myp2)
+            nearestPoint = objective.projection(me.position,oldpos)
             
             if t and t < count:
-                return Waypoint(nearestPoint.x, nearestPoint.y, velocity, False)
+                return Waypoint(nearestPoint.x, nearestPoint.y, me.velocity, False)
             else:
-                return Waypoint(myp.x, myp.y, velocity)
-            if not myp.near(nearestPoint,20) and velocity > 0:
-                return Waypoint(nearestPoint.x, nearestPoint.y, velocity, False)
-        return Waypoint(myp.x, myp.y, velocity)
+                return Waypoint(me.position.x, me.position.y, me.velocity)
+            if not me.position.near(nearestPoint,20) and me.velocity > 0:
+                return Waypoint(nearestPoint.x, nearestPoint.y, me.velocity, False)
+        return Waypoint(me.position.x, me.position.y, me.velocity)
 
     def predictCollide(self,vehicle,t=1,tollerance=6):
-        velocity1 = self.velocity
-        degrees1 = self.degrees
-        velocity2 = vehicle.velocity
-        degrees2 = vehicle.degrees
+        startT=time()
+        me = self.clone()
+        vehicle = vehicle.clone()
 
-        myp1 = self.position.clonePosition()
-        myp2 = vehicle.position.clonePosition()
+        # myp1 = me.position.clonePosition()
+        # myp2 = vehicle.position.clonePosition()
 
-        distance = myp1.distance(myp2)
+        distance = me.position.distance(vehicle.position)
 
         for i in range(1, t+1):
-            velocity1 += self.acceleration*self.power
-            velocity2 += vehicle.acceleration*vehicle.power
-            if velocity1 > 0:
-                velocity1 -= self.deceleration/3*2
-            if velocity2 > 0:
-                velocity2 -= vehicle.deceleration/3*2
-            if velocity1 > 0:
-                velocity1 = self.velocity - self.velocity*const.VEHICLE_FRICTION - math.fabs(self.steerDeg/10)
-            if velocity2 > 0:
-                velocity2 = vehicle.velocity - vehicle.velocity*const.VEHICLE_FRICTION - math.fabs(vehicle.steerDeg/10)
-            if velocity1 < 0:
-                velocity1 = 0
-            if velocity2 < 0:
-                velocity2 = 0
-            degrees1 += self.steerDeg*velocity1 / (velocity1*velocity1*1.25+1)
-            degrees2 += vehicle.steerDeg*velocity2 / (velocity2*velocity2*1.25+1)
+            me.simulateUpdate()
+            vehicle.simulateUpdate()
 
-            oldp1 = myp1.clonePosition()
-            oldp2 = myp2.clonePosition()
-            myp1.move(math.cos(degrees1)*velocity1 / 6*const.VEHICLE_RENDER,
-                        math.sin(degrees1)*velocity1 / 6*const.VEHICLE_RENDER)
-            myp2.move(math.cos(degrees2)*velocity2 / 6*const.VEHICLE_RENDER,
-                        math.sin(degrees2)*velocity2 / 6*const.VEHICLE_RENDER)
-            newDistance=myp1.distance(myp2)
+            newDistance = me.position.distance(vehicle.position)
             if newDistance>=distance:
                 # from now vehicles are moving away
                 if i>1:
-                    selfSide00 = Position(self.sides[0].x+oldp1.x-self.position.x,self.sides[0].y+oldp1.y-self.position.y)
-                    selfSide01 = Position(self.sides[1].x+oldp1.x-self.position.x,self.sides[1].y+oldp1.y-self.position.y)
-                    selfSide02 = Position(self.sides[2].x+oldp1.x-self.position.x,self.sides[2].y+oldp1.y-self.position.y)
-                    selfSide03 = Position(self.sides[3].x+oldp1.x-self.position.x,self.sides[3].y+oldp1.y-self.position.y)
-                    selfSide10 = Position(vehicle.sides[0].x+oldp2.x-vehicle.position.x,vehicle.sides[0].y+oldp2.y-vehicle.position.y)
-                    selfSide11 = Position(vehicle.sides[1].x+oldp2.x-vehicle.position.x,vehicle.sides[1].y+oldp2.y-vehicle.position.y)
-                    selfSide12 = Position(vehicle.sides[2].x+oldp2.x-vehicle.position.x,vehicle.sides[2].y+oldp2.y-vehicle.position.y)
-                    if (selfSide00.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide00.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide01.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide01.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide02.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide02.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide03.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide03.betweenProjection(selfSide11,selfSide12,tollerance)):
+                    if (me.sides[0].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[0].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[1].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[1].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[2].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[2].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[3].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[3].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)):
                         return True
-                    if hasattr(vehicle,'trailer_sides'):
-                        selfSide10 = Position(vehicle.trailer_sides[0].x+oldp2.x-vehicle.position.x,vehicle.trailer_sides[0].y+oldp2.y-vehicle.position.y)
-                        selfSide11 = Position(vehicle.trailer_sides[1].x+oldp2.x-vehicle.position.x,vehicle.trailer_sides[1].y+oldp2.y-vehicle.position.y)
-                        selfSide12 = Position(vehicle.trailer_sides[2].x+oldp2.x-vehicle.position.x,vehicle.trailer_sides[2].y+oldp2.y-vehicle.position.y)
-                        if (selfSide00.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide00.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide01.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide01.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide02.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide02.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide03.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide03.betweenProjection(selfSide11,selfSide12,tollerance)):
-                            return True
                 return False
             else:
                 distance = newDistance
-        # vehicles will move even closer
-        selfSide00 = Position(self.sides[0].x+oldp1.x-self.position.x,self.sides[0].y+oldp1.y-self.position.y)
-        selfSide01 = Position(self.sides[1].x+oldp1.x-self.position.x,self.sides[1].y+oldp1.y-self.position.y)
-        selfSide02 = Position(self.sides[2].x+oldp1.x-self.position.x,self.sides[2].y+oldp1.y-self.position.y)
-        selfSide03 = Position(self.sides[3].x+oldp1.x-self.position.x,self.sides[3].y+oldp1.y-self.position.y)
-        selfSide10 = Position(vehicle.sides[0].x+oldp2.x-vehicle.position.x,vehicle.sides[0].y+oldp2.y-vehicle.position.y)
-        selfSide11 = Position(vehicle.sides[1].x+oldp2.x-vehicle.position.x,vehicle.sides[1].y+oldp2.y-vehicle.position.y)
-        selfSide12 = Position(vehicle.sides[2].x+oldp2.x-vehicle.position.x,vehicle.sides[2].y+oldp2.y-vehicle.position.y)
-        if (selfSide00.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide00.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide01.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide01.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide02.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide02.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide03.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide03.betweenProjection(selfSide11,selfSide12,tollerance)):
+        if (me.sides[0].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[0].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[1].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[1].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[2].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[2].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)) or (me.sides[3].betweenProjection(vehicle.sides[0],vehicle.sides[1],tollerance) and me.sides[3].betweenProjection(vehicle.sides[1],vehicle.sides[2],tollerance)):
             return True
-        if hasattr(vehicle,'trailer_sides'):
-            selfSide10 = Position(vehicle.trailer_sides[0].x+oldp2.x-vehicle.position.x,vehicle.trailer_sides[0].y+oldp2.y-vehicle.position.y)
-            selfSide11 = Position(vehicle.trailer_sides[1].x+oldp2.x-vehicle.position.x,vehicle.trailer_sides[1].y+oldp2.y-vehicle.position.y)
-            selfSide12 = Position(vehicle.trailer_sides[2].x+oldp2.x-vehicle.position.x,vehicle.trailer_sides[2].y+oldp2.y-vehicle.position.y)
-            if (selfSide00.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide00.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide01.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide01.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide02.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide02.betweenProjection(selfSide11,selfSide12,tollerance)) or (selfSide03.betweenProjection(selfSide10,selfSide11,tollerance) and selfSide03.betweenProjection(selfSide11,selfSide12,tollerance)):
-                return True
         return False
 
 
@@ -854,7 +812,6 @@ class Vehicle(RoadObject):
             else:
                 objectiveEndLane = None
 
-            # print(futureWaypoint,objective,futureWaypoint.desidered)
             if currentLane.tLight.state==const.TL_RED and not currentEndLane.equals(objectiveEndLane):
                 if currentLane.isA('up'):
                     objective=Waypoint(currentEndLane.x,currentEndLane.y+20,0)
@@ -900,8 +857,9 @@ class Vehicle(RoadObject):
         
         # check for vehicles with more precedence
         for vehicle in allvehicles:
-            if vehicle.position.distance(self.position)<300 and (self.crossroad.hasPrecedence(vehicle,self) or (not self.crossroad.hasPrecedence(self,vehicle) and vehicle.id<self.id)):
-                if (self.predictCollide(vehicle,40)):
+            #vehicle.position.distance(self.position)<300
+            if vehicle.position.distance(self.position)<200 and (self.crossroad.hasPrecedence(vehicle,self) or (not self.crossroad.hasPrecedence(self,vehicle) and vehicle.id<self.id)):
+                if (self.predictCollide(vehicle,20)):
                     self.brake(0.8)#FIX
                     print('WARNING',self.id,self.deceleration)
                     break

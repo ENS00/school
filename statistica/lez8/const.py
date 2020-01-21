@@ -1,4 +1,4 @@
-from math import sqrt
+from math import sqrt,cos,sin
 from random import randint
 # here there are all constants
 # CAR_WH_RATIO
@@ -21,7 +21,7 @@ TRAILER_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9),FLOAT_PRECISION)  # di
 
 ROAD_LINE_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/60/60)) # width of the white line
 ROAD_LINE_SIZE = round(sqrt(W_WIDTH*W_HEIGHT/100/100)) # size of the white line
-VEHICLE_RENDER = round(sqrt(W_WIDTH*W_HEIGHT/1600/1600),FLOAT_PRECISION)
+VEHICLE_RENDER = round(sqrt(W_WIDTH*W_HEIGHT/1600/1600)/6,FLOAT_PRECISION)
 CAR_ACCELERATION = 249/1200 # this number permits to have a maximum velocity of 90
 VEHICLE_FRICTION = 0.0006   # friction constant combined with car acceleration we get the maximum velocity of a vehicle
 VEHICLE_SPAWN_SPEED = 30
@@ -70,3 +70,13 @@ DOWN = 1
 LEFT = 2
 RIGHT = 3
 FORWARD = 1
+
+# Functions
+def ROTATE(side, pos, rad):
+    # note: the rotation is done in the opposite fashion from for a right-handed coordinate system due to the left-handedness of computer coordinates
+    side.x -= pos.x
+    side.y -= pos.y
+    _x = side.x * cos(-rad) + side.y * sin(-rad)
+    _y = -side.x * sin(-rad) + side.y * cos(-rad)
+    side.x = _x + pos.x
+    side.y = _y + pos.y

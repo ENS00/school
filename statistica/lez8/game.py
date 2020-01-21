@@ -2,6 +2,7 @@ import tkinter
 import const
 import objects
 import gametime
+import copy
 
 class IDassigner():
     def __init__(self):
@@ -10,6 +11,11 @@ class IDassigner():
     def getNewID(self):
         self.__idassign += 1
         return self.__idassign
+
+class Canvas(tkinter.Canvas):
+    # do not clone me
+    def __deepcopy__(self,memo=None):
+        return self
 
 class TimePanel(objects.GraphicObject):
     def __init__(self,canvas,gametime):
@@ -29,7 +35,7 @@ class Game():
     def __init__(self):
         self.tk = tkinter.Tk()
         self.tk.title(const.W_TITLE)
-        self.canvas = tkinter.Canvas(self.tk, width=const.W_WIDTH, height=const.W_HEIGHT, bg=const.W_BACKGROUND)
+        self.canvas = Canvas(self.tk, width=const.W_WIDTH, height=const.W_HEIGHT, bg=const.W_BACKGROUND)
         self.canvas.pack()
         self.canvas.idassigner = IDassigner()
 
