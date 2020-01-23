@@ -3,7 +3,7 @@ from random import randint
 # here there are all constants
 # CAR_WH_RATIO
 # CAR_DIM=36
-TIME_SPEED = 60  # REAL 1s = GAME 60s
+TIME_SPEED = 2000  # REAL 1s = GAME 2000s
 
 # Variables
 FLOAT_PRECISION = 5
@@ -12,30 +12,35 @@ FLOAT_PRECISION = 5
 W_WIDTH = 800
 W_HEIGHT = 800
 W_TITLE = 'Traffico'
-CAR_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/40*3/40*3),FLOAT_PRECISION)  # dimension of the car
-CAR_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9),FLOAT_PRECISION)  # dimension of the car
-TRUCK_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/40*2/40*2),FLOAT_PRECISION)  # dimension of the truck
-TRUCK_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9),FLOAT_PRECISION)  # dimension of the truck
-TRAILER_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/40*5/40*5),FLOAT_PRECISION)  # dimension of the trailer of the truck
-TRAILER_HEIGHT = round(sqrt(W_WIDTH*W_HEIGHT/200*9/200*9),FLOAT_PRECISION)  # dimension of the trailer of the truck
+PROPORTION = round(sqrt(W_WIDTH*W_HEIGHT)/100,FLOAT_PRECISION)   # proportion used for other calcs
+CAR_WIDTH = PROPORTION*15/2         # dimension of the car
+CAR_HEIGHT = PROPORTION*9/2         # dimension of the car
+BUS_WIDTH = PROPORTION*10           # dimension of the bus
+BUS_HEIGHT = PROPORTION*9/2         # dimension of the bus
+TRUCK_WIDTH = PROPORTION*11/2       # dimension of the truck
+TRUCK_HEIGHT = PROPORTION*13/2      # dimension of the truck
+TRAILER_WIDTH = PROPORTION*9        # dimension of the trailer of the truck
+TRAILER_HEIGHT = PROPORTION*11/2    # dimension of the trailer of the truck
 
-ROAD_LINE_WIDTH = round(sqrt(W_WIDTH*W_HEIGHT/60/60)) # width of the white line
-ROAD_LINE_SIZE = round(sqrt(W_WIDTH*W_HEIGHT/100/100)) # size of the white line
-VEHICLE_RENDER = round(sqrt(W_WIDTH*W_HEIGHT/1600/1600)/6,FLOAT_PRECISION)
-CAR_ACCELERATION = 249/1200 # this number permits to have a maximum velocity of 90
-VEHICLE_FRICTION = 0.0006   # friction constant combined with car acceleration we get the maximum velocity of a vehicle
+ROAD_LINE_WIDTH = int(PROPORTION*11/4)  # width of the white line
+ROAD_LINE_SIZE = int(PROPORTION)        # size of the white line
+ROAD_LINE_THICKNESS = PROPORTION*100/11
+VEHICLE_RENDER = PROPORTION*TIME_SPEED/200000
 VEHICLE_SPAWN_SPEED = 30
+VEHICLE_FRICTION = 0.0006   # friction constant combined with car acceleration we get the maximum velocity of a vehicle
+CAR_ACCELERATION = 249/1200 # this number permits to have a maximum velocity of 90 TO VERIFY (TODO)
+BUS_ACCELERATION = 249/3000
 TRUCK_ACCELERATION = 249/3000
 
 # calculations for drawing lanes
-POSITION_A_x = W_WIDTH/2-CAR_HEIGHT*0.75
-POSITION_A_y = W_HEIGHT/2-CAR_HEIGHT*1.5
-POSITION_B_x = W_WIDTH/2-CAR_HEIGHT*1.5
-POSITION_B_y = W_HEIGHT/2-CAR_HEIGHT*0.75
-POSITION_C_x = W_WIDTH/2+CAR_HEIGHT*0.75
-POSITION_C_y = W_HEIGHT/2+CAR_HEIGHT*0.75
-POSITION_D_x = W_WIDTH/2+CAR_HEIGHT*1.5
-POSITION_D_y = W_HEIGHT/2+CAR_HEIGHT*1.5
+POSITION_A_x = W_WIDTH/2-ROAD_LINE_THICKNESS/2
+POSITION_A_y = W_HEIGHT/2-ROAD_LINE_THICKNESS
+POSITION_B_x = W_WIDTH/2-ROAD_LINE_THICKNESS
+POSITION_B_y = W_HEIGHT/2-ROAD_LINE_THICKNESS/2
+POSITION_C_x = W_WIDTH/2+ROAD_LINE_THICKNESS/2
+POSITION_C_y = W_HEIGHT/2+ROAD_LINE_THICKNESS/2
+POSITION_D_x = W_WIDTH/2+ROAD_LINE_THICKNESS
+POSITION_D_y = W_HEIGHT/2+ROAD_LINE_THICKNESS
 
 # Colors
 W_BACKGROUND = 'lightgreen'
@@ -51,10 +56,10 @@ BLUE = '#00A'
 RANDOM_COLOR = lambda: randint(0,3)
 
 # TrafficLight positions
-TL_DIST_X = 20+W_WIDTH/70
+TL_DIST_X = 32+W_WIDTH/70
 TL_DIST_Y = 2+W_HEIGHT/30
-TL_SIZE = sqrt(W_WIDTH*W_HEIGHT/16/16)
-TL_LIGHT_SIZE = sqrt(W_WIDTH*W_HEIGHT/80/80)
+TL_SIZE = PROPORTION*25/4
+TL_LIGHT_SIZE = PROPORTION*5/4
 
 # TrafficLight states
 TL_OFF = 3

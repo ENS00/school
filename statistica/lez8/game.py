@@ -3,6 +3,7 @@ import const
 import objects
 import gametime
 import copy
+from random import randint
 
 class IDassigner():
     def __init__(self):
@@ -39,12 +40,14 @@ class Game():
         self.canvas.pack()
         self.canvas.idassigner = IDassigner()
 
-        self.statusLights=None
+        self.statusLights = None
         self.time = gametime.Gametime(const.TIME_SPEED)
-        self.timepanel=TimePanel(self.canvas,self.time)
+        self.timepanel = TimePanel(self.canvas,self.time)
 
-        self.vehicles=[]
-        self.removeObjects=[]
+        self.vehicles = []
+        self.removeObjects = []
+        self.randomSpawn = randint(1200,2400)# every x time spawn a vehicle
+        self.spawnCount = 0
 
     def drawField(self):
         self.canvas.create_rectangle(0, 0, self.canvas.winfo_width(), self.canvas.winfo_height(), width=0)
@@ -102,7 +105,6 @@ class Game():
         self.lane_right_entry.draw()
         self.lane_right_exit.draw()
         self.crossroad.draw()
-        self.a=0##########################################################################################
         newVehicle=self.crossroad.spawnVehicle()
         self.vehicles.append(newVehicle)
 
@@ -119,15 +121,16 @@ class Game():
         currentTimeFromStart = int(self.time.getTime())
 
         # control all trafficlights
-        if currentTimeFromStart//120 % 10 != self.statusLights:
-            self.statusLights = currentTimeFromStart//120 % 10
+        if currentTimeFromStart//1200 % 10 != self.statusLights:
+            self.statusLights = currentTimeFromStart//1200 % 10
             self.tlight_up.update()
             self.tlight_down.update()
             self.tlight_left.update()
             self.tlight_right.update()
 
-        if currentTimeFromStart//200 % 10 != self.a:
-            self.a = currentTimeFromStart//200 % 10
+        if currentTimeFromStart > self.spawnCount+self.randomSpawn:
+            self.spawnCount = currentTimeFromStart+self.randomSpawn
+            self.randomSpawn = randint(500,1400)
             newVehicle=self.crossroad.spawnVehicle()
             self.vehicles.append(newVehicle)
 
@@ -136,8 +139,8 @@ class Game():
             if i.position.x > const.W_WIDTH or i.position.y > const.W_HEIGHT or i.position.x < 0 or i.position.y < 0:
                 # destroy object
                 self.canvas.delete(i.graphic)
-                if i.isA('Truck'):
-                    self.canvas.delete(i.graphic_trailer)
+                # if i.isA('Truck'):
+                #     self.canvas.delete(i.graphic_trailer)
                 self.removeObjects.append(i)
             else:
                 i.drive(self.vehicles)
