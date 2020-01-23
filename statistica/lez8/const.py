@@ -15,22 +15,22 @@ W_TITLE = 'Traffico'
 PROPORTION = round(sqrt(W_WIDTH*W_HEIGHT)/100,FLOAT_PRECISION)   # proportion used for other calcs
 CAR_WIDTH = PROPORTION*15/2         # dimension of the car
 CAR_HEIGHT = PROPORTION*9/2         # dimension of the car
-BUS_WIDTH = PROPORTION*10           # dimension of the bus
+BUS_WIDTH = PROPORTION*25/2         # dimension of the bus 
 BUS_HEIGHT = PROPORTION*9/2         # dimension of the bus
 TRUCK_WIDTH = PROPORTION*11/2       # dimension of the truck
 TRUCK_HEIGHT = PROPORTION*13/2      # dimension of the truck
-TRAILER_WIDTH = PROPORTION*9        # dimension of the trailer of the truck
+TRAILER_WIDTH = PROPORTION*10        # dimension of the trailer of the truck
 TRAILER_HEIGHT = PROPORTION*11/2    # dimension of the trailer of the truck
 
 ROAD_LINE_WIDTH = int(PROPORTION*11/4)  # width of the white line
 ROAD_LINE_SIZE = int(PROPORTION)        # size of the white line
 ROAD_LINE_THICKNESS = PROPORTION*100/11
 VEHICLE_RENDER = PROPORTION*TIME_SPEED/200000
-VEHICLE_SPAWN_SPEED = 30
+VEHICLE_SPAWN_SPEED = 25
 VEHICLE_FRICTION = 0.0006   # friction constant combined with car acceleration we get the maximum velocity of a vehicle
 CAR_ACCELERATION = 249/1200 # this number permits to have a maximum velocity of 90 TO VERIFY (TODO)
-BUS_ACCELERATION = 249/3000
-TRUCK_ACCELERATION = 249/3000
+BUS_ACCELERATION = 249/3200
+TRUCK_ACCELERATION = 249/3500
 
 # calculations for drawing lanes
 POSITION_A_x = W_WIDTH/2-ROAD_LINE_THICKNESS/2
@@ -47,13 +47,16 @@ W_BACKGROUND = 'lightgreen'
 COLOR_ROAD = '#888'
 WHITE = '#FFF'
 GREEN_ON = '#0F0'
-GREEN_OFF = '#0A0'
+GREEN_OFF = '#070'
 YELLOW_ON = '#FF0'
-YELLOW_OFF = '#AA0'
+YELLOW_OFF = '#770'
 RED_ON = '#F00'
-RED_OFF = '#A00'
+RED_OFF = '#700'
 BLUE = '#00A'
-RANDOM_COLOR = lambda: randint(0,3)
+BLACK = '#000'
+GRAY = '#555'
+ORANGE = '#AF0'
+RANDOM_COLOR = lambda: [BLACK,BLUE,GRAY,ORANGE,RED_ON,WHITE,YELLOW_ON][randint(0,6)]
 
 # TrafficLight positions
 TL_DIST_X = 32+W_WIDTH/70

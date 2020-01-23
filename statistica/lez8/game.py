@@ -46,7 +46,7 @@ class Game():
 
         self.vehicles = []
         self.removeObjects = []
-        self.randomSpawn = randint(1200,2400)# every x time spawn a vehicle
+        self.randomSpawn = randint(500,1100)# every x time spawn a vehicle
         self.spawnCount = 0
 
     def drawField(self):
@@ -130,7 +130,7 @@ class Game():
 
         if currentTimeFromStart > self.spawnCount+self.randomSpawn:
             self.spawnCount = currentTimeFromStart+self.randomSpawn
-            self.randomSpawn = randint(500,1400)
+            self.randomSpawn = randint(400,1400)
             newVehicle=self.crossroad.spawnVehicle()
             self.vehicles.append(newVehicle)
 

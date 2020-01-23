@@ -898,7 +898,7 @@ class Vehicle(RoadObject):
                 objectiveEndLane = None
 
             if currentLane.tLight.state==const.TL_RED and not currentEndLane.equals(objectiveEndLane):
-                if currentLane.isA('up'):
+                if currentLane.isA('up'):#IDEA!! +self.sides[0].y-self.position.y
                     objective=Waypoint(currentEndLane.x,currentEndLane.y+const.PROPORTION*5/2,0)
                 elif currentLane.isA('down'):
                     objective=Waypoint(currentEndLane.x,currentEndLane.y-const.PROPORTION*5/2,0)
@@ -974,7 +974,7 @@ class Car(Vehicle):
                                                       self.sides[1].x, self.sides[1].y,
                                                       self.sides[2].x, self.sides[2].y,
                                                       self.sides[3].x, self.sides[3].y,
-                                                      fill=const.RED_ON,outline='black',width=1)
+                                                      fill=const.RANDOM_COLOR(),outline='black',width=1)
                                                       
 # class Truck(Vehicle):
 #     def __init__(self, canvas, pos, crossroad, tags=[]):
@@ -1047,4 +1047,4 @@ class Bus(Vehicle):
                                                       self.sides[1].x, self.sides[1].y,
                                                       self.sides[2].x, self.sides[2].y,
                                                       self.sides[3].x, self.sides[3].y,
-                                                      fill=const.BLUE,outline='black',width=1)
+                                                      fill=const.RANDOM_COLOR(),outline='black',width=1)
