@@ -8,5 +8,5 @@ class Gameloop(Game):
         self.loop()
 
 if __name__ == "__main__":
-    game=Gameloop()
-    game.tk.mainloop()
+    game = Gameloop()
+    game.graphic_lib.mainloop()
