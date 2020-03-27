@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='ie=edge'>
+        <title>Form</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div class='container'>
+            <h1 class='text-primary'><%= currentUser.firstname %> <%= currentUser.lastname %></h1>
+            <hr>
+            <form action='/update' method='POST' style='width: 500px;margin: auto;'>
+                <h2 class='text-secondary'>Modifica dati</h2>
+                <div class='form-group'>
+                    <label for='firstname'>Nome:</label>
+                    <input type='text' name='firstname' id='firstname' class='form-control' value='<%= edit=="update"?currentUser.firstname:"" %>'>
+                </div>
+                <div class='form-group'>
+                    <label for='lastname'>Cognome:</label>
+                    <input type='text' name='lastname' id='lastname' class='form-control' value='<%= edit=="update"?currentUser.lastname:"" %>'>
+                </div>
+                <div class='form-check'>
+                    <input type='checkbox' class='form-check-input' id='chkEmail' name='list_email' <% if (edit=="update" && currentUser.list.indexOf('email')!=-1) { %>checked<% } %> >
+                    <label for='chkEmail'>
+                        Ricevi notifiche via Email
+                    </label>
+                </div>
+                <div class='form-check'>
+                    <input type='checkbox' class='form-check-input' id='chkSms' name='list_sms' <% if (edit=="update" && currentUser.list.indexOf('sms')!=-1) { %>checked<% } %> >
+                    <label for='chkSms'>
+                        Ricevi notifiche via SMS
+                    </label>
+                </div>
+                <div class='form-check'>
+                    <input type='checkbox' class='form-check-input' id='chkSms' name='list_browser' <% if (edit=="update" && currentUser.list.indexOf('browser')!=-1) { %>checked<% } %> >
+                    <label for='chkBrowser'>
+                        Ricevi notifiche su Browser (richiede l'estensione installata)
+                    </label>
+                </div>
+                <input type='hidden' name='edit' value='<%= edit %>' >
+                <hr>
+
+                <br>
+                <button type='submit' class='btn btn-primary mb-2'>Salva</button>
+            </form>
+        </div>
+    </body>
+</html>

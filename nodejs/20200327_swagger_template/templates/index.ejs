@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+        <title>Indice</title>
+        <meta name='viewport' content='width=device-width, initial-scale=1'>
+        <link rel='stylesheet' href='/css/bootstrap.min.css'>
+    </head>
+    <body>
+        <div class='container'>
+            <h1 class='text-primary'><%= currentUser.firstname %> <%= currentUser.lastname %></h1>
+            <hr>
+            <% if(currentUser.list.length>0){ %>
+                Opzioni selezionate:
+                <ul>
+                    <% currentUser.list.forEach(function(element,i){  %>
+                        <li style='color: blue;'><%= data.descriptions[element] %></li>
+                    <% }) %>
+                </ul>
+                <small><a href='/form'>Modifica lista preferenze</a></small>
+            <% } else { %>
+                Non hai selezionato nessuna opzione della lista. <small><a href='/form'>Modifica la lista preferenze</a></small>
+            <% } %>
+            <hr>
+            <h5>Utenti esistenti nel database:</h5>
+            <table class="table">
+              <thead class="thead-dark">
+                  <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Nome</th>
+                  <th scope="col">Cognome</th>
+                  <th scope="col">Seleziona utente</th>
+                  </tr>
+              </thead>
+              <tbody>
+                <% data.list.forEach(function(user, i){ %>
+                  <tr>
+                    <th scope='row'><%= user.id %></th>
+                    <td><%= user.firstname %></td>
+                    <td><%= user.lastname %></td>
+                    <td>
+                      <% if(currentUser.id===user.id){ %>
+                        Utente selezionato
+                      <% } else { %>
+                        <a href='/switchuser/<%= user.id %>'>Cambia Utente</a>
+                      <% } %>
+                    </td>
+                  </tr>
+                <% }) %>
+                <tr>
+                    <th scope='row'></th>
+                    <td></td>
+                    <td></td>
+                    <td><a href='/insert'>Crea nuovo Utente</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+    </body>
+</html>
