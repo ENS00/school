@@ -1,14 +1,22 @@
-from time import time,strftime,gmtime
+from time import strftime,gmtime
 import const
 
 class Gametime():
-    def __init__(self,ratio):
-        self.ratio=ratio/4
-    def start(self):
-        self.startT=time()
-    # we could try/catch if start is not defined but i think it slows a lot the game
+    def __init__(self, graphic_lib, ratio, fps=30):
+        self.clock = graphic_lib.graphic.time.Clock()
+        graphic_lib.clock = self.clock
+        self.ratio = ratio
+        self.graphic_lib = graphic_lib
+        self.fps = fps
+        self.timeFromStart = 0
     def getTime(self):
-        return (time()-self.startT)*self.ratio
+        self.clock.tick(self.fps) #necessary for fps
+        # difference = self.graphic_lib.graphic.time.get_ticks()*self.ratio - self.timeFromStart
+        # self.timeFromStart += difference*self.getFps()/self.fps
+        if self.getFps():
+            self.timeFromStart += self.ratio/self.fps
+        return self.timeFromStart
+    def getFps(self):
+        return self.clock.get_fps()
     def getFormattedTime(self):
-        gametime = (time()-self.startT)*self.ratio
-        return strftime('%H:%M',gmtime(gametime))#'%H:%M:%S'
+        return strftime('%H:%M',gmtime(self.timeFromStart))#'%H:%M:%S'
