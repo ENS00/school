@@ -1,0 +1,23 @@
+{
+	"name": "DS_ChicagoCrimesFiles_fm",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlobStorage_fm",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ChicagoCrimeFile_fm.csv",
+				"container": "lab3"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

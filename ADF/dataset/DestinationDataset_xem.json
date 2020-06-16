@@ -1,0 +1,24 @@
+{
+	"name": "DestinationDataset_xem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzStorage_stagingMB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "201612-WeatherData.txt",
+				"container": "lab01"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

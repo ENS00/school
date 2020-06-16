@@ -1,0 +1,22 @@
+{
+	"name": "DS_CrimeFileApril2020_gp",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobstorage_gp",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "lab3"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

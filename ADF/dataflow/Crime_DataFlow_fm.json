@@ -1,0 +1,48 @@
+{
+	"name": "Crime_DataFlow_fm",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ChicagoCrimesFiles_fm",
+						"type": "DatasetReference"
+					},
+					"name": "CrimeDataFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DS_CrimeFileApril_fm",
+						"type": "DatasetReference"
+					},
+					"name": "SinkApril"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_CrimeByDayOfWeek_fm",
+						"type": "DatasetReference"
+					},
+					"name": "SinkDayOfWeek"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DataTimeExtract"
+				},
+				{
+					"name": "DayOfWeekCount"
+				},
+				{
+					"name": "OnlyApril"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\t{_col0_} as integer,\n\t\t{_col1_} as string,\n\t\tData as string,\n\t\t{_col3_} as string,\n\t\t{_col4_} as string,\n\t\t{_col5_} as string,\n\t\t{_col6_} as string,\n\t\t{_col7_} as string,\n\t\t{_col8_} as boolean,\n\t\t{_col9_} as boolean,\n\t\t{_col10_} as short,\n\t\t{_col11_} as short,\n\t\t{_col12_} as short,\n\t\t{_col13_} as short,\n\t\t{_col14_} as string,\n\t\t{_col15_} as integer,\n\t\t{_col16_} as integer,\n\t\t{_col17_} as short,\n\t\t{_col18_} as string,\n\t\t{_col19_} as double,\n\t\t{_col20_} as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinferDriftedColumnTypes: true) ~> CrimeDataFile\nCrimeDataFile derive(Data = left(Data,10),\n\t\tTime = right(Data,12)) ~> DataTimeExtract\nDataTimeExtract aggregate(groupBy(DayOfWeek = dayOfWeek(toDate(Data,'yyyy-mm-dd'))),\n\tiucr = count({_col3_})) ~> DayOfWeekCount\nDataTimeExtract filter(month(toDate(Data)) == 4) ~> OnlyApril\nOnlyApril select(mapColumn(\n\t\t{_col0_},\n\t\t{_col1_},\n\t\tData,\n\t\tTime\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['CrimeFileApril_fm.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkApril\nDayOfWeekCount sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['CrimeByDayOfWeek_fm.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> SinkDayOfWeek"
+		}
+	}
+}

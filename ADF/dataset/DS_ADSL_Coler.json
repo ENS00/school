@@ -1,0 +1,22 @@
+{
+	"name": "DS_ADSL_Coler",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_lego_ma",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "legoma"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

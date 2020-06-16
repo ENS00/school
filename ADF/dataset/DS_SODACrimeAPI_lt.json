@@ -1,0 +1,123 @@
+{
+	"name": "DS_SODACrimeAPI_lt",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "SODACrimeAPI_lt",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"id": {
+					"type": "string"
+				},
+				"case_number": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"block": {
+					"type": "string"
+				},
+				"iucr": {
+					"type": "string"
+				},
+				"primary_type": {
+					"type": "string"
+				},
+				"description": {
+					"type": "string"
+				},
+				"location_description": {
+					"type": "string"
+				},
+				"arrest": {
+					"type": "boolean"
+				},
+				"domestic": {
+					"type": "boolean"
+				},
+				"beat": {
+					"type": "string"
+				},
+				"district": {
+					"type": "string"
+				},
+				"ward": {
+					"type": "string"
+				},
+				"community_area": {
+					"type": "string"
+				},
+				"fbi_code": {
+					"type": "string"
+				},
+				"x_coordinate": {
+					"type": "string"
+				},
+				"y_coordinate": {
+					"type": "string"
+				},
+				"year": {
+					"type": "string"
+				},
+				"updated_on": {
+					"type": "string"
+				},
+				"latitude": {
+					"type": "string"
+				},
+				"longitude": {
+					"type": "string"
+				},
+				"location": {
+					"type": "object",
+					"properties": {
+						"latitude": {
+							"type": "string"
+						},
+						"longitude": {
+							"type": "string"
+						},
+						"human_address": {
+							"type": "string"
+						}
+					}
+				},
+				":@computed_region_awaf_s7ux": {
+					"type": "string"
+				},
+				":@computed_region_6mkv_f3dw": {
+					"type": "string"
+				},
+				":@computed_region_vrxf_vc4k": {
+					"type": "string"
+				},
+				":@computed_region_bdys_3d7i": {
+					"type": "string"
+				},
+				":@computed_region_43wa_7qmu": {
+					"type": "string"
+				},
+				":@computed_region_rpca_8um6": {
+					"type": "string"
+				},
+				":@computed_region_d9mm_jgwp": {
+					"type": "string"
+				},
+				":@computed_region_d3ds_rm58": {
+					"type": "string"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

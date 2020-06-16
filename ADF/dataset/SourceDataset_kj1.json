@@ -1,0 +1,37 @@
+{
+	"name": "SourceDataset_kj1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HttpServer1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"dateint": {
+					"type": "integer"
+				},
+				"airport": {
+					"type": "string"
+				},
+				"temp": {
+					"type": "integer"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

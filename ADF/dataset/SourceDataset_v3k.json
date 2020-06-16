@@ -1,0 +1,40 @@
+{
+	"name": "SourceDataset_v3k",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "Enh_HTTP_Source_TW",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Billy Dataset/this ain't ya folder, bro"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"dateint": {
+					"type": "integer"
+				},
+				"airport": {
+					"type": "string"
+				},
+				"temp": {
+					"type": "integer"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

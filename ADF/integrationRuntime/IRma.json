@@ -1,0 +1,12 @@
+{
+	"name": "IRma",
+	"properties": {
+		"type": "SelfHosted",
+		"typeProperties": {
+			"linkedInfo": {
+				"resourceId": "/subscriptions/55a9de92-ecad-42a7-9158-e95e8fe213ee/resourcegroups/DAM/providers/Microsoft.DataFactory/factories/Adfesame/integrationruntimes/IR-DAM",
+				"authorizationType": "Rbac"
+			}
+		}
+	}
+}

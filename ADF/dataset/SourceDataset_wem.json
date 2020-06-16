@@ -1,0 +1,47 @@
+{
+	"name": "SourceDataset_wem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "INVPARTS_HTTP_CONN_ez",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": "inventory_parts.csv.gz"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"compressionCodec": "gzip",
+			"compressionLevel": "Optimal",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "inventory_id",
+				"type": "String"
+			},
+			{
+				"name": "part_num",
+				"type": "String"
+			},
+			{
+				"name": "color_id",
+				"type": "String"
+			},
+			{
+				"name": "quantity",
+				"type": "String"
+			},
+			{
+				"name": "is_spare",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

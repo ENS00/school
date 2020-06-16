@@ -1,0 +1,17 @@
+{
+	"name": "filesystem_mp",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "FileServer",
+		"typeProperties": {
+			"host": "C:\\Users\\info.AzureAD\\Downloads\\colors.csv",
+			"userId": "AzureAd\\Info",
+			"encryptedCredential": "eyJDcmVkZW50aWFsSWQiOiIxYmU2YjRmMi0zNjU1LTRmYjgtOWRmMi04MzI2OGI4YTI4M2QiLCJWZXJzaW9uIjoiMi4wIiwiQ2xhc3NUeXBlIjoiTWljcm9zb2Z0LkRhdGFQcm94eS5Db3JlLkludGVyU2VydmljZURhdGFDb250cmFjdC5DcmVkZW50aWFsU1UwNkNZMTQifQ=="
+		},
+		"connectVia": {
+			"referenceName": "IRmarcopozzan",
+			"type": "IntegrationRuntimeReference"
+		}
+	}
+}

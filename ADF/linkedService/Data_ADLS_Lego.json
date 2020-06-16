@@ -1,0 +1,12 @@
+{
+	"name": "Data_ADLS_Lego",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureBlobFS",
+		"typeProperties": {
+			"url": "https://adlsgen2course.dfs.core.windows.net",
+			"encryptedCredential": "ew0KICAiVmVyc2lvbiI6ICIyMDE3LTExLTMwIiwNCiAgIlByb3RlY3Rpb25Nb2RlIjogIktleSIsDQogICJTZWNyZXRDb250ZW50VHlwZSI6ICJQbGFpbnRleHQiLA0KICAiQ3JlZGVudGlhbElkIjogIkxBQjAxQURGXzJjODg0ZWQzLTExNzQtNDQyYy05YmMxLTM5M2JkOWUwZDFjNyINCn0="
+		}
+	}
+}

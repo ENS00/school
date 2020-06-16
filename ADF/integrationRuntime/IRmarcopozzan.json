@@ -1,0 +1,7 @@
+{
+	"name": "IRmarcopozzan",
+	"properties": {
+		"type": "SelfHosted",
+		"description": "Integration runtime"
+	}
+}

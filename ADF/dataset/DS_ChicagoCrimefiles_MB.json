@@ -1,0 +1,23 @@
+{
+	"name": "DS_ChicagoCrimefiles_MB",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "BlobStorage_MB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "ChicagoCrimeFiles_MB.csv",
+				"container": "lab3"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

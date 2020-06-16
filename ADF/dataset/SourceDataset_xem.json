@@ -1,0 +1,37 @@
+{
+	"name": "SourceDataset_xem",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "HTTP_Weather_MB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"_id": {
+					"type": "string"
+				},
+				"date": {
+					"type": "string"
+				},
+				"dateint": {
+					"type": "integer"
+				},
+				"airport": {
+					"type": "string"
+				},
+				"temp": {
+					"type": "integer"
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,26 @@
+{
+	"name": "DS_LocalSQLWideWorldImporters",
+	"properties": {
+		"description": "Connect to your data source store.",
+		"linkedServiceName": {
+			"referenceName": "LocalDBToAzureDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "SqlServerTable",
+		"structure": [
+			{
+				"name": "StockGroupName",
+				"type": "String"
+			},
+			{
+				"name": "LineProfit",
+				"type": "Decimal"
+			}
+		],
+		"typeProperties": {
+			"tableName": "[Application].[Cities]"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

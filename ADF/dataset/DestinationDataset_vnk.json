@@ -1,0 +1,24 @@
+{
+	"name": "DestinationDataset_vnk",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ADLS_lab01",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": "inventory_parts.csv",
+				"fileSystem": "legogp"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

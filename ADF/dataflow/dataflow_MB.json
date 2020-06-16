@@ -1,0 +1,48 @@
+{
+	"name": "dataflow_MB",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DS_ChicagoCrimefiles_MB",
+						"type": "DatasetReference"
+					},
+					"name": "CrimeDataFile"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "Datafilecrime_MB",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DS_crime",
+						"type": "DatasetReference"
+					},
+					"name": "sink2"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DataCrimeExtract"
+				},
+				{
+					"name": "DayOfWeekCount"
+				},
+				{
+					"name": "onlyApril"
+				},
+				{
+					"name": "Select1"
+				}
+			],
+			"script": "source(output(\n\t\t{_col0_} as integer,\n\t\t{_col1_} as string,\n\t\tdata as string,\n\t\t{_col3_} as string,\n\t\t{_col4_} as string,\n\t\t{_col5_} as string,\n\t\t{_col6_} as string,\n\t\t{_col7_} as string,\n\t\t{_col8_} as boolean,\n\t\t{_col9_} as boolean,\n\t\t{_col10_} as short,\n\t\t{_col11_} as short,\n\t\t{_col12_} as short,\n\t\t{_col13_} as short,\n\t\t{_col14_} as string,\n\t\t{_col15_} as integer,\n\t\t{_col16_} as integer,\n\t\t{_col17_} as short,\n\t\t{_col18_} as string,\n\t\t{_col19_} as double,\n\t\t{_col20_} as double\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tinferDriftedColumnTypes: true) ~> CrimeDataFile\nCrimeDataFile derive(data = left(data,10),\n\t\ttime = right(data, 12)) ~> DataCrimeExtract\nDataCrimeExtract aggregate(groupBy(DoW = dayOfWeek(toDate(data,'yyyy-mm-dd'))),\n\tucr = count({_col3_})) ~> DayOfWeekCount\nDataCrimeExtract filter(month(toDate(data))==6) ~> onlyApril\nonlyApril select(mapColumn(\n\t\t{_col3_}\n\t),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> Select1\nSelect1 sink(input(\n\t\tColumn_1 as string,\n\t\tColumn_2 as string,\n\t\tColumn_3 as string,\n\t\tColumn_4 as string,\n\t\tColumn_5 as string,\n\t\tColumn_6 as string,\n\t\tColumn_7 as string,\n\t\tColumn_8 as string,\n\t\tColumn_9 as string,\n\t\tColumn_10 as string,\n\t\tColumn_11 as string,\n\t\tColumn_12 as string,\n\t\tColumn_13 as string,\n\t\tColumn_14 as string,\n\t\tColumn_15 as string,\n\t\tColumn_16 as string,\n\t\tColumn_17 as string,\n\t\tColumn_18 as string,\n\t\tColumn_19 as string,\n\t\tColumn_20 as string,\n\t\tColumn_21 as string\n\t),\n\tallowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['DS_onlyJune.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink1\nDayOfWeekCount sink(allowSchemaDrift: true,\n\tvalidateSchema: false,\n\tpartitionFileNames:['CrimePerDoW.csv'],\n\tpartitionBy('hash', 1),\n\tskipDuplicateMapInputs: true,\n\tskipDuplicateMapOutputs: true) ~> sink2"
+		}
+	}
+}

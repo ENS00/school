@@ -1,0 +1,25 @@
+{
+	"name": "DS_CrimeFile2020",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "blobby_tw",
+			"type": "LinkedServiceReference"
+		},
+		"folder": {
+			"name": "Billy Dataset/this ain't ya folder, bro"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"container": "lab3"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

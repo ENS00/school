@@ -1,0 +1,13 @@
+{
+	"name": "HTTP_Weather",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://weather-b362.restdb.io/rest/random-weather-dec-2016",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
